@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model CallNote {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  callerName   String
+  callerNumber String
+  dbaName      String
+  callNotes    String
+  summary      String
+  nextSteps    String
+}
+
+model Handoff {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  dbaName String
+  summary String
+  ticket  String
+}
+
+model Rekey {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  ref    String
+  date   String
+  auth   String
+  last4  String
+  amount String
+  tip    String
+}
