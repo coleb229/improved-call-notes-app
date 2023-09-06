@@ -25,7 +25,7 @@ export default async function DisplayStoredCalls() {
             <p className="font-semibold">Caller DBA:</p>
             <p>{callNote.dbaName}</p>
             <p className="font-semibold">Call Notes:</p>
-            <p>{callNote.callNotes.replaceAll()}</p>
+            <p>{callNote.callNotes}</p>
             <p className="font-semibold">Call Summary:</p>
             <p>{callNote.summary}</p>
             <p className="font-semibold">Next Steps:</p>
