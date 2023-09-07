@@ -26,6 +26,18 @@ export default async function DisplayStoredCalls() {
   let handoff = await fetchHandoffs();
   let rekey = await fetchRekeys();
 
+  let callNotes = callNote.map((callNote) => {
+    return {
+      id: callNote.id,
+      callerName: callNote.callerName,
+      callerNumber: callNote.callerNumber,
+      dbaName: callNote.dbaName,
+      callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
+      summary: callNote.summary,
+      nextSteps: callNote.nextSteps,
+    };
+  });
+
   return (
     <>
       <Navbar />
@@ -34,7 +46,7 @@ export default async function DisplayStoredCalls() {
           <div>
             <h1 className="text-2xl font-semibold">Call Notes</h1>
             <hr className="mb-10" />
-            {callNote.map((callNote) => (
+            {callNotes.map((callNote) => (
               <div key={callNote.id} className="pb-10">
                 <p className="font-semibold">Caller Name:</p>
                 <p>{callNote.callerName}</p>
@@ -43,11 +55,26 @@ export default async function DisplayStoredCalls() {
                 <p className="font-semibold">Caller DBA:</p>
                 <p>{callNote.dbaName}</p>
                 <p className="font-semibold">Call Notes:</p>
-                <p>{callNote.callNotes}</p>
+                {callNote.callNotes}
                 <p className="font-semibold">Call Summary:</p>
                 <p>{callNote.summary}</p>
                 <p className="font-semibold">Next Steps:</p>
                 <p>{callNote.nextSteps}</p>
+                <hr />
+              </div>
+            ))}
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold">Call Logs</h1>
+            <hr className="mb-10" />
+            {callNote.map((callNote) => (
+              <div key={callNote.id} className="pb-10">
+                <p className="font-semibold">Caller DBA:</p>
+                <p>{callNote.dbaName}</p>
+                <p className="font-semibold">Caller Number:</p>
+                <p>{callNote.callerNumber}</p>
+                <p className="font-semibold">Call Summary:</p>
+                <p>{callNote.summary}</p>
                 <hr />
               </div>
             ))}
