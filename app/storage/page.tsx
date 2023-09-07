@@ -47,7 +47,6 @@ export default async function DisplayStoredCalls() {
             <h1 className="text-2xl font-semibold">Call Notes</h1>
             <hr className="mb-10" />
             {callNote.map((callNote) => (
-              i++,
               <div key={callNote.id} className="pb-10">
                 <p className="font-semibold">Caller Name:</p>
                 <p>{callNote.callerName}</p>
