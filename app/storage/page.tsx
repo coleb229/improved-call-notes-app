@@ -7,6 +7,7 @@ async function fetchCallNotes() {
   "use server";
   const callNote = await prisma.callNote.findMany({});
   let callNotes = callNote.map((callNote) => {
+    <div key={callNote.id} className="pb-10" />
     return {
       id: callNote.id,
       callerName: callNote.callerName,
