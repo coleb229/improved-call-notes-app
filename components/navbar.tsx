@@ -9,10 +9,10 @@ export default function Navbar() {
         <a href="/handoff" className="text-white text-2xl font-bold">Just Handoff</a>
       </div>
       <div>
-        <a href="/rekeys" className="text-white text-2xl font-bold">Rekeys</a>
+        <a href="/rekey" className="text-white text-2xl font-bold">Rekeys</a>
       </div>
       <div>
-        <a href="/callnote-storage" className="text-white text-2xl font-bold">Stored Calls</a>
+        <a href="/storage" className="text-white text-2xl font-bold">Storage</a>
       </div>
     </nav>
   )

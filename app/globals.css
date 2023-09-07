@@ -75,6 +75,10 @@
   }
 }
 
+body {
+  background-color: #f2f2f2;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -97,6 +101,10 @@ input, textarea {
   margin: 100px auto 0 auto;
 }
 
+#callNoteForm {
+  padding-top: 30px;
+}
+
 #callNotes {
   height: 400px;
   width: 100%;
@@ -105,4 +113,41 @@ input, textarea {
 #callNotes {
   width: 50vw;
   margin: 0 auto;
+  padding: 20px 0;
+}
+
+#callerInfo {
+  width: 50vw;
+  margin: 20px auto;
+}
+
+.callerInfos {
+  display: flex;
+  flex-direction: column;
+}
+
+#footNotes {
+  width: 50vw;
+  margin: 20px auto;
+  align-items: center;
+}
+
+label {
+  @apply font-semibold;
+  display: flex;
+}
+
+#dbaName, #summary, #ticket {
+  width: 80%;
+  margin-bottom: 30px;
+}
+
+#submit {
+  margin: 30px 40%;
+}
+
+#rekeyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

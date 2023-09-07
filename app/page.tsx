@@ -1,5 +1,8 @@
 import Navbar from '@/components/navbar'
 import { PrismaClient } from '@prisma/client'
+import SubmitButton from '@/components/SubmitButton'
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from "lucide-react"
 
 const prisma = new PrismaClient()
 
@@ -21,20 +24,27 @@ export default async function Home() {
   const callNote = await prisma.callNote.findFirst({});
 
   return (
-    <main className="h-screen">
+    <main className="max-h-screen">
       <Navbar />
+      <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
+        <Terminal className="h-4 w-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          Call has been stored in the database!
+        </AlertDescription>
+      </Alert>
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-around'>
-            <div>
+            <div className='callerInfos'>
               <label htmlFor='callerName'>Caller Name</label>
               <input type='text' name='callerName' id='callerName' />
             </div>
-            <div>
+            <div className='callerInfos'>
               <label htmlFor='callerNumber'>Caller Number</label>
               <input type='text' name='callerNumber' id='callerNumber' />
             </div>
-            <div>
+            <div className='callerInfos'>
               <label htmlFor='dbaName'>DBA Name</label>
               <input type='text' name='dbaName' id='dbaName' />
             </div>
@@ -45,7 +55,7 @@ export default async function Home() {
               <textarea name='callNotes' id='callNotes'></textarea>
             </div>
           </div>
-          <div id='footNotes' className='flex justify-around'>
+          <div id='footNotes' className='flex justify-between'>
             <div className='flex flex-col'>
               <label htmlFor='summary'>Summary</label>
               <textarea name='summary' id='summary'></textarea>
@@ -54,27 +64,12 @@ export default async function Home() {
               <label htmlFor='nextSteps'>Next Steps</label>
               <textarea name='nextSteps' id='nextSteps'></textarea>
             </div>
-          </div>
-          <div id='submit' className='w-full mx-auto'>
-            <button type='submit'>Save</button>
+            <div className=''>
+              <SubmitButton />
+            </div>
           </div>
         </form>
       </div>
     </main>
-  )
-}
-
-function Output() {
-  return (
-    <div id='output'>
-      <h2>Caller Name:</h2>
-      <p id='callerNameOutput'></p>
-      <h2>Caller Number:</h2>
-      <p id='callerNumberOutput'></p>
-      <h2>DBA Name:</h2>
-      <p id='dbaNameOutput'></p>
-      <h2>Call Notes:</h2>
-      <p id='callNotesOutput'></p>
-    </div>
   )
 }
