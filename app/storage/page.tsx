@@ -6,7 +6,18 @@ const prisma = new PrismaClient();
 async function fetchCallNotes() {
   "use server";
   const callNote = await prisma.callNote.findMany({});
-  return callNote;
+  let callNotes = callNote.map((callNote) => {
+    return {
+      id: callNote.id,
+      callerName: callNote.callerName,
+      callerNumber: callNote.callerNumber,
+      dbaName: callNote.dbaName,
+      callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
+      summary: callNote.summary,
+      nextSteps: callNote.nextSteps,
+    };
+  });
+  return callNotes;
 }
 
 async function fetchHandoffs() {
@@ -25,18 +36,7 @@ export default async function DisplayStoredCalls() {
   let callNote = await fetchCallNotes();
   let handoff = await fetchHandoffs();
   let rekey = await fetchRekeys();
-
-  let callNotes = callNote.map((callNote) => {
-    return {
-      id: callNote.id,
-      callerName: callNote.callerName,
-      callerNumber: callNote.callerNumber,
-      dbaName: callNote.dbaName,
-      callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
-      summary: callNote.summary,
-      nextSteps: callNote.nextSteps,
-    };
-  });
+  let i = 0;
 
   return (
     <>
@@ -46,7 +46,8 @@ export default async function DisplayStoredCalls() {
           <div>
             <h1 className="text-2xl font-semibold">Call Notes</h1>
             <hr className="mb-10" />
-            {callNotes.map((callNote) => (
+            {callNote.map((callNote) => (
+              i++,
               <div key={callNote.id} className="pb-10">
                 <p className="font-semibold">Caller Name:</p>
                 <p>{callNote.callerName}</p>
