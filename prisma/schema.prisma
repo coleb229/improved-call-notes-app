@@ -36,3 +36,11 @@ model Rekey {
   amount String
   tip    String
 }
+
+model Todo {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  task      String
+  timeframe String
+  completed Boolean
+}

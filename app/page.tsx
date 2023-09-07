@@ -24,7 +24,7 @@ export default async function Home() {
   const callNote = await prisma.callNote.findFirst({});
 
   return (
-    <main className="max-h-screen">
+    <main className="h-screen">
       <Navbar />
       <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
         <Terminal className="h-4 w-4" />
@@ -55,7 +55,7 @@ export default async function Home() {
               <textarea name='callNotes' id='callNotes'></textarea>
             </div>
           </div>
-          <div id='footNotes' className='flex justify-between'>
+          <div id='footNotes' className='flex justify-around'>
             <div className='flex flex-col'>
               <label htmlFor='summary'>Summary</label>
               <textarea name='summary' id='summary'></textarea>
@@ -64,7 +64,7 @@ export default async function Home() {
               <label htmlFor='nextSteps'>Next Steps</label>
               <textarea name='nextSteps' id='nextSteps'></textarea>
             </div>
-            <div className=''>
+            <div id=''>
               <SubmitButton />
             </div>
           </div>
