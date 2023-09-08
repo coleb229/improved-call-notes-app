@@ -35,7 +35,7 @@ export default async function Home() {
       </Alert>
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
-          <div id='callerInfo' className='flex justify-around'>
+          <div id='callerInfo' className='flex justify-evenly'>
             <div className='callerInfos'>
               <label htmlFor='callerName'>Caller Name</label>
               <input type='text' name='callerName' id='callerName' />
@@ -46,7 +46,7 @@ export default async function Home() {
             </div>
             <div className='callerInfos'>
               <label htmlFor='dbaName'>DBA Name</label>
-              <input type='text' name='dbaName' id='dbaName' />
+              <input type='text' name='dbaName' id='dbaNameInput' />
             </div>
           </div>
           <div id='callNotes' className='flex justify-between'>
@@ -58,11 +58,11 @@ export default async function Home() {
           <div id='footNotes' className='flex justify-around'>
             <div className='flex flex-col'>
               <label htmlFor='summary'>Summary</label>
-              <textarea name='summary' id='summary'></textarea>
+              <textarea name='summary' id='summaryInput' className='w-[20rem] h-[6rem]'></textarea>
             </div>
             <div className='flex flex-col'>
               <label htmlFor='nextSteps'>Next Steps</label>
-              <textarea name='nextSteps' id='nextSteps'></textarea>
+              <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
             </div>
             <div id=''>
               <SubmitButton />

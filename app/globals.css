@@ -97,7 +97,7 @@ input, textarea {
 }
 
 #container {
-  width: 80vw;
+  width: 90vw;
   margin: 100px auto 0 auto;
 }
 
@@ -111,13 +111,13 @@ input, textarea {
 }
 
 #callNotes {
-  width: 50vw;
+  width: 70vw;
   margin: 0 auto;
   padding: 20px 0;
 }
 
 #callerInfo {
-  width: 50vw;
+  width: 70vw;
   margin: 20px auto;
 }
 
@@ -127,15 +127,15 @@ input, textarea {
 }
 
 #footNotes {
-  width: 50vw;
+  width: 70vw;
   margin: 20px auto;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 label {
   @apply font-semibold;
-  display: flex;
 }
 
 #dbaName, #summary, #ticket {
@@ -157,4 +157,29 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#todoForm {
+  position: fixed;
+  bottom: 10px;
+  left: 40px;
+  width: 100%;
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+#submitTodo {
+  margin: 20px 20px;
+}
+
+#todoTable {
+  width: 70vw;
+  max-height: 80%;
+  overflow-y: scroll;
+  margin: 20px auto;
 }

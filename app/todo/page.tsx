@@ -6,12 +6,12 @@ import { Terminal } from "lucide-react"
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Button } from "@/components/ui/button";
 
 const prisma = new PrismaClient();
 
@@ -28,7 +28,6 @@ async function saveToDo(formData: any) {
 }
 
 export default async function Home() {
-  const todo = await prisma.todo.findFirst({});
 
   return (
     <main className="max-h-screen">
@@ -41,26 +40,24 @@ export default async function Home() {
         </AlertDescription>
       </Alert>
       <div id='container'>
-        <OutputTable />
+        <div id="todoTable"><OutputTable /></div>
         <form action={saveToDo} id='todoForm'>
-          <div className="flex">
-            <div>
+          <div className="flex w-screen">
+            <div className="todo">
               <label htmlFor='name'>Name</label>
               <input type='text' name='name' id='name' />
             </div>
-            <div>
+            <div className="todo">
               <label htmlFor='task'>Task</label>
-              <input type='text' name='task' id='task' className="w-[50rem]" />
+              <input type='text' name='task' id='task' className="w-[25rem]" />
             </div>
-          </div>
-          <div className="flex justify-evenly">
-            <div>
+            <div className="todo">
               <label htmlFor='timeframe'>Timeframe</label>
               <input type='text' name='timeframe' id='timeframe' />
             </div>
-          </div>
-          <div id="submit">
-            <SubmitButton />
+            <div id="submitTodo">
+              <SubmitButton />
+            </div>
           </div>
         </form>
       </div>
@@ -72,7 +69,7 @@ async function OutputTable() {
   const todo = await prisma.todo.findMany({});
 
   return (
-    <Table className="w-2/3">
+    <Table className="w-2/3 mx-auto">
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>
@@ -87,7 +84,9 @@ async function OutputTable() {
             <TableCell>{todo.name}</TableCell>
             <TableCell>{todo.task}</TableCell>
             <TableCell>{todo.timeframe}</TableCell>
-            <TableCell>{todo.completed}</TableCell>
+            <TableCell>
+              <form><Button variant="destructive" type="submit">Delete</Button></form>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
