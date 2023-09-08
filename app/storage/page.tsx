@@ -60,7 +60,7 @@ export default async function DisplayStoredCalls() {
             <h1 className="text-2xl font-semibold">Call Notes</h1>
             <hr className="mb-10" />
             {callNote.map((callNote) => (
-              <div key={callNote.id} className="pb-10">
+              <div key={callNote.id} className="pb-10 bg-white">
                 <p className="font-semibold">Caller Name:</p>
                 <p>{callNote.callerName}</p>
                 <p className="font-semibold">Caller Number:</p>
@@ -86,13 +86,13 @@ export default async function DisplayStoredCalls() {
             <h1 className="text-2xl font-semibold">Call Logs</h1>
             <hr className="mb-10" />
             {callNote.map((callNote) => (
-              <div key={callNote.id} className="pb-10">
-                <p className="font-semibold">Caller DBA:</p>
-                <p>{callNote.dbaName}</p>
-                <p className="font-semibold">Caller Number:</p>
-                <p>{callNote.callerNumber}</p>
-                <p className="font-semibold">Call Summary:</p>
-                <p>{callNote.summary}</p>
+              <div key={callNote.id} className="pb-10 bg-white">
+                <p className="">Caller DBA: {callNote.dbaName}</p>
+                <p className="">Caller Number: {callNote.callerNumber}</p>
+                <p className="">Call Summary: {callNote.summary}</p>
+                <p className="">Resolved: Yes</p>
+                <p className="">Ticket: Yes</p>
+                <p className="">Follow Up: No</p>
                 <hr />
               </div>
             ))}
@@ -101,16 +101,15 @@ export default async function DisplayStoredCalls() {
             <h1 className="text-2xl font-semibold">Handoffs</h1>
             <hr className="mb-10" />
             {handoff.map((handoff) => (
-              <div key={handoff.id} className="pb-10">
+              <div key={handoff.id} className="pb-10 bg-white">
                 <div className="flex">
-                  <p className="font-bold">{handoff.dbaName}:</p>
+                  <p className="font-bold underline">{handoff.dbaName}:</p>
                   <p>{handoff.summary}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Ticket:</p>
+                  <p className="font-bold">Ticket:</p>
                   <p>{handoff.ticket}</p>
                 </div>
-                <hr />
               </div>
             ))}
             <form action={deleteHandoffs}>
@@ -123,7 +122,7 @@ export default async function DisplayStoredCalls() {
             <h1 className="text-2xl font-semibold">Rekeys</h1>
             <hr className="mb-10" />
             {rekey.map((rekey) => (
-              <div key={rekey.id} className="pb-10">
+              <div key={rekey.id} className="pb-10 bg-white">
                 <div className="flex">
                   <p className="">Ref: {rekey.ref}</p>
                 </div>
