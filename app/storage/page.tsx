@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Navbar from "../../components/navbar";
+import { Button } from "@/components/ui/button";
 
 const prisma = new PrismaClient();
 
@@ -30,11 +31,25 @@ async function fetchRekeys() {
   return rekey;
 }
 
+async function deleteCallNotes() {
+  "use server";
+  await prisma.callNote.deleteMany({});
+}
+
+async function deleteHandoffs() {
+  "use server";
+  await prisma.handoff.deleteMany({});
+}
+
+async function deleteRekeys() {
+  "use server";
+  await prisma.rekey.deleteMany({});
+}
+
 export default async function DisplayStoredCalls() {
   let callNote = await fetchCallNotes();
   let handoff = await fetchHandoffs();
   let rekey = await fetchRekeys();
-  let i = 0;
 
   return (
     <>
@@ -61,6 +76,11 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
+            <form action={deleteCallNotes}>
+              <Button variant="destructive" type="submit">
+                Delete Calls
+              </Button>
+            </form>
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Call Logs</h1>
@@ -91,6 +111,11 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
+            <form action={deleteHandoffs}>
+              <Button variant="destructive" type="submit">
+                Delete Handoffs
+              </Button>
+            </form>
           </div>
           <div>
             <h1 className="text-2xl font-semibold">Rekeys</h1>
@@ -112,6 +137,11 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
+            <form action={deleteRekeys}>
+              <Button variant="destructive" type="submit">
+                Delete Rekeys
+              </Button>
+            </form>
           </div>
         </div>
       </div>
