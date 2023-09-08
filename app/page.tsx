@@ -18,6 +18,13 @@ async function saveCallNote(formData: any) {
       nextSteps: formData.get('nextSteps'),
     }
   })
+  await prisma.handoff.create({
+    data: {
+      dbaName: formData.get('dbaName'),
+      summary: formData.get('summary'),
+      ticket: 'ticket',
+    }
+  })
 }
 
 export default async function Home() {

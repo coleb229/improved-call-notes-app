@@ -102,12 +102,14 @@ export default async function DisplayStoredCalls() {
             <hr className="mb-10" />
             {handoff.map((handoff) => (
               <div key={handoff.id} className="pb-10">
-                <p className="font-semibold">DBA Name:</p>
-                <p>{handoff.dbaName}</p>
-                <p className="font-semibold">Summary:</p>
-                <p>{handoff.summary}</p>
-                <p className="font-semibold">Ticket:</p>
-                <p>{handoff.ticket}</p>
+                <div className="flex">
+                  <p className="font-bold">{handoff.dbaName}:</p>
+                  <p>{handoff.summary}</p>
+                </div>
+                <div className="flex">
+                  <p className="font-semibold">Ticket:</p>
+                  <p>{handoff.ticket}</p>
+                </div>
                 <hr />
               </div>
             ))}
