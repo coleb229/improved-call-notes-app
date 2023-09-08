@@ -6,18 +6,15 @@ const prisma = new PrismaClient();
 async function fetchCallNotes() {
   "use server";
   const callNote = await prisma.callNote.findMany({});
-  let callNotes = callNote.map((callNote) => {
-    <div key={callNote.id} className="pb-10" />
-    return {
-      id: callNote.id,
-      callerName: callNote.callerName,
-      callerNumber: callNote.callerNumber,
-      dbaName: callNote.dbaName,
-      callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
-      summary: callNote.summary,
-      nextSteps: callNote.nextSteps,
-    };
-  });
+  let callNotes = callNote.map((callNote) => ({
+    id: callNote.id,
+    callerName: callNote.callerName,
+    callerNumber: callNote.callerNumber,
+    dbaName: callNote.dbaName,
+    callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
+    summary: callNote.summary,
+    nextSteps: callNote.nextSteps,
+  }));
   return callNotes;
 }
 
