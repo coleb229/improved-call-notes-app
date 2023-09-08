@@ -125,28 +125,22 @@ export default async function DisplayStoredCalls() {
             {rekey.map((rekey) => (
               <div key={rekey.id} className="pb-10">
                 <div className="flex">
-                  <p className="font-semibold">Ref:</p>
-                  <p>{rekey.ref}</p>
+                  <p className="">Ref: {rekey.ref}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Date:</p>
-                  <p>{rekey.date}</p>
+                  <p className="">Date: {rekey.date}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Auth:</p>
-                  <p>{rekey.auth}</p>
+                  <p className="">Auth: {rekey.auth}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Last4:</p>
-                  <p>{rekey.last4}</p>
+                  <p className="">Last4: {rekey.last4}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Amount:</p>
-                  <p>{rekey.amount}</p>
+                  <p className="">Amount: {rekey.amount}</p>
                 </div>
                 <div className="flex">
-                  <p className="font-semibold">Tip:</p>
-                  <p>{rekey.tip}</p>
+                  <p className="">Tip: {rekey.tip}</p>
                 </div>
                 <hr />
               </div>
