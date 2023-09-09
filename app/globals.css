@@ -105,15 +105,11 @@ input, textarea {
   padding-top: 30px;
 }
 
-#callNotes {
-  height: 400px;
-  width: 100%;
-}
-
-#callNotes {
-  width: 70vw;
-  margin: 0 auto;
+#callNotes, #output {
+  width: 45vw;
+  margin: 0;
   padding: 20px 0;
+  height: 400px;
 }
 
 #callerInfo {
@@ -207,11 +203,12 @@ label {
 
 @media only screen and (max-width: 1200px) {
   #container {
-    width: 100vw;
+    width: 100vh;
+    margin: 100px 0;
   }
 
-  #callNotes {
-    width: 100vw;
+  #callNotes, #output {
+    width: 50vw;
   }
 
   #callerInfo {

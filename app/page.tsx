@@ -27,8 +27,18 @@ async function saveCallNote(formData: any) {
   })
 }
 
+async function fetchLastCallNote() {
+  "use server"
+  const callNote = await prisma.callNote.findFirst({
+    orderBy: {
+      id: 'desc'
+    }
+  })
+  return callNote;
+}
+
 export default async function Home() {
-  const callNote = await prisma.callNote.findFirst({});
+  let callNote = await fetchLastCallNote();
 
   return (
     <main className="h-screen">
@@ -60,6 +70,43 @@ export default async function Home() {
             <div className='flex flex-col'>
               <label htmlFor='callNotes'>Call Notes</label>
               <textarea name='callNotes' id='callNotes'></textarea>
+            </div>
+            <div className='flex flex-col'>
+              <label htmlFor='output'>Preview</label>
+              <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
+                <div className='mx-5 text-xs'>
+                  <p className="font-semibold">Caller Name:</p>
+                  <p>{callNote?.callerName}</p>
+                  <p className="font-semibold">Caller Number:</p>
+                  <p>{callNote?.callerNumber}</p>
+                  <p className="font-semibold">Caller DBA:</p>
+                  <p>{callNote?.dbaName}</p>
+                  <p className="font-semibold">Call Notes:</p>
+                  <p>{callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
+                  <p className="font-semibold">Call Summary:</p>
+                  <p>{callNote?.summary}</p>
+                  <p className="font-semibold">Next Steps:</p>
+                  <p>{callNote?.nextSteps}</p>
+                </div>
+                <div className='mx-5 text-xs'>
+                  <div className='flex'>
+                    <p className='font-bold underline'>{callNote?.dbaName}: </p>
+                    <p>{callNote?.summary}</p>
+                  </div>
+                  <div className='flex'>
+                    <p className="font-semibold">Ticket:</p>
+                    <p>ticket</p>
+                  </div>
+                  <div className='mt-5'>
+                    <p>Caller DBA: {callNote?.dbaName}</p>
+                    <p>Caller Number: {callNote?.callerNumber}</p>
+                    <p>Call Summary: {callNote?.summary}</p>
+                    <p>Resolved: Yes</p>
+                    <p>Ticket: Yes</p>
+                    <p>Follow Up: No</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div id='footNotes' className='flex justify-around'>

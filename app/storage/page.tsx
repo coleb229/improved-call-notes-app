@@ -87,12 +87,12 @@ export default async function DisplayStoredCalls() {
             <hr className="mb-10" />
             {callNote.map((callNote) => (
               <div key={callNote.id} className="pb-10 bg-white">
-                <p className="">Caller DBA: {callNote.dbaName}</p>
-                <p className="">Caller Number: {callNote.callerNumber}</p>
-                <p className="">Call Summary: {callNote.summary}</p>
-                <p className="">Resolved: Yes</p>
-                <p className="">Ticket: Yes</p>
-                <p className="">Follow Up: No</p>
+                Caller DBA: {callNote.dbaName}<br />
+                Caller Number: {callNote.callerNumber}<br />
+                Call Summary: {callNote.summary}<br />
+                Resolved: Yes<br />
+                Ticket: Yes<br />
+                Follow Up: No<br />
                 <hr />
               </div>
             ))}
