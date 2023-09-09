@@ -98,12 +98,12 @@ export default async function Home() {
                     <p>ticket</p>
                   </div>
                   <div className='mt-5'>
-                    Caller DBA: {callNote?.dbaName}
-                    Caller Number: {callNote?.callerNumber}
-                    Call Summary: {callNote?.summary}
-                    Resolved: Yes
-                    Ticket: Yes
-                    Follow Up: No
+                    Caller DBA: {callNote?.dbaName}<br />
+                    Caller Number: {callNote?.callerNumber}<br />
+                    Call Summary: {callNote?.summary}<br />
+                    Resolved: Yes<br />
+                    Ticket: Yes<br />
+                    Follow Up: No<br />
                   </div>
                 </div>
               </div>
