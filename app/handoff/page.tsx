@@ -30,15 +30,11 @@ export default async function Home() {
       </Alert>
       <div id='container'>
         <form action={saveHandoff} id='handoffForm'>
-          <div>
+          <div id="handoffForm">
             <label htmlFor='dbaName'>DBA Name</label>
             <input type='text' name='dbaName' id='dbaName' />
-          </div>
-          <div>
             <label htmlFor='summary'>Summary</label>
             <input type='text' name='summary' id='summary' />
-          </div>
-          <div>
             <label htmlFor='ticket'>Ticket</label>
             <input type='text' name='ticket' id='ticket' />
           </div>

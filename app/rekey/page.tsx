@@ -33,27 +33,17 @@ export default async function Home() {
       </Alert>
       <div id='container'>
         <form action={saveHandoff} id='rekeyForm'>
-          <div>
+          <div id="rekeyForm">
             <label htmlFor='ref'>Ref</label>
             <input type='text' name='ref' id='ref' />
-          </div>
-          <div>
             <label htmlFor='date'>Date</label>
             <input type='text' name='date' id='date' />
-          </div>
-          <div>
             <label htmlFor='auth'>Auth</label>
             <input type='text' name='auth' id='auth' />
-          </div>
-          <div>
             <label htmlFor='last4'>Last4</label>
             <input type='text' name='last4' id='last4' />
-          </div>
-          <div>
             <label htmlFor='amount'>Amount</label>
             <input type='text' name='amount' id='amount' />
-          </div>
-          <div>
             <label htmlFor='tip'>Tip</label>
             <input type='text' name='tip' id='tip' />
           </div>
