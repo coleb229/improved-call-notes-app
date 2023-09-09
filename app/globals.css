@@ -99,10 +99,17 @@ input, textarea {
 #container {
   width: 90vw;
   margin: 100px;
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
+#storageContainer {
+  width: 90vw;
+  margin: 100px;
 }
 
 #callNoteForm {
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 #callNotes, #output {
@@ -211,6 +218,13 @@ label {
 #handoffForm label {
   margin-right: 10px;
   position: relative;
+}
+
+#alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media only screen and (max-width: 1200px) {

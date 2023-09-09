@@ -43,7 +43,7 @@ export default async function Home() {
   return (
     <main className="h-screen">
       <Navbar />
-      <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
+      <Alert className='alert mt-24 w-[50%] mx-auto hidden' id='alert'>
         <Terminal className="h-4 w-4" />
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
@@ -98,12 +98,12 @@ export default async function Home() {
                     <p>ticket</p>
                   </div>
                   <div className='mt-5'>
-                    <p>Caller DBA: {callNote?.dbaName}</p>
-                    <p>Caller Number: {callNote?.callerNumber}</p>
-                    <p>Call Summary: {callNote?.summary}</p>
-                    <p>Resolved: Yes</p>
-                    <p>Ticket: Yes</p>
-                    <p>Follow Up: No</p>
+                    Caller DBA: {callNote?.dbaName}
+                    Caller Number: {callNote?.callerNumber}
+                    Call Summary: {callNote?.summary}
+                    Resolved: Yes
+                    Ticket: Yes
+                    Follow Up: No
                   </div>
                 </div>
               </div>

@@ -54,7 +54,7 @@ export default async function DisplayStoredCalls() {
   return (
     <>
       <Navbar />
-      <div id="container">
+      <div id="storageContainer">
         <div className="flex justify-evenly">
           <div>
             <h1 className="text-2xl font-semibold">Call Notes</h1>
