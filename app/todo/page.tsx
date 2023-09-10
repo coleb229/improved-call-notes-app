@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -25,6 +26,7 @@ async function saveToDo(formData: any) {
       completed: false,
     }
   })
+  revalidatePath("/todo")
 }
 
 async function deleteSelected(formData: any) {
@@ -34,6 +36,7 @@ async function deleteSelected(formData: any) {
       id: formData.get('id')
     }
   })
+  revalidatePath("/todo")
 }
 
 export default async function Home() {
@@ -94,6 +97,7 @@ async function OutputTable() {
             <TableCell>{todo.task}</TableCell>
             <TableCell>{todo.timeframe}</TableCell>
             <TableCell>
+              {/* had to wrap delete in a form to hit it with server action */}
               <form action={deleteSelected}>
                 <input type="hidden" name="id" value={todo.id} />
                 <Button variant="destructive" type="submit">Delete</Button>

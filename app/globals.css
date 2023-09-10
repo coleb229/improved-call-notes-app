@@ -264,4 +264,14 @@ label {
   #todoTable {
     width: 100vw;
   }
+
+  #rekeyForm {
+    width: 100%;
+    margin: 40px auto;
+  }
+
+  .storageCol {
+    width: 25%;
+    @apply text-sm;
+  }
 }

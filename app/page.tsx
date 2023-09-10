@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import SubmitButton from '@/components/SubmitButton'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
+import { revalidatePath } from 'next/cache'
 
 const prisma = new PrismaClient()
 
@@ -25,6 +26,7 @@ async function saveCallNote(formData: any) {
       ticket: 'ticket',
     }
   })
+  revalidatePath("/")
 }
 
 async function fetchLastCallNote() {
