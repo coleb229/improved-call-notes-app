@@ -116,7 +116,11 @@ input, textarea {
   max-height: 100vh;
   margin: 100px;
   overflow-y: scroll;
-  padding: 20px 40px;
+  padding: 20px;
+}
+
+.storageCol {
+  margin-bottom: 200px;
 }
 
 #callNoteForm {
