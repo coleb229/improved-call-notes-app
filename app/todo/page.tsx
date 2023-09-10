@@ -53,25 +53,27 @@ export default async function Home() {
       </Alert>
       <div id='container'>
         <div id="todoTable"><OutputTable /></div>
-        <form action={saveToDo} id='todoForm'>
-          <div className="flex w-screen">
-            <div className="todo">
-              <label htmlFor='name'>Name</label>
-              <input type='text' name='name' id='name' />
+        <div id="todoForm">
+          <form action={saveToDo}>
+            <div className="flex">
+              <div className="todo">
+                <label htmlFor='name'>Name</label>
+                <input type='text' name='name' id='name' />
+              </div>
+              <div className="todo">
+                <label htmlFor='task'>Task</label>
+                <input type='text' name='task' id='task' className="w-[25rem]" />
+              </div>
+              <div className="todo">
+                <label htmlFor='timeframe'>Timeframe</label>
+                <input type='text' name='timeframe' id='timeframe' />
+              </div>
+              <div id="submitTodo">
+                <SubmitButton />
+              </div>
             </div>
-            <div className="todo">
-              <label htmlFor='task'>Task</label>
-              <input type='text' name='task' id='task' className="w-[25rem]" />
-            </div>
-            <div className="todo">
-              <label htmlFor='timeframe'>Timeframe</label>
-              <input type='text' name='timeframe' id='timeframe' />
-            </div>
-            <div id="submitTodo">
-              <SubmitButton />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </main>
   )
