@@ -19,7 +19,6 @@ async function saveHandoff(formData: any) {
       tip: formData.get('tip'),
     }
   })
-  formData.reset();
   revalidatePath("/rekey")
 }
 
