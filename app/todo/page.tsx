@@ -27,6 +27,15 @@ async function saveToDo(formData: any) {
   })
 }
 
+async function deleteSelected(formData: any) {
+  "use server"
+  await prisma.todo.delete({
+    where: {
+      id: formData.get('id')
+    }
+  })
+}
+
 export default async function Home() {
 
   return (
@@ -85,7 +94,10 @@ async function OutputTable() {
             <TableCell>{todo.task}</TableCell>
             <TableCell>{todo.timeframe}</TableCell>
             <TableCell>
-              <form><Button variant="destructive" type="submit">Delete</Button></form>
+              <form action={deleteSelected}>
+                <input type="hidden" name="id" value={todo.id} />
+                <Button variant="destructive" type="submit">Delete</Button>
+              </form>
             </TableCell>
           </TableRow>
         ))}
