@@ -34,8 +34,6 @@ async function fetchRekeys() {
 }
 
 export default async function Home() {
-  const rekey = await fetchRekeys();
-
   return (
     <main className="max-h-screen">
       <Navbar />
@@ -69,35 +67,30 @@ export default async function Home() {
               </div>
             </div>
             <div>
-              <div id="rekeyOutput" className="pl-[100px]">
-              {rekey.map((rekey) => (
-                <div key={rekey.id} className="mb-10 mr-10 bg-white p-5">
-                  <div className="flex">
-                    <p className="">Ref: {rekey.ref}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Date: {rekey.date}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Auth: {rekey.auth}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Last4: {rekey.last4}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Amount: {rekey.amount}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Tip: {rekey.tip}</p>
-                  </div>
-                  <hr />
-                </div>
-              ))}
-              </div>
+              <Output />
             </div>
           </div>
         </form>
       </div>
     </main>
+  )
+}
+
+async function Output() {
+  const rekey = await fetchRekeys();
+
+  return (
+    <div id="rekeyOutput" className="pl-[100px]">
+      {rekey.map((rekey) => (
+          <div key={rekey.id} className="mb-10 mr-10 bg-white p-5">
+              Ref: {rekey.ref}<br />
+              Date: {rekey.date}<br />
+              Auth: {rekey.auth}<br />
+              Last4: {rekey.last4}<br />
+              Amount: {rekey.amount}<br />
+              Tip: {rekey.tip}<br />
+          </div>
+        ))}
+    </div>
   )
 }
