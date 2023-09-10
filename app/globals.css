@@ -107,8 +107,9 @@ input, textarea {
   margin: 100px;
   max-height: 100vh;
   overflow: hidden;
-  background-color: #13155823;
+  background-color: #9497f323;
   padding: 20px;
+  border-radius: 10px;
 }
 
 #storageContainer {
@@ -157,12 +158,12 @@ label {
 }
 
 #dbaName, #summary, #ticket {
-  width: 80%;
+  width: 400px;
   margin-bottom: 30px;
 }
 
 #submit {
-  margin: 30px 40%;
+  margin-left: 50%;
 }
 
 #rekeyForm {
@@ -221,7 +222,7 @@ label {
 }
 
 #handoffForm {
-  width: 100%;
+  width: 70%;
   margin: 50px auto 0 auto;
 }
 
@@ -246,12 +247,14 @@ label {
   height: 400px;
   overflow-y: scroll;
   margin-top: 30px;
+  background-color: #f2f2f2;
 }
 
 #rekeyOutput {
   height: 500px;
   overflow-y: scroll;
   margin-top: 30px;
+  background-color: #f2f2f2;
 }
 
 @media only screen and (max-width: 1560px) {

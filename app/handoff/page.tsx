@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +16,7 @@ async function saveHandoff(formData: any) {
       ticket: formData.get('ticket'),
     }
   })
+  revalidatePath("/handoff")
 }
 
 export default async function Home() {

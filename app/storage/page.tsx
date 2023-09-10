@@ -138,6 +138,9 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
+            <form action={deleteCallNotes}>
+              <DeleteButton />
+            </form>
           </div>
           <div className="storageCol">
             <h1 className="text-2xl font-semibold">Handoffs</h1>
