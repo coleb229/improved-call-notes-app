@@ -19,6 +19,7 @@ async function saveHandoff(formData: any) {
       tip: formData.get('tip'),
     }
   })
+  formData.reset();
   revalidatePath("/rekey")
 }
 
@@ -82,7 +83,7 @@ async function Output() {
   return (
     <div id="rekeyOutput" className="pl-[100px]">
       {rekey.map((rekey) => (
-          <div key={rekey.id} className="mb-10 mr-10 bg-white p-5">
+          <div key={rekey.id} className="mb-10 w-full bg-white p-5">
               Ref: {rekey.ref}<br />
               Date: {rekey.date}<br />
               Auth: {rekey.auth}<br />

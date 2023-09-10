@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import Navbar from "../../components/navbar";
-import { Button } from "@/components/ui/button";
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
 

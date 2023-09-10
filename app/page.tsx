@@ -26,6 +26,7 @@ async function saveCallNote(formData: any) {
       ticket: 'ticket',
     }
   })
+  formData.reset();
   revalidatePath("/")
 }
 

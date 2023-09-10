@@ -16,6 +16,7 @@ async function saveHandoff(formData: any) {
       ticket: formData.get('ticket'),
     }
   })
+  formData.reset();
   revalidatePath("/handoff")
 }
 

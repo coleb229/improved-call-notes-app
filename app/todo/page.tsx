@@ -26,6 +26,7 @@ async function saveToDo(formData: any) {
       completed: false,
     }
   })
+  formData.reset();
   revalidatePath("/todo")
 }
 
