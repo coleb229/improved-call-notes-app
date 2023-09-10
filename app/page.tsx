@@ -1,6 +1,6 @@
 import Navbar from '@/components/navbar'
 import { PrismaClient } from '@prisma/client'
-import SubmitButton from '@/components/SubmitButton'
+import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import { revalidatePath } from 'next/cache'

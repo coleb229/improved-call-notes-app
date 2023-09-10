@@ -87,6 +87,11 @@ nav {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
+nav a:hover {
+  color: #ff0000;
+  transition: ease-in-out 0.05s;
+}
+
 label {
   color: black;
 }
@@ -164,7 +169,7 @@ label {
 
 #todoForm {
   position: fixed;
-  bottom: 10px;
+  bottom: 40px;
   left: 20%;
   right: 25%;
   width: 100%;

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Navbar from "../../components/navbar";
 import { Button } from "@/components/ui/button";
 import { revalidatePath } from "next/cache";
+import { DeleteButton } from "@/components/Buttons";
 
 const prisma = new PrismaClient();
 
@@ -110,17 +111,13 @@ export default async function DisplayStoredCalls() {
                 <p>{callNote.nextSteps}</p>
                 <form action={selectiveDelete} className="flex justify-end m-5">
                   <input type="hidden" name="id" value={callNote.id} />
-                  <Button variant="destructive" type="submit">
-                    Delete
-                  </Button>
+                  <DeleteButton />
                 </form>
                 <hr />
               </div>
             ))}
             <form action={deleteCallNotes}>
-              <Button variant="destructive" type="submit">
-                Delete Calls
-              </Button>
+              <DeleteButton />
             </form>
           </div>
           <div className="storageCol">
@@ -136,9 +133,7 @@ export default async function DisplayStoredCalls() {
                 Follow Up: No<br />
                 <form action={selectiveDelete} className="flex justify-end m-5">
                   <input type="hidden" name="id" value={callNote.id} />
-                  <Button variant="destructive" type="submit">
-                    Delete
-                  </Button>
+                  <DeleteButton />
                 </form>
                 <hr />
               </div>
@@ -159,17 +154,13 @@ export default async function DisplayStoredCalls() {
                 </div>
                 <form action={selectiveDeleteHandoff} className="flex justify-end m-5">
                   <input type="hidden" name="id" value={handoff.id} />
-                  <Button variant="destructive" type="submit">
-                    Delete
-                  </Button>
+                  <DeleteButton />
                 </form>
                 <hr />
               </div>
             ))}
             <form action={deleteHandoffs}>
-              <Button variant="destructive" type="submit">
-                Delete Handoffs
-              </Button>
+              <DeleteButton />
             </form>
           </div>
           <div className="storageCol">
@@ -197,17 +188,13 @@ export default async function DisplayStoredCalls() {
                 </div>
                 <form action={selectiveDeleteRekey} className="flex justify-end m-5">
                   <input type="hidden" name="id" value={rekey.id} />
-                  <Button variant="destructive" type="submit">
-                    Delete
-                  </Button>
+                  
                 </form>
                 <hr />
               </div>
             ))}
             <form action={deleteRekeys}>
-              <Button variant="destructive" type="submit">
-                Delete Rekeys
-              </Button>
+              <DeleteButton />
             </form>
           </div>
         </div>

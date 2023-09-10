@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
-import SubmitButton from '@/components/SubmitButton'
+import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import {
@@ -11,8 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Button } from "@/components/ui/button";
 import { revalidatePath } from "next/cache";
+import { DeleteButton } from "@/components/Buttons";
 
 const prisma = new PrismaClient();
 
@@ -100,7 +100,7 @@ async function OutputTable() {
               {/* had to wrap delete in a form to hit it with server action */}
               <form action={deleteSelected}>
                 <input type="hidden" name="id" value={todo.id} />
-                <Button variant="destructive" type="submit">Delete</Button>
+                <DeleteButton />
               </form>
             </TableCell>
           </TableRow>
