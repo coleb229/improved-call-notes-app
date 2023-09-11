@@ -95,9 +95,9 @@ async function OutputTable() {
       <TableBody>
         {todo.map((todo) => (
           <TableRow key={todo.id}>
-            <TableCell>{todo.name}</TableCell>
-            <TableCell>{todo.task}</TableCell>
-            <TableCell>{todo.timeframe}</TableCell>
+            <TableCell className="optima">{todo.name}</TableCell>
+            <TableCell className="optima">{todo.task}</TableCell>
+            <TableCell className="optima">{todo.timeframe}</TableCell>
             <TableCell>
               {/* had to wrap delete in a form to hit it with server action */}
               <form action={deleteSelected}>

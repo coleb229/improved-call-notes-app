@@ -75,9 +75,12 @@
   }
 }
 
+@import url('https://fonts.cdnfonts.com/css/manga-temple');
+
 body {
   background-color: #f2f2f2;
   overflow: scroll;
+  font-family: 'Manga Temple', sans-serif;
 }
 
 nav {
@@ -86,6 +89,14 @@ nav {
   left: 0;
   width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  @apply bg-slate-800;
+  padding: 20px 0;
+  z-index: 100;
+}
+
+nav a {
+  @apply text-white text-2xl font-bold;
+  margin: 20px, 0;
 }
 
 nav a:hover {
@@ -97,23 +108,26 @@ label {
   color: black;
 }
 
-input, textarea {
+input, textarea, #output {
   color: black;
   border: black 1px solid;
+  font-family: Optima, sans-serif;
 }
 
 #container {
-  width: 90vw;
-  margin: 100px;
-  max-height: 100vh;
-  overflow: scroll;
-  background-color: #0400ff1e;
-  padding: 20px;
-  border-radius: 10px;
+  width: 95%;
+  margin: 70px 100px 0 0;
+  max-height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom right, #0800338c, #e6e6e6);
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 300px;
+  opacity: 0.9;
 }
 
 #storageContainer {
-  width: 90vw;
+  width: 95%;
   max-height: 100vh;
   margin: 100px;
   overflow-y: scroll;
@@ -128,15 +142,23 @@ input, textarea {
   padding-top: 60px;
 }
 
-#callNotes, #output {
-  width: 44vw;
-  margin: 0;
+#callNotes {
+  width: 100%;
+  margin: auto;
   padding: 20px 0;
   height: 400px;
 }
 
+#callNotesInput {
+  width: 30rem;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 #callerInfo {
-  width: 90vw;
+  width: 90%;
   margin: 20px auto;
 }
 
@@ -155,6 +177,10 @@ input, textarea {
 
 label {
   @apply font-semibold;
+}
+
+.optima {
+  font-family: Optima, sans-serif;
 }
 
 #dbaName, #summary, #ticket {
@@ -183,7 +209,13 @@ label {
   bottom: 40px;
   left: 20%;
   right: 25%;
-  width: 100%;
+  width: auto;
+  @apply bg-slate-700 rounded-lg;
+  padding: 20px;
+}
+
+.todo label {
+  @apply text-white;
 }
 
 .todo {
@@ -199,7 +231,7 @@ label {
 
 #todoTable {
   width: 70vw;
-  max-height: 80vh;
+  max-height: 50vh;
   overflow-y: scroll;
   margin: 20px auto;
   background-color: #f2f2f2;
@@ -249,6 +281,7 @@ label {
   overflow-y: scroll;
   margin-top: 30px;
   background-color: #f2f2f2;
+  font-family: Optima, sans-serif;
 }
 
 #rekeyOutput {
@@ -256,6 +289,7 @@ label {
   overflow-y: scroll;
   margin-top: 30px;
   background-color: #f2f2f2;
+  font-family: Optima, sans-serif;
 }
 
 #rekeyOutput div {

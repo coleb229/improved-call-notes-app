@@ -1,11 +1,10 @@
-"use client"
 import ArrowSVG from '@/public/arrow.svg'
 
 export default function Navbar() {
   return (
-    <nav className="flex w-full items-center justify-around flex-wrap bg-gray-800 p-6">
+    <nav className="flex w-full items-center justify-around flex-wrap bg-slate-800 p-6">
       <div>
-        <a href="/todo" className="text-white text-2xl font-bold">To Do</a>
+        <a href="/todo" className="text-white text-2xl font-bold py-15">To Do</a>
       </div>
       <div>
         <a href="/" className="text-white text-2xl font-bold">Call Template</a>

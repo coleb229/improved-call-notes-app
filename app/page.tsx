@@ -4,6 +4,7 @@ import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import { revalidatePath } from 'next/cache'
+import ArrowSVG from '@/public/cool-arrow.svg'
 
 const prisma = new PrismaClient()
 
@@ -68,10 +69,13 @@ export default async function Home() {
               <input type='text' name='dbaName' id='dbaNameInput' />
             </div>
           </div>
-          <div id='callNotes' className='flex justify-between'>
+          <div id='callNotes' className='flex justify-around'>
             <div className='flex flex-col'>
               <label htmlFor='callNotes'>Call Notes</label>
-              <textarea name='callNotes' id='callNotes'></textarea>
+              <textarea name='callNotes' id='callNotesInput'></textarea>
+            </div>
+            <div className='my-auto'>
+              <ArrowSVG className='h-20 w-20' />
             </div>
             <div className='flex flex-col'>
               <label htmlFor='output'>Preview</label>
