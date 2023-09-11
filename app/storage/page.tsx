@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Navbar from "../../components/navbar";
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
+import Github from "@/components/github";
 
 const prisma = new PrismaClient();
 
@@ -89,6 +90,7 @@ export default async function DisplayStoredCalls() {
   return (
     <>
       <Navbar />
+      <Github />
       <div id="storageContainer">
         <div className="flex justify-evenly">
           <div className="storageCol">

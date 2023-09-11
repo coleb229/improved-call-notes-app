@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table"
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
+import Github from "@/components/github";
 
 const prisma = new PrismaClient();
 
@@ -44,6 +45,7 @@ export default async function Home() {
   return (
     <main className="max-h-screen">
       <Navbar />
+      <Github />
       <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
         <Terminal className="h-4 w-4" />
         <AlertTitle>Heads up!</AlertTitle>

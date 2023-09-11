@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
+import Github from "@/components/github";
 
 const prisma = new PrismaClient()
 
@@ -46,6 +47,7 @@ export default async function Home() {
   return (
     <main className="h-screen">
       <Navbar />
+      <Github />
       <Alert className='alert mt-24 w-[50%] mx-auto hidden' id='alert'>
         <Terminal className="h-4 w-4" />
         <AlertTitle>Heads up!</AlertTitle>

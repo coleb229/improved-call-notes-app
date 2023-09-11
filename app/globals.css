@@ -130,7 +130,6 @@ input, textarea, #output {
   width: 95%;
   max-height: 100vh;
   margin: 100px;
-  overflow-y: scroll;
   padding: 20px;
 }
 
@@ -296,6 +295,18 @@ label {
   margin: 10px auto;
   display: flex;
   justify-content: center;
+}
+
+#github {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+}
+
+#github:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.1s;
 }
 
 @media only screen and (max-width: 1560px) {
