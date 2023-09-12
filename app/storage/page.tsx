@@ -8,7 +8,11 @@ const prisma = new PrismaClient();
 
 async function fetchCallNotes() {
   "use server";
-  const callNote = await prisma.callNote.findMany({});
+  const callNote = await prisma.callNote.findMany({
+    orderBy: {
+      id: "desc",
+    },
+  });
   let callNotes = callNote.map((callNote) => ({
     id: callNote.id,
     callerName: callNote.callerName,
@@ -23,13 +27,21 @@ async function fetchCallNotes() {
 
 async function fetchHandoffs() {
   "use server";
-  const handoff = await prisma.handoff.findMany({});
+  const handoff = await prisma.handoff.findMany({
+    orderBy: {
+      id: "desc",
+    },
+  });
   return handoff;
 }
 
 async function fetchRekeys() {
   "use server";
-  const rekey = await prisma.rekey.findMany({});
+  const rekey = await prisma.rekey.findMany({
+    orderBy: {
+      id: "desc",
+    },
+  });
   return rekey;
 }
 

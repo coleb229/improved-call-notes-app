@@ -83,6 +83,16 @@ body {
   font-family: 'Manga Temple', sans-serif;
 }
 
+#login {
+  background-color: #00ffaa;
+  color: black;
+  position: fixed;
+  bottom: 25px;
+  right: 150px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -228,6 +238,12 @@ label {
   margin: 20px 20px;
 }
 
+#arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #todoTable {
   width: 70vw;
   max-height: 50vh;
@@ -303,6 +319,8 @@ label {
 
 #output {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 400px;
 }
 
 #github {

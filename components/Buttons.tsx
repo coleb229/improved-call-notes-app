@@ -6,8 +6,6 @@ import exp from 'constants'
 export default function SubmitButton() {
   "use client"
   const { pending } = useFormStatus()
-  const alert = document.querySelector('.alert')
-  pending ? alert?.classList.remove('hidden') : alert?.classList.add('hidden')
  
   return (
     <Button disabled={pending} variant="outline" type='submit'>{pending ? 'Submitting...' : 'Submit'}</Button>

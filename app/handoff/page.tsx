@@ -1,8 +1,6 @@
 import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
 import { revalidatePath } from "next/cache";
 import Github from "@/components/github";
 
@@ -25,13 +23,6 @@ export default async function Home() {
     <main className="max-h-screen">
       <Navbar />
       <Github />
-      <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
-        <Terminal className="h-4 w-4" />
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          Call has been stored in the database!
-        </AlertDescription>
-      </Alert>
       <div id='container'>
         <Output />
         <form action={saveHandoff} id='handoffForm'>

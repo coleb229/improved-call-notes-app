@@ -50,8 +50,8 @@ model Todo {
 // NEXT AUTH
 
 model Account {
-  id                 String    @id @default(cuid()) @map("_id")
-  userId             String
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String    @unique @map("user_id") @db.ObjectId
   providerType       String
   providerId         String
   providerAccountId  String
@@ -66,8 +66,8 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid()) @map("_id")
-  userId       String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String   @map("user_id") @db.ObjectId
   expires      DateTime
   sessionToken String   @unique
   accessToken  String   @unique
@@ -77,7 +77,7 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid()) @map("_id")
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -89,7 +89,7 @@ model User {
 }
 
 model VerificationRequest {
-  id         String   @id @default(cuid()) @map("_id")
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime

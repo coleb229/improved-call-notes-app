@@ -1,20 +1,19 @@
-import { signIn, signOut } from "next-auth/react"
-import { unstable_useServerSession as useServerSession } from "next-auth/react"
+import { signIn, signOut, getServerSession } from "next-auth"
 
-export default function Component() {
-  const session = useServerSession()
+export default async function Component() {
+  const session = await getServerSession()
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()} className="text-black">Sign out</button>
+        <p>Signed in as: {session.user.email}</p>
+        <form action={signOut}><button type="submit" className="text-2xl" id="login">Sign out</button></form>
       </>
     )
   }
+  
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <form action={signIn} method="POST"><button type="submit" className="text-2xl" id="login">Sign in</button></form>
     </>
   )
 }

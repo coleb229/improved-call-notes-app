@@ -1,11 +1,12 @@
 import Navbar from '@/components/navbar'
 import { PrismaClient } from '@prisma/client'
 import SubmitButton from '@/components/Buttons'
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
 import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
-import Github from "@/components/github";
+import Github from '@/components/github'
+import { getServerSession } from 'next-auth'
+import LoginBtn from '@/components/loginBtn'
+import { authOptions } from './api/auth/[nextauth]'
 
 const prisma = new PrismaClient()
 
@@ -43,18 +44,14 @@ async function fetchLastCallNote() {
 
 export default async function Home() {
   let callNote = await fetchLastCallNote();
+  const session = await getServerSession(authOptions)
+  console.log(session)
 
   return (
     <main className="h-screen">
       <Navbar />
       <Github />
-      <Alert className='alert mt-24 w-[50%] mx-auto hidden' id='alert'>
-        <Terminal className="h-4 w-4" />
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          Call has been stored in the database!
-        </AlertDescription>
-      </Alert>
+      <LoginBtn />
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-evenly'>
@@ -76,25 +73,19 @@ export default async function Home() {
               <label htmlFor='callNotes'>Call Notes</label>
               <textarea name='callNotes' id='callNotesInput'></textarea>
             </div>
-            <div className='my-auto'>
-              <ArrowSVG className='h-20 w-20' />
+            <div id='arrow'>
+              <ArrowSVG className='h-10 w-10' />
             </div>
             <div className='flex flex-col'>
               <label htmlFor='output'>Preview</label>
               <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
                 <div className='mx-5 text-xs'>
-                  <p className="font-semibold">Caller Name:</p>
-                  <p>{callNote?.callerName}</p>
-                  <p className="font-semibold">Caller Number:</p>
-                  <p>{callNote?.callerNumber}</p>
-                  <p className="font-semibold">Caller DBA:</p>
-                  <p>{callNote?.dbaName}</p>
-                  <p className="font-semibold">Call Notes:</p>
-                  <p>{callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
-                  <p className="font-semibold">Call Summary:</p>
-                  <p>{callNote?.summary}</p>
-                  <p className="font-semibold">Next Steps:</p>
-                  <p>{callNote?.nextSteps}</p>
+                  <p>Caller Name: {callNote?.callerName}</p>
+                  <p>Caller Number: {callNote?.callerNumber}</p>
+                  <p>DBA: {callNote?.dbaName}</p>
+                  <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
+                  <p>Call Summary: {callNote?.summary}</p>
+                  <p>Next Steps: {callNote?.nextSteps}</p>
                 </div>
                 <div className='mx-5 text-xs'>
                   <div className='flex'>
@@ -106,12 +97,14 @@ export default async function Home() {
                     <p>ticket</p>
                   </div>
                   <div className='mt-5'>
+                    <p>
                     Caller DBA: {callNote?.dbaName}<br />
                     Caller Number: {callNote?.callerNumber}<br />
                     Call Summary: {callNote?.summary}<br />
                     Resolved: Yes<br />
                     Ticket: Yes<br />
                     Follow Up: No<br />
+                    </p>
                   </div>
                 </div>
               </div>
