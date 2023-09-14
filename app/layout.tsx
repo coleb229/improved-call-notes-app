@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { authOptions } from './api/auth/[nextauth]'
+//import { authOptions } from './api/auth/[nextauth]'
 import { getServerSession } from 'next-auth'
-
+/*
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions)
 
@@ -20,7 +20,7 @@ export async function getServerSideProps(context: any) {
     }
   }
 }
-
+*/
 export const metadata: Metadata = {
   title: 'Improved Call Notes App',
   description: 'This is a full stack version of the call notes app.',

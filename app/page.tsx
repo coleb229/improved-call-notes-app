@@ -6,7 +6,7 @@ import ArrowSVG from '@/public/cool-arrow.svg'
 import Github from '@/components/github'
 import { getServerSession } from 'next-auth'
 import LoginBtn from '@/components/loginBtn'
-import { authOptions } from './api/auth/[nextauth]'
+//import { authOptions } from './api/auth/[nextauth]'
 
 const prisma = new PrismaClient()
 
@@ -76,7 +76,7 @@ export default async function Home() {
             <div className='flex flex-col'>
               <label htmlFor='output'>Preview</label>
               <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
-                <div className='mx-5 text-xs'>
+                <div className='mx-5 text-sm'>
                   <p>Caller Name: {callNote?.callerName}</p>
                   <p>Caller Number: {callNote?.callerNumber}</p>
                   <p>DBA: {callNote?.dbaName}</p>
@@ -90,7 +90,7 @@ export default async function Home() {
                     <p>{callNote?.summary}</p>
                   </div>
                   <div className='flex'>
-                    <p className="font-semibold">Ticket:</p>
+                    <p className="font-bold">Ticket:</p>
                     <p>ticket</p>
                   </div>
                   <div className='mt-5'>
