@@ -51,7 +51,7 @@ export default async function Home() {
     <main className="h-screen">
       <Navbar />
       <ExternalLinks />
-      <LoginBtn />
+      {/*<LoginBtn />*/}
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-evenly'>
