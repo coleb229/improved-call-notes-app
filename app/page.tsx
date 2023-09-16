@@ -7,6 +7,8 @@ import Github from '@/components/github'
 import { getServerSession } from 'next-auth'
 import LoginBtn from '@/components/loginBtn'
 //import { authOptions } from './api/auth/[nextauth]'
+import Discord from '@/components/discord'
+import ExternalLinks from '@/components/externalLinks'
 
 const prisma = new PrismaClient()
 
@@ -48,7 +50,8 @@ export default async function Home() {
   return (
     <main className="h-screen">
       <Navbar />
-      <Github />
+      <ExternalLinks />
+      <LoginBtn />
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-evenly'>

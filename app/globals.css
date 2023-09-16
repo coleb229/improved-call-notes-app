@@ -88,7 +88,7 @@ body {
   color: black;
   position: fixed;
   bottom: 25px;
-  right: 150px;
+  right: 220px;
   padding: 10px;
   border-radius: 10px;
 }
@@ -218,7 +218,7 @@ label {
   bottom: 40px;
   left: 20%;
   right: 25%;
-  width: auto;
+  width: fit-content;
   @apply bg-slate-700 rounded-lg;
   padding: 20px;
 }
@@ -323,14 +323,20 @@ label {
   height: 400px;
 }
 
-#github {
+#socials {
   position: fixed;
   bottom: 0;
   right: 0;
   margin: 20px;
+  display: flex;
 }
 
 #github:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.1s;
+}
+
+#discord:hover {
   transform: scale(1.1);
   transition: ease-in-out 0.1s;
 }
@@ -346,7 +352,7 @@ label {
   #todoForm {
     left: 0;
     right: 0;
-    width: 100vw;
+    width: fit-content;
   }
 
   #task, #name, #timeframe {

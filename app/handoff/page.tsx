@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from "next/cache";
 import Github from "@/components/github";
+import ExternalLinks from "@/components/externalLinks";
 
 const prisma = new PrismaClient();
 
@@ -22,7 +23,7 @@ export default async function Home() {
   return (
     <main className="max-h-screen">
       <Navbar />
-      <Github />
+      <ExternalLinks />
       <div id='container'>
         <Output />
         <form action={saveHandoff} id='handoffForm'>

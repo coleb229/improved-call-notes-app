@@ -13,7 +13,7 @@ export default async function Component() {
   
   return (
     <>
-      <form action={signIn} method="POST"><button type="submit" className="text-2xl" id="login">Sign in</button></form>
+      <form action={'/api/auth/signin'} method="POST"><button type="submit" className="text-2xl" id="login">Sign in</button></form>
     </>
   )
 }

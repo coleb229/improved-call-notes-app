@@ -1,8 +1,6 @@
 import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
-import SubmitButton from '@/components/Buttons'
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
+import SubmitButton from '@/components/Buttons';
 import {
   Table,
   TableBody,
@@ -14,6 +12,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
 import Github from "@/components/github";
+import ExternalLinks from "@/components/externalLinks";
 
 const prisma = new PrismaClient();
 
@@ -45,7 +44,7 @@ export default async function Home() {
   return (
     <main className="max-h-screen">
       <Navbar />
-      <Github />
+      <ExternalLinks />
       <div id='container'>
         <div id="todoTable"><OutputTable /></div>
         <div id="todoForm">
