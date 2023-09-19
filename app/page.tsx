@@ -45,14 +45,11 @@ async function fetchLastCallNote() {
 
 export default async function Home() {
   let callNote = await fetchLastCallNote();
-  const session = await getServerSession(authOptions)
-  const button = session?.user ? <LogoutButton /> : <LoginButton />
 
   return (
     <main className="h-screen">
       <Navbar />
       <ExternalLinks />
-      {button}
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-evenly'>

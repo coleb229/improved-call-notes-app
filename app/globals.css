@@ -341,6 +341,13 @@ label {
   transition: ease-in-out 0.1s;
 }
 
+#session {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 20px;
+}
+
 @media only screen and (max-width: 1560px) {
   .storageCol {
     width: 25%;
