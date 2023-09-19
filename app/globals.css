@@ -93,9 +93,13 @@ body {
   border-radius: 10px;
 }
 
+.loginButton:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.1s;
+  background-color: #00ffaaf1;
+}
+
 .logoutButton {
-  background-color: #ff0000;
-  color: black;
   position: fixed;
   bottom: 25px;
   right: 220px;
