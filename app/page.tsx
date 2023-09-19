@@ -3,13 +3,18 @@ import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
 import ExternalLinks from '@/components/externalLinks'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 const prisma = new PrismaClient()
 
 async function saveCallNote(formData: any) {
   "use server"
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   await prisma.callNote.create({
     data: {
+      createdBy: email as string,
       callerName: formData.get('callerName'),
       callerNumber: formData.get('callerNumber'),
       dbaName: formData.get('dbaName'),
@@ -20,6 +25,7 @@ async function saveCallNote(formData: any) {
   })
   await prisma.handoff.create({
     data: {
+      createdBy: email as string,
       dbaName: formData.get('dbaName'),
       summary: formData.get('summary'),
       ticket: 'ticket',
@@ -30,9 +36,15 @@ async function saveCallNote(formData: any) {
 
 async function fetchLastCallNote() {
   "use server"
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
   const callNote = await prisma.callNote.findFirst({
     orderBy: {
       id: 'desc'
+    },
+    where: {
+      createdBy: email as string
     }
   })
   return callNote;

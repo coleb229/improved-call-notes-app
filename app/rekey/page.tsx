@@ -4,13 +4,18 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ExternalLink, Terminal } from "lucide-react"
 import { revalidatePath } from "next/cache";
 import ExternalLinks from "@/components/externalLinks";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
 async function saveHandoff(formData: any) {
   "use server"
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   await prisma.rekey.create({
     data: {
+      createdBy: email as string,
       ref: formData.get('ref'),
       date: formData.get('date'),
       auth: formData.get('auth'),
@@ -24,9 +29,14 @@ async function saveHandoff(formData: any) {
 
 async function fetchRekeys() {
   "server";
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   const rekey = await prisma.rekey.findMany({
     orderBy: {
       id: 'desc'
+    },
+    where: {
+      createdBy: email as string
     },
     take: 10
   })

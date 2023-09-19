@@ -2,13 +2,19 @@ import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from "next/cache";
 import ExternalLinks from "@/components/externalLinks";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
 async function saveHandoff(formData: any) {
   "use server"
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
   await prisma.handoff.create({
     data: {
+      createdBy: email as string,
       dbaName: formData.get('dbaName'),
       summary: formData.get('summary'),
       ticket: formData.get('ticket'),
@@ -43,9 +49,14 @@ export default async function Home() {
 
 async function fetchHandoffs() {
   "server";
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   const handoff = await prisma.handoff.findMany({
     orderBy: {
       id: 'desc'
+    },
+    where: {
+      createdBy: email as string
     },
     take: 5
   })

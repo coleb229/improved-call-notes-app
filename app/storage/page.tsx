@@ -1,16 +1,22 @@
 import { PrismaClient } from "@prisma/client";
-import Navbar from "../../components/navbar";
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
 import Github from "@/components/github";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
 async function fetchCallNotes() {
   "use server";
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   const callNote = await prisma.callNote.findMany({
     orderBy: {
       id: "desc",
+    },
+    where: {
+      createdBy: email as string,
     },
   });
   let callNotes = callNote.map((callNote) => ({
@@ -27,9 +33,14 @@ async function fetchCallNotes() {
 
 async function fetchHandoffs() {
   "use server";
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   const handoff = await prisma.handoff.findMany({
     orderBy: {
       id: "desc",
+    },
+    where: {
+      createdBy: email as string,
     },
   });
   return handoff;
@@ -37,9 +48,14 @@ async function fetchHandoffs() {
 
 async function fetchRekeys() {
   "use server";
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
   const rekey = await prisma.rekey.findMany({
     orderBy: {
       id: "desc",
+    },
+    where: {
+      createdBy: email as string,
     },
   });
   return rekey;
@@ -47,19 +63,37 @@ async function fetchRekeys() {
 
 async function deleteCallNotes() {
   "use server";
-  await prisma.callNote.deleteMany({});
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+  await prisma.callNote.deleteMany({
+    where: {
+      createdBy: email as string,
+    },
+  });
   revalidatePath("/storage")
 }
 
 async function deleteHandoffs() {
   "use server";
-  await prisma.handoff.deleteMany({});
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+  await prisma.handoff.deleteMany({
+    where: {
+      createdBy: email as string,
+    },
+  });
   revalidatePath("/storage")
 }
 
 async function deleteRekeys() {
   "use server";
-  await prisma.rekey.deleteMany({});
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+  await prisma.rekey.deleteMany({
+    where: {
+      createdBy: email as string,
+    },
+  });
   revalidatePath("/storage")
 }
 
