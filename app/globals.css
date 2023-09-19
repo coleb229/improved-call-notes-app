@@ -83,7 +83,7 @@ body {
   font-family: 'Manga Temple', sans-serif;
 }
 
-#login {
+.loginButton {
   background-color: #00ffaa;
   color: black;
   position: fixed;

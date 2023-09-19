@@ -3,12 +3,11 @@ import { PrismaClient } from '@prisma/client'
 import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
-import Github from '@/components/github'
-import { getServerSession } from 'next-auth'
-import LoginBtn from '@/components/loginBtn'
 //import { authOptions } from './api/auth/[nextauth]'
-import Discord from '@/components/discord'
 import ExternalLinks from '@/components/externalLinks'
+import { LoginButton, LogoutButton } from '@/components/LoginButtons'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 const prisma = new PrismaClient()
 
@@ -46,12 +45,14 @@ async function fetchLastCallNote() {
 
 export default async function Home() {
   let callNote = await fetchLastCallNote();
+  const session = await getServerSession(authOptions)
+  const button = session?.user ? <LogoutButton /> : <LoginButton />
 
   return (
     <main className="h-screen">
       <Navbar />
       <ExternalLinks />
-      {/*<LoginBtn />*/}
+      {button}
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
           <div id='callerInfo' className='flex justify-evenly'>
