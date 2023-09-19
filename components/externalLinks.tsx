@@ -9,12 +9,14 @@ export default function ExternalLinks() {
           <GithubSVG className="h-[70px] w-[70px]" />
         </a>
       </div>
+      {/*}
       <div id='github'>
         <a href="https://discord.gg/s4dSchmW" target='_blank'>
           <DiscordSVG className="h-[70px] w-[70px]" />
           <p className='text-xs'>Need Help?</p>
         </a>
       </div>
+      */}
     </div>
   )
 }
