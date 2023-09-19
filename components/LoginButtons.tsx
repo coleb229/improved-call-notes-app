@@ -10,6 +10,6 @@ export const LoginButton = () => {
 
 export const LogoutButton = () => {
   return (
-    <button className='loginButton' onClick={() => signOut()}>Logout</button>
+    <button className='logoutButton' onClick={() => signOut()}>Logout</button>
   )
 }

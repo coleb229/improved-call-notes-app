@@ -93,6 +93,16 @@ body {
   border-radius: 10px;
 }
 
+.logoutButton {
+  background-color: #ff0000;
+  color: black;
+  position: fixed;
+  bottom: 25px;
+  right: 220px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 nav {
   position: fixed;
   top: 0;
