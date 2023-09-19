@@ -101,7 +101,6 @@ export default async function DisplayStoredCalls() {
 
   return (
     <>
-      <Navbar />
       <Github />
       <div id="storageContainer">
         <div className="flex justify-evenly">

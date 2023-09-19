@@ -1,10 +1,8 @@
-import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { ExternalLink, Terminal } from "lucide-react"
 import { revalidatePath } from "next/cache";
-import Github from "@/components/github";
 import ExternalLinks from "@/components/externalLinks";
 
 const prisma = new PrismaClient();
@@ -36,9 +34,9 @@ async function fetchRekeys() {
 }
 
 export default async function Home() {
+
   return (
     <main className="max-h-screen">
-      <Navbar />
       <ExternalLinks />
       <Alert className='alert mt-24 w-[50%] mx-auto hidden'>
         <Terminal className="h-4 w-4" />

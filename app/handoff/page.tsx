@@ -1,8 +1,6 @@
-import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from "next/cache";
-import Github from "@/components/github";
 import ExternalLinks from "@/components/externalLinks";
 
 const prisma = new PrismaClient();
@@ -22,7 +20,6 @@ async function saveHandoff(formData: any) {
 export default async function Home() {
   return (
     <main className="max-h-screen">
-      <Navbar />
       <ExternalLinks />
       <div id='container'>
         <Output />

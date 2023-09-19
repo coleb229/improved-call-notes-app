@@ -1,13 +1,8 @@
-import Navbar from '@/components/navbar'
 import { PrismaClient } from '@prisma/client'
 import SubmitButton from '@/components/Buttons'
 import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
-//import { authOptions } from './api/auth/[nextauth]'
 import ExternalLinks from '@/components/externalLinks'
-import { LoginButton, LogoutButton } from '@/components/LoginButtons'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
 
 const prisma = new PrismaClient()
 
@@ -48,7 +43,6 @@ export default async function Home() {
 
   return (
     <main className="h-screen">
-      <Navbar />
       <ExternalLinks />
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>

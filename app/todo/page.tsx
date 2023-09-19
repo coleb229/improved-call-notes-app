@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import { PrismaClient } from "@prisma/client";
 import SubmitButton from '@/components/Buttons';
 import {
@@ -11,8 +10,9 @@ import {
 } from "@/components/ui/table"
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
-import Github from "@/components/github";
 import ExternalLinks from "@/components/externalLinks";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
@@ -40,10 +40,11 @@ async function deleteSelected(formData: any) {
 }
 
 export default async function Home() {
+  const session = await getServerSession(authOptions);
+  const name = session?.user?.name;
 
   return (
     <main className="max-h-screen">
-      <Navbar />
       <ExternalLinks />
       <div id='container'>
         <div id="todoTable"><OutputTable /></div>
@@ -52,7 +53,7 @@ export default async function Home() {
             <div className="flex">
               <div className="todo">
                 <label htmlFor='name'>Name</label>
-                <input type='text' name='name' id='name' />
+                <input type='text' name='name' id='name' defaultValue={name as string} />
               </div>
               <div className="todo">
                 <label htmlFor='task'>Task</label>

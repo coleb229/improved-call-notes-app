@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { LoginButton, LogoutButton } from '@/components/LoginButtons'
+import Navbar from '@/components/navbar'
 
 export const metadata: Metadata = {
   title: 'Improved Call Notes App',
@@ -17,16 +18,35 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions)
   const button = session?.user ? <LogoutButton /> : <LoginButton />
 
-  return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.cdnfonts.com/css/manga-temple" rel="stylesheet" />
-      </head>        
-      <body>
-        {button}
-        {children}
-        <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
-      </body>
-    </html>
-  )
+  if (!session) { 
+    return (
+      <html lang="en">
+        <head>
+          <link href="https://fonts.cdnfonts.com/css/manga-temple" rel="stylesheet" />
+        </head>        
+        <body>
+          {button}
+          <Navbar />
+          <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
+          <div id='container'>
+            <h1 className='font-bold justify-center flex text-2xl p-20'>Please sign in</h1>
+          </div>
+        </body>
+      </html>
+    )
+  } else {
+    return (
+      <html lang="en">
+        <head>
+          <link href="https://fonts.cdnfonts.com/css/manga-temple" rel="stylesheet" />
+        </head>        
+        <body>
+          <Navbar />
+          {button}
+          {children}
+          <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
+        </body>
+      </html>
+    )
+  }
 }
