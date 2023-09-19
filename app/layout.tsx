@@ -25,11 +25,11 @@ export default async function RootLayout({
           <link href="https://fonts.cdnfonts.com/css/manga-temple" rel="stylesheet" />
         </head>        
         <body>
-          {button}
           <Navbar />
           <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
           <div id='container'>
-            <h1 className='font-bold justify-center flex text-2xl p-20'>Please sign in</h1>
+            <h1 className='font-bold justify-center flex text-2xl p-10 mt-40'>Please sign in</h1>
+            <div className='flex justify-center w-full mb-40'>{button}</div>
           </div>
         </body>
       </html>
