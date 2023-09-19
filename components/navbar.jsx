@@ -21,6 +21,9 @@ export default function Navbar() {
       <div>
         <a href="/storage" className="text-white text-2xl font-bold">Storage</a>
       </div>
+      <div>
+        <a href="/shared-storage" className="text-white text-2xl font-bold">Shared Storage</a>
+      </div>
     </nav>
   )
 }
