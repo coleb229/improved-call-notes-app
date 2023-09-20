@@ -102,7 +102,7 @@ export default async function DisplayStoredCalls() {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
 
-  if(!email?.includes('@getquantic.com')) {return <div id="container">Access Denied</div>}
+  if(email?.includes('@getquantic.com') === false) {return <div id="container">Access Denied</div>}
 
   return (
     <>
