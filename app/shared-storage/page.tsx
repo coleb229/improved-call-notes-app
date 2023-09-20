@@ -3,6 +3,8 @@ import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import SharedSubnav from "@/components/sharedSubnav";
+import { findAuthors } from "@/components/sharedSubnav";
 
 const prisma = new PrismaClient();
 
@@ -96,129 +98,63 @@ async function selectiveDeleteRekey(formData: any) {
 
 
 export default async function DisplayStoredCalls() {
-  let callNote = await fetchCallNotes();
-  let handoff = await fetchHandoffs();
-  let rekey = await fetchRekeys();
+  const callNote = await fetchCallNotes();
+  const handoff = await fetchHandoffs();
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
+  const { callAuthors } = await findAuthors();
 
-  if(email?.includes('@getquantic.com') === false) {return <div id="container">Access Denied</div>}
+  if(email?.includes('@getquantic.com' || 'cbrant229') === false) {return <div id="container">Access Denied</div>}
 
   return (
     <>
-      <div id="storageContainer">
-        <div className="flex justify-evenly">
-          <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Call Notes</h1>
-            <hr className="mb-10" />
-            {callNote.map((callNote) => (
-              <div key={callNote.id} className="mb-10 mr-10 bg-white p-5">
-                <div className='optima'>
-                  Caller Name: {callNote.callerName}<br />
-                  Caller Number: {callNote.callerNumber}<br />
-                  DBA Name: {callNote.dbaName}<br />
-                  Call Notes: {callNote.callNotes}<br />
-                  Summary: {callNote.summary}<br />
-                  Next Steps: {callNote.nextSteps}<br />
-                </div>
-                <form action={selectiveDelete} className="flex justify-end m-5">
-                  <input type="hidden" name="id" value={callNote.id} />
-                  <DeleteButton />
-                </form>
-                <hr />
-              </div>
-            ))}
-            <form action={deleteCallNotes}>
-              <DeleteButton />
-            </form>
-          </div>
-          <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Call Logs</h1>
-            <hr className="mb-10" />
-            {callNote.map((callNote) => (
-              <div key={callNote.id} className="mb-10 mr-10 bg-white p-5">
-                <div className='optima'>
-                  Caller DBA: {callNote.dbaName}<br />
-                  Caller Number: {callNote.callerNumber}<br />
-                  Call Summary: {callNote.summary}<br />
-                  Resolved: Yes<br />
-                  Ticket: Yes<br />
-                  Follow Up: No<br />
-                </div>
-                <form action={selectiveDelete} className="flex justify-end m-5">
-                  <input type="hidden" name="id" value={callNote.id} />
-                  <DeleteButton />
-                </form>
-                <hr />
-              </div>
-            ))}
-            <form action={deleteCallNotes}>
-              <DeleteButton />
-            </form>
-          </div>
-          <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Handoffs</h1>
-            <hr className="mb-10" />
-            {handoff.map((handoff) => (
-              <div key={handoff.id} className="mb-10 mr-10 bg-white p-5">
-                <div className='optima'>
-                  <div className="flex">
+      <div id="sharedContainer">
+        <SharedSubnav />
+        {callAuthors.map((author: any) => (
+          <div id={author.createdBy} className="flex flex-col items-center py-20">
+            <h1 className="text-2xl font-semibold py-5">{author.createdBy}</h1>
+            <h1 className="text-lg font-semibold">Call Notes / Logs</h1>
+            <div className="flex w-full" id="sharedItems">
+              {callNote.map((callNote: any) => (
+                callNote.createdBy === author.createdBy ?
+                  <div>
+                    <div className="flex flex-col text-left border-2 border-black rounded-lg m-2 p-2">
+                      Caller Name: {callNote.callerName}<br />
+                      Caller Number: {callNote.callerNumber}<br />
+                      DBA Name: {callNote.dbaName}<br /><br />
+                      Call Notes: {callNote.callNotes}<br /><br />
+                      Summary: {callNote.summary}<br />
+                      Next Steps: {callNote.nextSteps}<br />
+                    </div>
+                    <div className="flex flex-col text-left border-2 border-black rounded-lg m-2 p-2">
+                      Caller DBA: {callNote.dbaName}<br />
+                      Caller Number: {callNote.callerNumber}<br />
+                      Call Summary: {callNote.summary}<br />
+                      Resolved: Yes<br />
+                      Ticket: Yes<br />
+                      Follow Up: No<br />
+                    </div>
+                  </div>
+                  : null
+              ))}
+            </div>
+            <h1 className="text-lg font-semibold">Handoffs</h1>
+            <div className="flex items-center w-full" id="sharedItems">
+              {handoff.map((handoff: any) => (
+                handoff.createdBy === author.createdBy ?
+                  <div className="flex flex-col w-[20%] text-left border-2 border-black rounded-lg m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
+                    <div className="flex">
+                      <p className="font-bold">Ticket:</p>
+                      <p>{handoff.ticket}</p>
+                    </div>
                   </div>
-                  <div className="flex">
-                    <p className="font-bold">Ticket:</p>
-                    <p>{handoff.ticket}</p>
-                  </div>
-                </div>
-                <form action={selectiveDeleteHandoff} className="flex justify-end m-5">
-                  <input type="hidden" name="id" value={handoff.id} />
-                  <DeleteButton />
-                </form>
-                <hr />
-              </div>
-            ))}
-            <form action={deleteHandoffs}>
-              <DeleteButton />
-            </form>
+                  : null
+              ))}
+            </div>
           </div>
-          <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Rekeys</h1>
-            <hr className="mb-10" />
-            {rekey.map((rekey) => (
-              <div key={rekey.id} className="mb-10 mr-10 bg-white p-5">
-                <div className='optima'>
-                  <div className="flex">
-                    <p className="">Ref: {rekey.ref}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Date: {rekey.date}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Auth: {rekey.auth}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Last4: {rekey.last4}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Amount: {rekey.amount}</p>
-                  </div>
-                  <div className="flex">
-                    <p className="">Tip: {rekey.tip}</p>
-                  </div>
-                </div>
-                <form action={selectiveDeleteRekey} className="flex justify-end m-5">
-                  <input type="hidden" name="id" value={rekey.id} />
-                  <DeleteButton />
-                </form>
-                <hr />
-              </div>
-            ))}
-            <form action={deleteRekeys}>
-              <DeleteButton />
-            </form>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
