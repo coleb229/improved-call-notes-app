@@ -44,7 +44,7 @@ export default async function RootLayout({
           <Navbar />
           {button}
           {children}
-          <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
+          <pre id='session'>Session: <br />name: {JSON.stringify(session.user?.name)}<br />email: {JSON.stringify(session.user?.email)}</pre>
         </body>
       </html>
     )

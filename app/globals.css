@@ -77,6 +77,10 @@
 
 @import url('https://fonts.cdnfonts.com/css/manga-temple');
 
+#nav {
+  color: white;
+}
+
 body {
   background-color: #f2f2f2;
   overflow: scroll;
