@@ -111,8 +111,8 @@ async function Preview() {
         <div className='mx-5 text-sm'>
           <p>Caller Name: {callNote?.callerName}</p>
           <p>Caller Number: {callNote?.callerNumber}</p>
-          <p>DBA: {callNote?.dbaName}</p>
-          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
+          <p>DBA: {callNote?.dbaName}</p><br />
+          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p><br />
           <p>Call Summary: {callNote?.summary}</p>
           <p>Next Steps: {callNote?.nextSteps}</p>
         </div>

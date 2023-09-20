@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
-import Github from "@/components/github";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
@@ -135,7 +134,6 @@ export default async function DisplayStoredCalls() {
 
   return (
     <>
-      <Github />
       <div id="storageContainer">
         <div className="flex justify-evenly">
           <div className="storageCol">
@@ -146,8 +144,8 @@ export default async function DisplayStoredCalls() {
                 <div className='optima'>
                   Caller Name: {callNote.callerName}<br />
                   Caller Number: {callNote.callerNumber}<br />
-                  DBA Name: {callNote.dbaName}<br />
-                  Call Notes: {callNote.callNotes}<br />
+                  DBA Name: {callNote.dbaName}<br /><br />
+                  Call Notes: {callNote.callNotes}<br /><br />
                   Summary: {callNote.summary}<br />
                   Next Steps: {callNote.nextSteps}<br />
                 </div>
