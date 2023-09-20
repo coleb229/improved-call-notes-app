@@ -16,7 +16,7 @@ async function fetchCallNotes() {
   });
   let callNotes = callNote.map((callNote) => ({
     id: callNote.id,
-    createdBy: callNote.createdBy,
+    createdBy: null,
     callerName: callNote.callerName,
     callerNumber: callNote.callerNumber,
     dbaName: callNote.dbaName,
