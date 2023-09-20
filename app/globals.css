@@ -140,6 +140,15 @@ body {
   width: 90%;
 }
 
+.sharedCall {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+#sharedCallNoteContainer {
+  min-width: 400px;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -196,7 +205,7 @@ input, textarea, #output {
 }
 
 #sharedContainer {
-  margin-top: 100px;
+  margin: 100px 0;
 }
 
 .storageCol {

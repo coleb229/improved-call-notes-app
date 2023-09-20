@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { revalidatePath } from "next/cache";
-import { DeleteButton } from "@/components/Buttons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import SharedSubnav from "@/components/sharedSubnav";
@@ -38,65 +36,6 @@ async function fetchHandoffs() {
   return handoff;
 }
 
-async function fetchRekeys() {
-  "use server";
-  const rekey = await prisma.rekey.findMany({
-    orderBy: {
-      id: "desc",
-    },
-  });
-  return rekey;
-}
-
-async function deleteCallNotes() {
-  "use server";
-  await prisma.callNote.deleteMany({  });
-  revalidatePath("/storage")
-}
-
-async function deleteHandoffs() {
-  "use server";
-  await prisma.handoff.deleteMany({  });
-  revalidatePath("/storage")
-}
-
-async function deleteRekeys() {
-  "use server";
-  await prisma.rekey.deleteMany({});
-  revalidatePath("/storage")
-}
-
-async function selectiveDelete(formData: any) {
-  "use server";
-  await prisma.callNote.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function selectiveDeleteHandoff(formData: any) {
-  "use server";
-  await prisma.handoff.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function selectiveDeleteRekey(formData: any) {
-  "use server";
-  await prisma.rekey.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
-
-
 export default async function DisplayStoredCalls() {
   const callNote = await fetchCallNotes();
   const handoff = await fetchHandoffs();
@@ -117,8 +56,8 @@ export default async function DisplayStoredCalls() {
             <div className="flex w-full" id="sharedItems">
               {callNote.map((callNote: any) => (
                 callNote.createdBy === author.createdBy ?
-                  <div>
-                    <div className="flex flex-col text-left border-2 border-black rounded-lg m-2 p-2">
+                  <div id="sharedCallNoteContainer">
+                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
                       Caller Name: {callNote.callerName}<br />
                       Caller Number: {callNote.callerNumber}<br />
                       DBA Name: {callNote.dbaName}<br /><br />
@@ -126,7 +65,7 @@ export default async function DisplayStoredCalls() {
                       Summary: {callNote.summary}<br />
                       Next Steps: {callNote.nextSteps}<br />
                     </div>
-                    <div className="flex flex-col text-left border-2 border-black rounded-lg m-2 p-2">
+                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
                       Caller DBA: {callNote.dbaName}<br />
                       Caller Number: {callNote.callerNumber}<br />
                       Call Summary: {callNote.summary}<br />
@@ -139,10 +78,10 @@ export default async function DisplayStoredCalls() {
               ))}
             </div>
             <h1 className="text-lg font-semibold">Handoffs</h1>
-            <div className="flex items-center w-full" id="sharedItems">
+            <div className="flex flex-col items-center w-full" id="sharedHandoffs">
               {handoff.map((handoff: any) => (
                 handoff.createdBy === author.createdBy ?
-                  <div className="flex flex-col w-[20%] text-left border-2 border-black rounded-lg m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left border-2 border-black rounded-lg m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
