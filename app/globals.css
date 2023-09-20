@@ -77,14 +77,10 @@
 
 @import url('https://fonts.cdnfonts.com/css/manga-temple');
 
-#nav {
-  color: white;
-}
-
 body {
   background-color: #f2f2f2;
-  overflow: scroll;
-  font-family: 'Manga Temple', sans-serif;
+  overflow-y: scroll;
+  font-family: 'Tahoma', sans-serif;
 }
 
 .loginButton {
@@ -109,6 +105,7 @@ body {
   right: 220px;
   padding: 10px;
   border-radius: 10px;
+  z-index: 100;
 }
 
 nav {
@@ -120,15 +117,20 @@ nav {
   @apply bg-slate-800;
   padding: 20px 0;
   z-index: 100;
+  color: white;
+  font-family: 'Manga Temple', cursive;
+  display: flex;
+  justify-content: space-around;
 }
 
 nav a {
-  @apply text-white text-2xl font-bold;
+  @apply text-white font-bold;
   margin: 20px, 0;
 }
 
 nav a:hover {
   color: #ff0000;
+  transform: scale(1.1);
   transition: ease-in-out 0.05s;
 }
 
@@ -144,7 +146,7 @@ input, textarea, #output {
 
 #container {
   width: 95%;
-  margin: 70px 100px 0 0;
+  margin: 60px 100px 0 0;
   max-height: 100%;
   overflow: hidden;
   background-image: linear-gradient(to bottom right, #0800338c, #e6e6e6);
@@ -192,14 +194,17 @@ input, textarea, #output {
 .callerInfos {
   display: flex;
   flex-direction: column;
+  @apply mx-20;
 }
 
 #footNotes {
-  width: 90vw;
+  width: 90%;
   margin: 20px auto;
-  display: flex;
   align-items: center;
-  justify-content: space-evenly;
+}
+
+#footnote-item {
+  @apply mx-20;
 }
 
 label {
@@ -337,8 +342,9 @@ label {
 
 #output {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
-  width: 100%;
+  min-width: 500px;
   height: 400px;
+  border-radius: 10px;
 }
 
 #socials {
@@ -347,6 +353,7 @@ label {
   right: 0;
   margin: 20px;
   display: flex;
+  z-index: 100;
 }
 
 #github:hover {
@@ -363,7 +370,7 @@ label {
   position: fixed;
   bottom: 0;
   left: 0;
-  margin: 20px;
+  margin: 0 20px;
 }
 
 @media only screen and (max-width: 1560px) {
@@ -401,7 +408,7 @@ label {
   }
 
   #footNotes {
-    width: 100vw;
+    width: 100%;
   }
 
   #dbaName, #summary, #ticket {

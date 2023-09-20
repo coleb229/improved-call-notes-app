@@ -29,6 +29,7 @@ export default async function RootLayout({
           <pre id='session'>Session: <br />{JSON.stringify(session)}</pre>
           <div id='container'>
             <h1 className='font-bold justify-center flex text-2xl p-10 mt-40'>Please sign in</h1>
+            <h2 className='font-semibold justify-center flex text-md pb-10'>You will need a getquantic.com email to view shared storage.</h2>
             <div className='flex justify-center w-full mb-40'>{button}</div>
           </div>
         </body>

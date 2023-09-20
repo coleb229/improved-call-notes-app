@@ -58,7 +58,7 @@ export default async function Home() {
       <ExternalLinks />
       <div id='container'>
         <form action={saveCallNote} id='callNoteForm'>
-          <div id='callerInfo' className='flex justify-evenly'>
+          <div id='callerInfo' className='flex justify-center'>
             <div className='callerInfos'>
               <label htmlFor='callerName'>Caller Name</label>
               <input type='text' name='callerName' id='callerName' />
@@ -72,7 +72,7 @@ export default async function Home() {
               <input type='text' name='dbaName' id='dbaNameInput' />
             </div>
           </div>
-          <div id='callNotes' className='flex justify-around'>
+          <div id='callNotes' className='flex justify-center'>
             <div className='flex flex-col'>
               <label htmlFor='callNotes'>Call Notes</label>
               <textarea name='callNotes' id='callNotesInput'></textarea>
@@ -80,46 +80,14 @@ export default async function Home() {
             <div id='arrow'>
               <ArrowSVG className='h-10 w-10' />
             </div>
-            <div className='flex flex-col'>
-              <label htmlFor='output'>Preview</label>
-              <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
-                <div className='mx-5 text-sm'>
-                  <p>Caller Name: {callNote?.callerName}</p>
-                  <p>Caller Number: {callNote?.callerNumber}</p>
-                  <p>DBA: {callNote?.dbaName}</p>
-                  <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
-                  <p>Call Summary: {callNote?.summary}</p>
-                  <p>Next Steps: {callNote?.nextSteps}</p>
-                </div>
-                <div className='mx-5 text-xs'>
-                  <div className='flex'>
-                    <p className='font-bold underline'>{callNote?.dbaName}: </p>
-                    <p>{callNote?.summary}</p>
-                  </div>
-                  <div className='flex'>
-                    <p className="font-bold">Ticket:</p>
-                    <p>ticket</p>
-                  </div>
-                  <div className='mt-5'>
-                    <p>
-                    Caller DBA: {callNote?.dbaName}<br />
-                    Caller Number: {callNote?.callerNumber}<br />
-                    Call Summary: {callNote?.summary}<br />
-                    Resolved: Yes<br />
-                    Ticket: Yes<br />
-                    Follow Up: No<br />
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Preview />
           </div>
-          <div id='footNotes' className='flex justify-around'>
-            <div className='flex flex-col'>
+          <div id='footNotes' className='flex justify-center'>
+            <div className='flex flex-col mx-20'>
               <label htmlFor='summary'>Summary</label>
               <textarea name='summary' id='summaryInput' className='w-[20rem] h-[6rem]'></textarea>
             </div>
-            <div className='flex flex-col'>
+            <div className='flex flex-col mx-20'>
               <label htmlFor='nextSteps'>Next Steps</label>
               <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
             </div>
@@ -130,5 +98,45 @@ export default async function Home() {
         </form>
       </div>
     </main>
+  )
+}
+
+async function Preview() {
+  let callNote = await fetchLastCallNote();
+
+  return (
+    <div className='flex flex-col'>
+      <label htmlFor='output'>Preview</label>
+      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
+        <div className='mx-5 text-sm'>
+          <p>Caller Name: {callNote?.callerName}</p>
+          <p>Caller Number: {callNote?.callerNumber}</p>
+          <p>DBA: {callNote?.dbaName}</p>
+          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p>
+          <p>Call Summary: {callNote?.summary}</p>
+          <p>Next Steps: {callNote?.nextSteps}</p>
+        </div>
+        <div className='mx-5 text-xs'>
+          <div className='flex'>
+            <p className='font-bold underline'>{callNote?.dbaName}: </p>
+            <p>{callNote?.summary}</p>
+          </div>
+          <div className='flex'>
+            <p className="font-bold">Ticket:</p>
+            <p>ticket</p>
+          </div>
+          <div className='mt-5'>
+            <p>
+            Caller DBA: {callNote?.dbaName}<br />
+            Caller Number: {callNote?.callerNumber}<br />
+            Call Summary: {callNote?.summary}<br />
+            Resolved: Yes<br />
+            Ticket: Yes<br />
+            Follow Up: No<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
