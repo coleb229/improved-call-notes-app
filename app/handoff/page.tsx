@@ -69,7 +69,7 @@ async function Output() {
   return (
     <div id="handoffOutput">
       {handoff.map((handoff) => (
-        <div key={handoff.id} className="mb-10 mr-10 bg-white p-5">
+        <div key={handoff.id} className="my-5 mx-10 bg-white p-5">
           <div className="flex">
             <p className="font-bold underline">{handoff.dbaName}:</p>
             <p>{handoff.summary}</p>

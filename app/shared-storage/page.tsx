@@ -51,14 +51,16 @@ export default async function DisplayStoredCalls() {
         <SharedSubnav />
         {callAuthors.map((author: any) => (
           <div id={author.createdBy} className="flex flex-col items-center py-20">
-            <h1 className="text-2xl font-semibold py-5">{author.createdBy}</h1>
+            <div className="border-b-black border-2 px-40">
+              <h1 className="text-2xl font-semibold py-5">{author.createdBy}</h1>
+            </div>
             <h1 className="text-lg underline py-10 font-semibold">Call Notes / Logs</h1>
             <div className="flex w-full" id="sharedItems">
               {callNote.map((callNote: any) => (
                 callNote.createdBy === author.createdBy ?
                   <div id="sharedCallNoteContainer">
                     <h1 className="text-center text-lg">{callNote.dbaName}</h1>
-                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
+                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall bg-white">
                       <u>Caller Name</u>: {callNote.callerName}<br />
                       <u>Caller Number</u>: {callNote.callerNumber}<br />
                       <u>DBA Name</u>: {callNote.dbaName}<br /><br />
@@ -66,7 +68,7 @@ export default async function DisplayStoredCalls() {
                       <u>Summary</u>: {callNote.summary}<br />
                       <u>Next Steps</u>: {callNote.nextSteps}<br />
                     </div>
-                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
+                    <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall bg-white">
                       Caller DBA: {callNote.dbaName}<br />
                       Caller Number: {callNote.callerNumber}<br />
                       Call Summary: {callNote.summary}<br />
@@ -78,8 +80,8 @@ export default async function DisplayStoredCalls() {
                   : null
               ))}
             </div>
-            <h1 className="text-lg underline py-10 font-semibold">Handoffs</h1>
-            <div className="flex flex-col items-center w-full" id="sharedHandoffs">
+            <h1 className="text-lg underline py-10 pt-24 font-semibold">Handoffs</h1>
+            <div className="flex flex-col items-center w-5/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
               {handoff.map((handoff: any) => (
                 handoff.createdBy === author.createdBy ?
                   <div className="flex flex-col w-5/6 text-left m-2 p-2">

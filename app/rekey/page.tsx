@@ -91,9 +91,9 @@ async function Output() {
   const rekey = await fetchRekeys();
 
   return (
-    <div id="rekeyOutput" className="pl-[100px]">
+    <div id="rekeyOutput" className="min-w-[400px] px-10">
       {rekey.map((rekey) => (
-          <div key={rekey.id} className="mb-10 w-full bg-white p-5">
+          <div key={rekey.id} className="mb-10 w-full bg-white p-5" id="rekeyItem">
               Ref: {rekey.ref}<br />
               Date: {rekey.date}<br />
               Auth: {rekey.auth}<br />
