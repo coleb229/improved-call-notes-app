@@ -77,11 +77,30 @@
 
 @import url('https://fonts.cdnfonts.com/css/manga-temple');
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.795);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body {
   background-color: #f2f2f2;
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: 'Tahoma', sans-serif;
+}
+
+.manga-temple {
+  font-family: 'Manga Temple', cursive;
 }
 
 .loginButton {
@@ -200,7 +219,7 @@ input, textarea, #output {
 #storageContainer {
   width: 100%;
   max-height: 100vh;
-  margin: 100px;
+  margin: 100px 25px;
   padding: 20px;
 }
 

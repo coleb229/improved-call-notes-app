@@ -34,25 +34,7 @@ async function saveCallNote(formData: any) {
   revalidatePath("/")
 }
 
-async function fetchLastCallNote() {
-  "use server"
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-
-  const callNote = await prisma.callNote.findFirst({
-    orderBy: {
-      id: 'desc'
-    },
-    where: {
-      createdBy: email as string
-    }
-  })
-  return callNote;
-}
-
 export default async function Home() {
-  let callNote = await fetchLastCallNote();
-
   return (
     <main className="h-screen">
       <ExternalLinks />
@@ -101,6 +83,22 @@ export default async function Home() {
   )
 }
 
+async function fetchLastCallNote() {
+  "use server"
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
+  const callNote = await prisma.callNote.findFirst({
+    orderBy: {
+      id: 'desc'
+    },
+    where: {
+      createdBy: email as string
+    }
+  })
+  return callNote;
+}
+
 async function Preview() {
   let callNote = await fetchLastCallNote();
   let i = 1;
@@ -117,7 +115,7 @@ async function Preview() {
           <p>Call Summary: {callNote?.summary}</p>
           <p>Next Steps: {callNote?.nextSteps}</p>
         </div>
-        <div className='mx-5 text-xs'>
+        <div className='mx-5 text-sm'>
           <div className='flex'>
             <p className='font-bold underline'>{callNote?.dbaName}: </p>
             <p>{callNote?.summary}</p>
