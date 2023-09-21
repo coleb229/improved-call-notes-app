@@ -57,13 +57,14 @@ export default async function DisplayStoredCalls() {
               {callNote.map((callNote: any) => (
                 callNote.createdBy === author.createdBy ?
                   <div id="sharedCallNoteContainer">
+                    <h1 className="text-center text-lg">{callNote.dbaName}</h1>
                     <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
-                      Caller Name: {callNote.callerName}<br />
-                      Caller Number: {callNote.callerNumber}<br />
-                      DBA Name: {callNote.dbaName}<br /><br />
-                      Call Notes: {callNote.callNotes}<br /><br />
-                      Summary: {callNote.summary}<br />
-                      Next Steps: {callNote.nextSteps}<br />
+                      <u>Caller Name</u>: {callNote.callerName}<br />
+                      <u>Caller Number</u>: {callNote.callerNumber}<br />
+                      <u>DBA Name</u>: {callNote.dbaName}<br /><br />
+                      <u>Call Notes</u>: {callNote.callNotes}<br /><br />
+                      <u>Summary</u>: {callNote.summary}<br />
+                      <u>Next Steps</u>: {callNote.nextSteps}<br />
                     </div>
                     <div className="flex flex-col text-left text-sm border-2 border-black rounded-lg m-2 p-2 sharedCall">
                       Caller DBA: {callNote.dbaName}<br />

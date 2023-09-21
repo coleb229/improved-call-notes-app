@@ -145,14 +145,15 @@ export default async function DisplayStoredCalls() {
             {callNote.map((callNote) => (
               <div key={callNote.id} className="mb-10 mr-10 bg-white p-5">
                 <div className='optima'>
-                  Caller Name: {callNote.callerName}<br />
-                  Caller Number: {callNote.callerNumber}<br />
-                  DBA Name: {callNote.dbaName}<br /><br />
-                  Call Notes: {callNote.callNotes}<br /><br />
-                  Summary: {callNote.summary}<br />
-                  Next Steps: {callNote.nextSteps}<br />
+                <u>Caller Name</u>: {callNote.callerName}<br />
+                <u>Caller Number</u>: {callNote.callerNumber}<br />
+                <u>DBA Name</u>: {callNote.dbaName}<br /><br />
+                <u>Call Notes</u>: {callNote.callNotes}<br /><br />
+                <u>Summary</u>: {callNote.summary}<br />
+                <u>Next Steps</u>: {callNote.nextSteps}<br />
                 </div>
                 <form action={selectiveDelete} className="flex justify-end m-5">
+                  <h1 className="mr-10 mt-2 font-semibold">{callNote.dbaName}</h1>
                   <input type="hidden" name="id" value={callNote.id} />
                   <DeleteButton />
                 </form>
@@ -177,6 +178,7 @@ export default async function DisplayStoredCalls() {
                   Follow Up: No<br />
                 </div>
                 <form action={selectiveDelete} className="flex justify-end m-5">
+                  <h1 className="mr-10 mt-2 font-semibold">{callNote.dbaName}</h1>
                   <input type="hidden" name="id" value={callNote.id} />
                   <DeleteButton />
                 </form>
@@ -203,6 +205,7 @@ export default async function DisplayStoredCalls() {
                   </div>
                 </div>
                 <form action={selectiveDeleteHandoff} className="flex justify-end m-5">
+                  <h1 className="mr-10 mt-2 font-semibold">{handoff.dbaName}</h1>
                   <input type="hidden" name="id" value={handoff.id} />
                   <DeleteButton />
                 </form>

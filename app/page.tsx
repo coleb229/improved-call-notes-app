@@ -108,12 +108,12 @@ async function Preview() {
       <label htmlFor='output'>Preview</label>
       <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
         <div className='mx-5 text-sm'>
-          <p>Caller Name: {callNote?.callerName}</p>
-          <p>Caller Number: {callNote?.callerNumber}</p>
-          <p>DBA: {callNote?.dbaName}</p><br />
-          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{i++}.) {str}</p>)}</p><br />
-          <p>Call Summary: {callNote?.summary}</p>
-          <p>Next Steps: {callNote?.nextSteps}</p>
+          <u>Caller Name</u>: {callNote?.callerName}<br />
+          <u>Caller Number:</u> {callNote?.callerNumber}<br />
+          <u>DBA</u>: {callNote?.dbaName}<br /><br />
+          <u>Call Notes</u>: {callNote?.callNotes.split('\n').map((str) => <p>{i++}.) {str}</p>)}<br /><br />
+          <u>Call Summary</u>: {callNote?.summary}<br />
+          <u>Next Steps</u>: {callNote?.nextSteps}<br />
         </div>
         <div className='mx-5 text-sm'>
           <div className='flex'>
