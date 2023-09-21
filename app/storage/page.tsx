@@ -23,7 +23,7 @@ async function fetchCallNotes() {
     callerName: callNote.callerName,
     callerNumber: callNote.callerNumber,
     dbaName: callNote.dbaName,
-    callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
+    callNotes: callNote.callNotes.split("\n").map((str) => <p> - {str}</p>),
     summary: callNote.summary,
     nextSteps: callNote.nextSteps,
   }));
@@ -59,6 +59,8 @@ async function fetchRekeys() {
   });
   return rekey;
 }
+
+// FULL DELETES
 
 async function deleteCallNotes() {
   "use server";
@@ -96,6 +98,8 @@ async function deleteRekeys() {
   revalidatePath("/storage")
 }
 
+// SELECTIVE DELETES
+
 async function selectiveDelete(formData: any) {
   "use server";
   await prisma.callNote.deleteMany({
@@ -125,7 +129,6 @@ async function selectiveDeleteRekey(formData: any) {
   });
   revalidatePath("/storage")
 }
-
 
 export default async function DisplayStoredCalls() {
   let callNote = await fetchCallNotes();

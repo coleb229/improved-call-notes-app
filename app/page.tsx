@@ -103,6 +103,7 @@ export default async function Home() {
 
 async function Preview() {
   let callNote = await fetchLastCallNote();
+  let i = 1;
 
   return (
     <div className='flex flex-col'>
@@ -112,7 +113,7 @@ async function Preview() {
           <p>Caller Name: {callNote?.callerName}</p>
           <p>Caller Number: {callNote?.callerNumber}</p>
           <p>DBA: {callNote?.dbaName}</p><br />
-          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{str}</p>)}</p><br />
+          <p>Call Notes: {callNote?.callNotes.split('\n').map((str) => <p>{i++}.) {str}</p>)}</p><br />
           <p>Call Summary: {callNote?.summary}</p>
           <p>Next Steps: {callNote?.nextSteps}</p>
         </div>

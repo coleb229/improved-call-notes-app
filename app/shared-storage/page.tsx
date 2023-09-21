@@ -19,7 +19,7 @@ async function fetchCallNotes() {
     callerName: callNote.callerName,
     callerNumber: callNote.callerNumber,
     dbaName: callNote.dbaName,
-    callNotes: callNote.callNotes.split("\n").map((str) => <p>{str}</p>),
+    callNotes: callNote.callNotes.split("\n").map((str) => <p> - {str}</p>),
     summary: callNote.summary,
     nextSteps: callNote.nextSteps,
   }));
@@ -52,7 +52,7 @@ export default async function DisplayStoredCalls() {
         {callAuthors.map((author: any) => (
           <div id={author.createdBy} className="flex flex-col items-center py-20">
             <h1 className="text-2xl font-semibold py-5">{author.createdBy}</h1>
-            <h1 className="text-lg font-semibold">Call Notes / Logs</h1>
+            <h1 className="text-lg underline py-10 font-semibold">Call Notes / Logs</h1>
             <div className="flex w-full" id="sharedItems">
               {callNote.map((callNote: any) => (
                 callNote.createdBy === author.createdBy ?
@@ -77,11 +77,11 @@ export default async function DisplayStoredCalls() {
                   : null
               ))}
             </div>
-            <h1 className="text-lg font-semibold">Handoffs</h1>
+            <h1 className="text-lg underline py-10 font-semibold">Handoffs</h1>
             <div className="flex flex-col items-center w-full" id="sharedHandoffs">
               {handoff.map((handoff: any) => (
                 handoff.createdBy === author.createdBy ?
-                  <div className="flex flex-col w-5/6 text-left border-2 border-black rounded-lg m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
