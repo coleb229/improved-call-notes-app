@@ -29,6 +29,7 @@ model Handoff {
   dbaName   String
   summary   String
   ticket    String
+  status    String
 }
 
 model Rekey {

@@ -1,47 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { saveRekey, fetchRekeys } from './actions'
 import SubmitButton from '@/components/Buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { ExternalLink, Terminal } from "lucide-react"
-import { revalidatePath } from "next/cache";
+import { Terminal } from "lucide-react"
 import ExternalLinks from "@/components/externalLinks";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-
-const prisma = new PrismaClient();
-
-async function saveHandoff(formData: any) {
-  "use server"
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  await prisma.rekey.create({
-    data: {
-      createdBy: email as string,
-      ref: formData.get('ref'),
-      date: formData.get('date'),
-      auth: formData.get('auth'),
-      last4: formData.get('last4'),
-      amount: formData.get('amount'),
-      tip: formData.get('tip'),
-    }
-  })
-  revalidatePath("/rekey")
-}
-
-async function fetchRekeys() {
-  "server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  const rekey = await prisma.rekey.findMany({
-    orderBy: {
-      id: 'desc'
-    },
-    where: {
-      createdBy: email as string
-    },
-    take: 10
-  })
-  return rekey;
-}
 
 export default async function Home() {
 
@@ -56,7 +17,7 @@ export default async function Home() {
         </AlertDescription>
       </Alert>
       <div id='container'>
-        <form action={saveHandoff} id='rekeyForm'>
+        <form action={saveRekey} id='rekeyForm'>
           <div className="flex">
             <div className="px-20">
               <div id="rekeyForm">
@@ -92,7 +53,7 @@ async function Output() {
 
   return (
     <div id="rekeyOutput" className="min-w-[400px] px-10">
-      {rekey.map((rekey) => (
+      {rekey?.map((rekey) => (
           <div key={rekey.id} className="mb-10 w-full bg-white p-5" id="rekeyItem">
               Ref: {rekey.ref}<br />
               Date: {rekey.date}<br />

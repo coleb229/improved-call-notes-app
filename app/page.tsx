@@ -1,38 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { fetchLastCallNote, saveCallNote } from './actions'
 import SubmitButton from '@/components/Buttons'
-import { revalidatePath } from 'next/cache'
 import ArrowSVG from '@/public/cool-arrow.svg'
 import ExternalLinks from '@/components/externalLinks'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-
-const prisma = new PrismaClient()
-
-async function saveCallNote(formData: any) {
-  "use server"
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  await prisma.callNote.create({
-    data: {
-      createdBy: email as string,
-      callerName: formData.get('callerName'),
-      callerNumber: formData.get('callerNumber'),
-      dbaName: formData.get('dbaName'),
-      callNotes: formData.get('callNotes'),
-      summary: formData.get('summary'),
-      nextSteps: formData.get('nextSteps'),
-    }
-  })
-  await prisma.handoff.create({
-    data: {
-      createdBy: email as string,
-      dbaName: formData.get('dbaName'),
-      summary: formData.get('summary'),
-      ticket: 'ticket',
-    }
-  })
-  revalidatePath("/")
-}
 
 export default async function Home() {
   return (
@@ -73,7 +42,25 @@ export default async function Home() {
               <label htmlFor='nextSteps'>Next Steps</label>
               <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
             </div>
-            <div id=''>
+            <div className='flex flex-col'>
+              <div className='flex justify-between'>
+                <label htmlFor='followUp'>Follow Up</label>
+                <input type='radio' name='status' id='followUp' value='followUp' />
+              </div>
+              <div className='flex justify-between'>
+                <label htmlFor='needsAttention'>Needs Attention</label>
+                <input type='radio' name='status' id='needsAttention' value='needsAttention' />
+              </div>
+              <div className='flex justify-between'>
+                <label htmlFor='inProgress'>In Progress</label>
+                <input type='radio' name='status' id='inProgress' value='inProgress' />
+              </div>
+              <div className='flex justify-between'>
+                <label htmlFor='resolved'>Resolved</label>
+                <input type='radio' name='status' id='resolved' value='resolved' />
+              </div>
+            </div>
+            <div className='ml-10'>
               <SubmitButton />
             </div>
           </div>
@@ -81,22 +68,6 @@ export default async function Home() {
       </div>
     </main>
   )
-}
-
-async function fetchLastCallNote() {
-  "use server"
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-
-  const callNote = await prisma.callNote.findFirst({
-    orderBy: {
-      id: 'desc'
-    },
-    where: {
-      createdBy: email as string
-    }
-  })
-  return callNote;
 }
 
 async function Preview() {
@@ -121,8 +92,8 @@ async function Preview() {
             <p>{callNote?.summary}</p>
           </div>
           <div className='flex'>
-            <p className="font-bold">Ticket:</p>
-            <p>ticket</p>
+            <p className="font-bold">Link:</p>
+            <p> link </p>
           </div>
           <div className='mt-5'>
             <p>

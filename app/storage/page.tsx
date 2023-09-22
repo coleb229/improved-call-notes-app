@@ -1,134 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { revalidatePath } from "next/cache";
-import { DeleteButton } from "@/components/Buttons";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-
-const prisma = new PrismaClient();
-
-async function fetchCallNotes() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  const callNote = await prisma.callNote.findMany({
-    orderBy: {
-      id: "desc",
-    },
-    where: {
-      createdBy: email as string,
-    },
-  });
-  let callNotes = callNote.map((callNote) => ({
-    id: callNote.id,
-    callerName: callNote.callerName,
-    callerNumber: callNote.callerNumber,
-    dbaName: callNote.dbaName,
-    callNotes: callNote.callNotes.split("\n").map((str) => <p> - {str}</p>),
-    summary: callNote.summary,
-    nextSteps: callNote.nextSteps,
-  }));
-  return callNotes;
-}
-
-async function fetchHandoffs() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  const handoff = await prisma.handoff.findMany({
-    orderBy: {
-      id: "desc",
-    },
-    where: {
-      createdBy: email as string,
-    },
-  });
-  return handoff;
-}
-
-async function fetchRekeys() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  const rekey = await prisma.rekey.findMany({
-    orderBy: {
-      id: "desc",
-    },
-    where: {
-      createdBy: email as string,
-    },
-  });
-  return rekey;
-}
-
-// FULL DELETES
-
-async function deleteCallNotes() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  await prisma.callNote.deleteMany({
-    where: {
-      createdBy: email as string,
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function deleteHandoffs() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  await prisma.handoff.deleteMany({
-    where: {
-      createdBy: email as string,
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function deleteRekeys() {
-  "use server";
-  const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
-  await prisma.rekey.deleteMany({
-    where: {
-      createdBy: email as string,
-    },
-  });
-  revalidatePath("/storage")
-}
-
-// SELECTIVE DELETES
-
-async function selectiveDelete(formData: any) {
-  "use server";
-  await prisma.callNote.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function selectiveDeleteHandoff(formData: any) {
-  "use server";
-  await prisma.handoff.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
-
-async function selectiveDeleteRekey(formData: any) {
-  "use server";
-  await prisma.rekey.deleteMany({
-    where: {
-      id: formData.get("id"),
-    },
-  });
-  revalidatePath("/storage")
-}
+import { fetchCallNotes, fetchHandoffs, fetchRekeys, deleteCallNotes, deleteHandoffs, deleteRekeys, selectiveDelete, selectiveDeleteHandoff, selectiveDeleteRekey } from "./actions";
+import { DeleteButton, DeleteAllButton } from "@/components/Buttons";
 
 export default async function DisplayStoredCalls() {
   let callNote = await fetchCallNotes();
@@ -140,10 +11,15 @@ export default async function DisplayStoredCalls() {
       <div id="storageContainer">
         <div className="flex justify-evenly">
           <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Call Notes</h1>
+            <div className="flex justify-between mr-14">
+              <h1 className="text-2xl font-semibold">Call Notes</h1>
+              <form action={deleteCallNotes}>
+                <DeleteAllButton />
+              </form>
+            </div>
             <hr className="mb-10" />
-            {callNote.map((callNote) => (
-              <div key={callNote.id} className="mb-10 mr-10 bg-white p-5">
+            {callNote?.map((callNote) => (
+              <div key={callNote.id} className="mb-10 mr-10 border-2 border-black rounded-lg bg-white p-5">
                 <div className='optima'>
                 <u>Caller Name</u>: {callNote.callerName}<br />
                 <u>Caller Number</u>: {callNote.callerNumber}<br />
@@ -160,15 +36,12 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
-            <form action={deleteCallNotes}>
-              <DeleteButton />
-            </form>
           </div>
           <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Call Logs</h1>
+            <h1 className="text-2xl font-semibold mb-2">Call Logs</h1>
             <hr className="mb-10" />
-            {callNote.map((callNote) => (
-              <div key={callNote.id} className="mb-10 mr-10 bg-white p-5">
+            {callNote?.map((callNote) => (
+              <div key={callNote.id} className="mb-10 mr-10 bg-white border-2 border-black rounded-lg p-5">
                 <div className='optima'>
                   Caller DBA: {callNote.dbaName}<br />
                   Caller Number: {callNote.callerNumber}<br />
@@ -185,22 +58,24 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
-            <form action={deleteCallNotes}>
-              <DeleteButton />
-            </form>
           </div>
           <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Handoffs</h1>
+            <div className="flex justify-between mr-14">
+              <h1 className="text-2xl font-semibold">Handoffs</h1>
+              <form action={deleteHandoffs}>
+                <DeleteAllButton />
+              </form>
+            </div>
             <hr className="mb-10" />
-            {handoff.map((handoff) => (
-              <div key={handoff.id} className="mb-10 mr-10 bg-white p-5">
+            {handoff?.map((handoff) => (
+              <div key={handoff.id} className="mb-10 mr-10 border-2 border-black rounded-lg bg-white p-5">
                 <div className='optima'>
                   <div className="flex">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                   </div>
                   <div className="flex">
-                    <p className="font-bold">Ticket:</p>
+                    <p className="font-bold">Link:</p>
                     <p>{handoff.ticket}</p>
                   </div>
                 </div>
@@ -212,15 +87,17 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
-            <form action={deleteHandoffs}>
-              <DeleteButton />
-            </form>
           </div>
           <div className="storageCol">
-            <h1 className="text-2xl font-semibold">Rekeys</h1>
+            <div className="flex justify-between mr-14">
+              <h1 className="text-2xl font-semibold">Rekeys</h1>
+              <form action={deleteRekeys}>
+                <DeleteAllButton />
+              </form>
+            </div>
             <hr className="mb-10" />
-            {rekey.map((rekey) => (
-              <div key={rekey.id} className="mb-10 mr-10 bg-white p-5">
+            {rekey?.map((rekey) => (
+              <div key={rekey.id} className="mb-10 mr-10 border-2 border-black rounded-lg bg-white p-5">
                 <div className='optima'>
                   <div className="flex">
                     <p className="">Ref: {rekey.ref}</p>
@@ -248,9 +125,6 @@ export default async function DisplayStoredCalls() {
                 <hr />
               </div>
             ))}
-            <form action={deleteRekeys}>
-              <DeleteButton />
-            </form>
           </div>
         </div>
       </div>

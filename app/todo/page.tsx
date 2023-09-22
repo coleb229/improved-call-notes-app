@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { saveToDo, deleteSelected, fetchToDo } from "./actions";
 import SubmitButton from '@/components/Buttons';
 import {
   Table,
@@ -8,36 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { revalidatePath } from "next/cache";
 import { DeleteButton } from "@/components/Buttons";
 import ExternalLinks from "@/components/externalLinks";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-
-const prisma = new PrismaClient();
-
-async function saveToDo(formData: any) {
-  "use server"
-  await prisma.todo.create({
-    data: {
-      name: formData.get('name'),
-      task: formData.get('task'),
-      timeframe: formData.get('timeframe'),
-      completed: false,
-    }
-  })
-  revalidatePath("/todo")
-}
-
-async function deleteSelected(formData: any) {
-  "use server"
-  await prisma.todo.delete({
-    where: {
-      id: formData.get('id')
-    }
-  })
-  revalidatePath("/todo")
-}
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -75,7 +49,7 @@ export default async function Home() {
 }
 
 async function OutputTable() {
-  const todo = await prisma.todo.findMany({});
+  const todo = await fetchToDo()
 
   return (
     <Table className="w-2/3 mx-auto">
@@ -88,7 +62,7 @@ async function OutputTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {todo.map((todo) => (
+        {todo?.map((todo) => (
           <TableRow key={todo.id}>
             <TableCell className="optima">{todo.name}</TableCell>
             <TableCell className="optima">{todo.task}</TableCell>
