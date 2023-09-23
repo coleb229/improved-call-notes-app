@@ -381,7 +381,7 @@ label {
 
 #handoffOutput {
   height: 400px;
-  width: 50%;
+  width: 90%;
   overflow-y: scroll;
   margin: 30px auto;
   background-color: #f2f2f2;

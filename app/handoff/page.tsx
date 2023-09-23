@@ -1,4 +1,4 @@
-import { fetchHandoffs, saveHandoff, updateStatus } from "./actions";
+import { fetchHandoffs, saveHandoff, updateHandoff } from "./actions";
 import SubmitButton from '@/components/Buttons';
 import { UpdateButton } from "@/components/Buttons";
 import ExternalLinks from "@/components/externalLinks";
@@ -83,7 +83,7 @@ async function Output() {
                 </div>
               </TableCell>
               <TableCell>
-                <form action={updateStatus}>
+                <form action={updateHandoff}>
                   <input type="hidden" name="id" value={handoff.id} />
                   <div className="flex justify-around items-center">
                     <UpdateStatusForm />
