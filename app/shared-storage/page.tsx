@@ -54,7 +54,7 @@ export default async function DisplayStoredCalls() {
             </div>
             <h1 className="text-lg underline py-10 pt-24 font-semibold">Handoffs</h1>
             <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
-              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
+              <h1 className="text-lg text-left ml-14 mr-auto">Follow Up</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'followUp' ?
@@ -62,13 +62,12 @@ export default async function DisplayStoredCalls() {
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
-                      <p className="font-bold">Link:</p>
-                      <p>{handoff.ticket}</p>
+                      <b>Link:</b>{handoff.ticket}<br />
                     </div>
                   </div>
                   : null
               ))}
-              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
+              <h1 className="text-lg text-left ml-14 mr-auto">Needs Attention</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'needsAttention' ?
@@ -82,7 +81,7 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-xl font-bold text-left ml-14 mr-auto">In Progress</h1>
+              <h1 className="text-lg text-left ml-14 mr-auto">In Progress</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'inProgress' ?
@@ -96,7 +95,7 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Resolved</h1>
+              <h1 className="text-lg text-left ml-14 mr-auto">Resolved</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'resolved' ?
@@ -110,7 +109,7 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Unknown</h1>
+              <h1 className="text-lg text-left ml-14 mr-auto">Unknown</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'Unknown' ?
@@ -140,7 +139,7 @@ const DailySharedHandoff = async () => {
       <h1 className="text-2xl font-semibold text-center pt-20">Shared Daily Handoff</h1>
       <div className="flex items-center justify-center text-sm pt-10">
         <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
-          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
+          <h1 className="text-lg text-left ml-14 mr-auto">Follow Up</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'followUp' ?
@@ -148,13 +147,12 @@ const DailySharedHandoff = async () => {
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">
-                  <p className="font-bold">Link:</p>
-                  <p>{handoff.ticket}</p>
+                  <b>Link:</b>{handoff.ticket}<br />
                 </div>
               </div>
               : null
           ))}
-          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
+          <h1 className="text-lg text-left ml-14 mr-auto">Needs Attention</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'needsAttention' ?
@@ -168,7 +166,7 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-xl font-bold text-left ml-14 mr-auto">In Progress</h1>
+          <h1 className="text-lg text-left ml-14 mr-auto">In Progress</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'inProgress' ?
@@ -182,7 +180,7 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Resolved</h1>
+          <h1 className="text-lg text-left ml-14 mr-auto">Resolved</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'resolved' ?
@@ -196,7 +194,7 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Unknown</h1>
+          <h1 className="text-lg text-left ml-14 mr-auto">Unknown</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'Unknown' ?
