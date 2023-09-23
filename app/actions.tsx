@@ -1,10 +1,8 @@
 "use server"
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { PrismaClient } from '@prisma/client';
+import prisma from "@/lib/prisma";
 import { revalidatePath } from 'next/cache';
-
-const prisma = new PrismaClient();
 
 export const saveCallNote = async (formData: any) => {
   try {
