@@ -51,11 +51,11 @@ export default async function DisplayStoredCalls() {
             </div>
             <h1 className="text-lg underline py-10 pt-24 font-semibold">Handoffs</h1>
             <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
-              <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
+              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'followUp' ?
-                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left text-sm m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
@@ -65,11 +65,11 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
+              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'needsAttention' ?
-                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left text-sm m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
@@ -79,11 +79,11 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-2xl font-bold text-left ml-14 mr-auto">In Progress</h1>
+              <h1 className="text-xl font-bold text-left ml-14 mr-auto">In Progress</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'inProgress' ?
-                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left text-sm m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
@@ -93,11 +93,11 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Resolved</h1>
+              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Resolved</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'resolved' ?
-                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left text-sm m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
@@ -107,11 +107,11 @@ export default async function DisplayStoredCalls() {
                   </div>
                   : null
               ))}
-              <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Unknown</h1>
+              <h1 className="text-xl font-bold text-left ml-14 mr-auto">Unknown</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
                 handoff.createdBy === author.createdBy && handoff.status === 'Unknown' ?
-                  <div className="flex flex-col w-5/6 text-left m-2 p-2">
+                  <div className="flex flex-col w-5/6 text-left text-sm m-2 p-2">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
                     <div className="flex">
