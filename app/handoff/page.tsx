@@ -83,7 +83,7 @@ async function Output() {
                 </div>
               </TableCell>
               <TableCell>
-                <form action={updateHandoff}>
+                <form action={updateHandoff} id="updateHandoff">
                   <input type="hidden" name="id" value={handoff.id} />
                   <div className="flex justify-around items-center">
                     <UpdateStatusForm />

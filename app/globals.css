@@ -431,6 +431,11 @@ label {
   transition: ease-in-out 0.1s;
 }
 
+#updateHandoff {
+  background-color: #e6e6e6;
+  padding: 10px 0;
+}
+
 #session {
   position: fixed;
   bottom: 0;
