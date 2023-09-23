@@ -38,3 +38,19 @@ export const fetchHandoffs = async () => {
     console.log(error);
   }
 }
+
+export const fetchDaysHandoffs = async () => {
+  try {
+    const handoff = await prisma.handoff.findMany({
+      where: {
+        createdAt: {
+          gte: new Date(new Date().setHours(0,0,0,0)),
+          lt: new Date(new Date().setHours(23,59,59,999)),
+        }
+      },
+    })
+    return handoff;
+  } catch (error) {
+    console.log(error);
+  }
+}
