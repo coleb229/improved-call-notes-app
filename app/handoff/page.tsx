@@ -1,5 +1,6 @@
-import { fetchHandoffs, saveHandoff } from "./actions";
+import { fetchHandoffs, saveHandoff, updateStatus } from "./actions";
 import SubmitButton from '@/components/Buttons';
+import { UpdateButton } from "@/components/Buttons";
 import ExternalLinks from "@/components/externalLinks";
 import {
   Table,
@@ -60,15 +61,12 @@ async function Output() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[50px]">Update</TableHead>
             <TableHead>Handoff</TableHead>
-            <TableHead>Update Status</TableHead>
-            <TableHead>Update Link</TableHead>
-            <TableHead className="w-[50px]">Submit</TableHead>
+            <TableHead>Update Handoff</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {handoff?.map((handoff) => (
+          {handoff?.map((handoff: any) => (
             <TableRow key={handoff.id}>
               <TableCell>
                 <div className="my-5 mx-10 bg-white p-5">
@@ -81,12 +79,59 @@ async function Output() {
                     <p>{handoff.ticket}</p>
                   </div>
                   <hr />
+                  <p className="font-bold text-green-500 text-right">{handoff.status}</p>
                 </div>
+              </TableCell>
+              <TableCell>
+                <form action={updateStatus}>
+                  <input type="hidden" name="id" value={handoff.id} />
+                  <div className="flex justify-around items-center">
+                    <UpdateStatusForm />
+                    <UpdateLinkForm />
+                    <UpdateButton />
+                  </div>
+                </form>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </div>
+  )
+}
+
+const UpdateStatusForm = () => {
+  return (
+    <>
+      <div className="flex flex-col text-sm">
+        <div className="flex justify-between">
+          <label htmlFor="followUp">Follow Up</label>
+          <input type="radio" name="status" id="followUp" value="followUp" />
+        </div>
+        <div className="flex justify-between">
+          <label htmlFor="needsAttention">Needs Attention</label>
+          <input type="radio" name="status" id="needsAttention" value="needsAttention" className="ml-5" />
+        </div>
+        <div className="flex justify-between">
+          <label htmlFor="inProgress">In Progress</label>
+          <input type="radio" name="status" id="inProgress" value="inProgress" />
+        </div>
+        <div className="flex justify-between">
+          <label htmlFor="resolved">Resolved</label>
+          <input type="radio" name="status" id="resolved" value="resolved" />
+        </div>
+      </div>
+    </>
+  )
+}
+
+const UpdateLinkForm = () => {
+  return (
+    <>
+      <div className="flex flex-col text-sm w-2/6">
+        <label htmlFor="ticket">Link</label>
+        <input type='text' name='ticket' id='link' />
+      </div>
+    </>
   )
 }

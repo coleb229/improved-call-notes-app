@@ -28,3 +28,12 @@ export function DeleteAllButton() {
     <Button disabled={pending} variant="destructive" type='submit'>{pending ? 'Deleting...' : 'Delete All'}</Button>
   )
 }
+
+export function UpdateButton() {
+  "client"
+  const { pending } = useFormStatus()
+ 
+  return (
+    <Button disabled={pending} variant="outline" type='submit'>{pending ? 'Updating...' : 'Update'}</Button>
+  )
+}

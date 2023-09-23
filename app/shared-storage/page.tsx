@@ -50,7 +50,7 @@ export default async function DisplayStoredCalls() {
               ))}
             </div>
             <h1 className="text-lg underline py-10 pt-24 font-semibold">Handoffs</h1>
-            <div className="flex flex-col items-center w-5/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
+            <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
               <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
               <hr className="w-5/6 mb-5 mr-auto ml-10" />
               {handoff?.map((handoff: any) => (
@@ -134,10 +134,10 @@ export const DailySharedHandoff = async () => {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold text-center pt-20">Daily Handoff</h1>
+      <h1 className="text-2xl font-semibold text-center pt-20">Shared Daily Handoff</h1>
       <div className="flex items-center justify-center text-sm pt-10">
-        <div className="flex flex-col items-center w-5/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
-          <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
+        <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
+          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Follow Up</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'followUp' ?
@@ -151,7 +151,7 @@ export const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
+          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Needs Attention</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'needsAttention' ?
@@ -165,7 +165,7 @@ export const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-2xl font-bold text-left ml-14 mr-auto">In Progress</h1>
+          <h1 className="text-xl font-bold text-left ml-14 mr-auto">In Progress</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'inProgress' ?
@@ -179,7 +179,7 @@ export const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Resolved</h1>
+          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Resolved</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'resolved' ?
@@ -193,7 +193,7 @@ export const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-2xl font-bold text-left ml-14 mr-auto">Unknown</h1>
+          <h1 className="text-xl font-bold text-left ml-14 mr-auto">Unknown</h1>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'Unknown' ?

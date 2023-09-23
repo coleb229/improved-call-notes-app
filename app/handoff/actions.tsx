@@ -22,7 +22,7 @@ export const saveHandoff = async (formdata: any) => {
     })
     revalidatePath("/handoff")
   } catch (error) {
-    console.log(error)
+    return(error)
   }
 }
 
@@ -41,5 +41,22 @@ export const fetchHandoffs = async () => {
     return handoff;
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const updateStatus = async (formdata: any) => {
+  try {
+    await prisma.handoff.update({
+      where: {
+        id: formdata.get('id')
+      },
+      data: {
+        status: formdata.get('status') === null ? 'Unknown' : formdata.get('status'),
+        ticket: formdata.get('ticket')
+      }
+    })
+    revalidatePath("/handoff")
+  } catch (error) {
+    return(error)
   }
 }
