@@ -1,4 +1,4 @@
-import { fetchHandoffs, saveHandoff, updateHandoff } from "./actions";
+import { fetchHandoffs, saveHandoff, updateHandoff, test } from "./actions";
 import SubmitButton from '@/components/Buttons';
 import { UpdateButton } from "@/components/Buttons";
 import ExternalLinks from "@/components/externalLinks";
@@ -130,7 +130,7 @@ const UpdateLinkForm = () => {
     <>
       <div className="flex flex-col text-sm w-2/6">
         <label htmlFor="ticket">Link</label>
-        <input type='text' name='ticket' id='link' />
+        <input type='text' name='ticket' id='ticket' />
       </div>
     </>
   )

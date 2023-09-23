@@ -279,7 +279,7 @@ label {
   font-family: Optima, sans-serif;
 }
 
-#dbaName, #summary, #ticket {
+#dbaName, #summary, .ticket {
   width: 400px;
   margin-bottom: 30px;
 }

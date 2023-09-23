@@ -44,9 +44,9 @@ export const fetchHandoffs = async () => {
 
 export const updateHandoff = async (formdata: any) => {
   try {
-    if(formdata.get('status' && 'ticket' === null)) {
+    if(formdata.get('status' && 'ticket') === null) {
       revalidatePath("/handoff")
-    } else if(formdata.get('status' === null)) {
+    } else if(formdata.get('status') === null) {
       await prisma.handoff.update({
         where: {
           id: formdata.get('id')
@@ -55,7 +55,7 @@ export const updateHandoff = async (formdata: any) => {
           ticket: formdata.get('ticket')
         }
       })
-    } else if(formdata.get('ticket' === null)) {
+    } else if(formdata.get('ticket') === null) {
       await prisma.handoff.update({
         where: {
           id: formdata.get('id')
@@ -79,4 +79,9 @@ export const updateHandoff = async (formdata: any) => {
   } catch (error) {
     return(error)
   }
+}
+
+export const test = async (formdata: any) => {
+  console.log(formdata.get('ticket'))
+  console.log(formdata.get('status'))
 }
