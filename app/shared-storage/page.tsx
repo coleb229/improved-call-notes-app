@@ -129,7 +129,7 @@ export default async function DisplayStoredCalls() {
   );
 }
 
-export const DailySharedHandoff = async () => {
+const DailySharedHandoff = async () => {
   const handoff = await fetchDaysHandoffs();
 
   return (
