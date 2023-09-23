@@ -3,6 +3,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import SharedSubnav from "@/components/sharedSubnav";
 import { findAuthors } from "@/components/sharedSubnav";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default async function DisplayStoredCalls() {
   const callNote = await fetchCallNotes();
