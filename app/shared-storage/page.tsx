@@ -133,10 +133,12 @@ export default async function DisplayStoredCalls() {
 
 const DailySharedHandoff = async () => {
   const handoff = await fetchDaysHandoffs();
+  let date = new Date().toLocaleDateString();
 
   return (
     <>
       <h1 className="text-2xl font-semibold text-center pt-20">Shared Daily Handoff</h1>
+      <h2 className="text-lg text-center">Current Date: {date}</h2>
       <div className="flex items-center justify-center text-sm pt-10">
         <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
           <h1 className="text-lg text-left ml-14 mr-auto">Follow Up</h1>
