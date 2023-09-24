@@ -42,24 +42,7 @@ export default async function Home() {
               <label htmlFor='nextSteps'>Next Steps</label>
               <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
             </div>
-            <div className='flex flex-col'>
-              <div className='flex justify-between'>
-                <label htmlFor='followUp'>Follow Up</label>
-                <input type='radio' name='status' id='followUp' value='followUp' />
-              </div>
-              <div className='flex justify-between'>
-                <label htmlFor='needsAttention'>Needs Attention</label>
-                <input type='radio' name='status' id='needsAttention' value='needsAttention' />
-              </div>
-              <div className='flex justify-between'>
-                <label htmlFor='inProgress'>In Progress</label>
-                <input type='radio' name='status' id='inProgress' value='inProgress' />
-              </div>
-              <div className='flex justify-between'>
-                <label htmlFor='resolved'>Resolved</label>
-                <input type='radio' name='status' id='resolved' value='resolved' />
-              </div>
-            </div>
+            <StatusButtons />
             <div className='ml-10'>
               <SubmitButton />
             </div>
@@ -67,6 +50,29 @@ export default async function Home() {
         </form>
       </div>
     </main>
+  )
+}
+
+function StatusButtons() {
+  return (
+    <div className='flex flex-col'>
+      <div className='flex justify-between'>
+        <input type='radio' name='status' id='followUp' value='followUp' />
+        <label htmlFor='followUp'>Follow Up</label>
+      </div>
+      <div className='flex justify-between'>
+        <input type='radio' name='status' id='needsAttention' value='needsAttention' />
+        <label htmlFor='needsAttention'>Needs Attention</label>
+      </div>
+      <div className='flex justify-between'>
+        <input type='radio' name='status' id='inProgress' value='inProgress' />
+        <label htmlFor='inProgress'>In Progress</label>
+      </div>
+      <div className='flex justify-between'>
+        <input type='radio' name='status' id='resolved' value='resolved' />
+        <label htmlFor='resolved'>Resolved</label>
+      </div>
+    </div>
   )
 }
 
@@ -80,7 +86,7 @@ async function Preview() {
       <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
         <div className='mx-5 text-sm'>
           <u>Caller Name</u>: {callNote?.callerName}<br />
-          <u>Caller Number:</u> {callNote?.callerNumber}<br />
+          <u>Caller Number</u>: {callNote?.callerNumber}<br />
           <u>DBA</u>: {callNote?.dbaName}<br /><br />
           <u>Call Notes</u>: {callNote?.callNotes.split('\n').map((str) => <p>{i++}.) {str}</p>)}<br /><br />
           <u>Call Summary</u>: {callNote?.summary}<br />

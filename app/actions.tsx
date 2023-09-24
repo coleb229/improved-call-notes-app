@@ -26,7 +26,7 @@ export const saveCallNote = async (formData: any) => {
         dbaName: formData.get('dbaName'),
         summary: formData.get('summary'),
         ticket: 'ticket',
-        status: 'status',
+        status: formData.get('status'),
       }
     })
     revalidatePath("/")

@@ -55,7 +55,7 @@ export const updateHandoff = async (formdata: any) => {
           ticket: formdata.get('ticket')
         }
       })
-    } else if(formdata.get('ticket') === null) {
+    } else if(formdata.get('ticket') === "") {
       await prisma.handoff.update({
         where: {
           id: formdata.get('id')
