@@ -12,6 +12,7 @@ export type CallNote = {
   callNotes: string,
   summary: string,
   nextSteps: string,
+  ticket: string,
 }
 
 type CallNoteComponentProps = {
@@ -28,7 +29,7 @@ export default function CallNotes({ callNote }:any) {
 
 
   return (
-    <form action={async formData => {
+    <form action={async (formData) => {
       setOptimisticNote({
         callerName: formData.get('callerName') as string,
         callerNumber: formData.get('callerNumber') as string,
@@ -36,8 +37,8 @@ export default function CallNotes({ callNote }:any) {
         callNotes: formData.get('callNotes') as string,
         summary: formData.get('summary') as string,
         nextSteps: formData.get('nextSteps') as string,
+        ticket: 'ticket',
       })
-      document.querySelector('.previewOutput')?.classList.remove('hidden')
       await saveCallNote(formData)
     }} id='callNoteForm'>
       <div id='callerInfo' className='flex justify-center'>
@@ -113,7 +114,7 @@ function Preview({ optimisticNote }:any) {
       <label htmlFor='output'>Preview</label>
       <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex'>
         {optimisticNote.map((note: any) => (
-          <div className='previewOutput flex justify-between p-5 hidden'>
+          <div className='previewOutput flex justify-between p-5'>
             <div className='mx-5 text-sm'>
               <u>Caller Name</u>: {note.callerName}<br />
               <u>Caller Number</u>: {note.callerNumber}<br />
