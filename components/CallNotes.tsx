@@ -110,7 +110,7 @@ function Preview({ optimisticNote }:any) {
   return (
     <div className='flex flex-col'>
       <label htmlFor='output'>Preview</label>
-      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex flex-row-reverse'>
+      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex'>
         {optimisticNote.map((note: any) => (
           <div className='previewOutput flex justify-between p-5'>
             <div className='mx-5 text-sm'>
