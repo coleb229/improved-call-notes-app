@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 
 export const saveCallNote = async (formData: any) => {
   try {
+    revalidatePath("/")
     const session = await getServerSession(authOptions);
     const email = session?.user?.email;
     formData.get('status') === null ? formData.set('status', 'Unknown') : null;

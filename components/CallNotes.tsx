@@ -3,6 +3,7 @@ import { experimental_useOptimistic as useOptimistic } from 'react'
 import SubmitButton from '@/components/Buttons'
 import ArrowSVG from '@/public/cool-arrow.svg'
 import { saveCallNote } from '../app/actions'
+import { revalidatePath } from 'next/cache'
 
 export type CallNote = {
   callerName: string,
@@ -103,15 +104,15 @@ function StatusButtons() {
   )
 }
 
-function Preview({ callNote, optimisticNote }:any) {
-  let i = 1;
+function Preview({ optimisticNote }:any) {
+  let i = 0;
 
   return (
     <div className='flex flex-col'>
       <label htmlFor='output'>Preview</label>
-      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
+      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex flex-row-reverse'>
         {optimisticNote.map((note: any) => (
-          <>
+          <div className='previewOutput flex justify-between p-5'>
             <div className='mx-5 text-sm'>
               <u>Caller Name</u>: {note.callerName}<br />
               <u>Caller Number</u>: {note.callerNumber}<br />
@@ -140,7 +141,7 @@ function Preview({ callNote, optimisticNote }:any) {
                 </p>
               </div>
             </div>
-          </> 
+          </div> 
         ))}
       </div>
     </div>
