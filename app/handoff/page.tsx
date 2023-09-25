@@ -12,19 +12,20 @@ import {
 import { HandoffForm } from "./components/HandoffForm";
 
 export default async function Home() {
+  const handoff = await fetchHandoffs()
+
   return (
     <main className="max-h-screen">
       <ExternalLinks />
       <div id='container'>
-        <Output />
+        <Output handoff={handoff} />
         <HandoffForm />
       </div>
     </main>
   )
 }
 
-async function Output() {
-  const handoff = await fetchHandoffs()
+async function Output({ handoff }: any) {
 
   return (
     <div id="handoffOutput">

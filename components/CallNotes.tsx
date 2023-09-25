@@ -83,21 +83,21 @@ export default function CallNotes({ callNote }:any) {
 function StatusButtons() {
   return (
     <div className='flex flex-col'>
-      <div className='flex justify-between'>
+      <div className='flex'>
         <input type='radio' name='status' id='followUp' value='followUp' />
-        <label htmlFor='followUp'>Follow Up</label>
+        <label htmlFor='followUp' className='ml-5'>Follow Up</label>
       </div>
-      <div className='flex justify-between'>
+      <div className='flex'>
         <input type='radio' name='status' id='needsAttention' value='needsAttention' />
-        <label htmlFor='needsAttention'>Needs Attention</label>
+        <label htmlFor='needsAttention' className='ml-5'>Needs Attention</label>
       </div>
-      <div className='flex justify-between'>
+      <div className='flex'>
         <input type='radio' name='status' id='inProgress' value='inProgress' />
-        <label htmlFor='inProgress'>In Progress</label>
+        <label htmlFor='inProgress' className='ml-5'>In Progress</label>
       </div>
-      <div className='flex justify-between'>
+      <div className='flex'>
         <input type='radio' name='status' id='resolved' value='resolved' />
-        <label htmlFor='resolved'>Resolved</label>
+        <label htmlFor='resolved' className='ml-5'>Resolved</label>
       </div>
     </div>
   )

@@ -3,6 +3,12 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const getDate = (givenDate = new Date()): string => {
+  const offset = givenDate.getTimezoneOffset();
+  givenDate = new Date(givenDate.getTime() - offset * 60 * 1000);
+  return givenDate.toISOString().split('T')[0];
+};
+
 export const fetchCallNotes = async () => {
   try {
     const callNote = await prisma.callNote.findMany({
@@ -44,7 +50,7 @@ export const fetchDaysHandoffs = async () => {
     const handoff = await prisma.handoff.findMany({
       where: {
         createdAt: {
-          gte: new Date(new Date().setHours(0,0,0,0)),
+          gte: new Date(getDate()),
           lt: new Date(new Date().setHours(23,59,59,999)),
         }
       },
