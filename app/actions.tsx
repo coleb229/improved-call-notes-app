@@ -39,16 +39,25 @@ export const fetchLastCallNote = async () => {
   try {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email;
-  
-    const callNote = await prisma.callNote.findFirst({
+    const callNote = await prisma.callNote.findMany({
       orderBy: {
         id: 'desc'
       },
       where: {
         createdBy: email as string
-      }
+      },
+      take: 1
     })
-    return callNote;
+    let callNotes = callNote?.map((callNote) => ({
+      id: callNote.id,
+      callerName: callNote.callerName,
+      callerNumber: callNote.callerNumber,
+      dbaName: callNote.dbaName,
+      callNotes: callNote.callNotes.split("\n").map((str) => <p> - {str}</p>),
+      summary: callNote.summary,
+      nextSteps: callNote.nextSteps,
+    }));
+    return callNotes;
   } catch (error) {
     console.log(error)
   }
