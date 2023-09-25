@@ -9,12 +9,6 @@ const getDate = (givenDate = new Date()): string => {
   return givenDate.toISOString().split('T')[0];
 };
 
-const getDateEnd = (givenDate = new Date()): string => {
-  const offset = givenDate.getTimezoneOffset();
-  givenDate = new Date(new Date(givenDate.getTime() - offset * 60 * 1000).setHours(23,59,59,999));
-  return givenDate.toISOString().split('T')[0];
-};
-
 export const fetchCallNotes = async () => {
   try {
     const callNote = await prisma.callNote.findMany({
@@ -57,7 +51,6 @@ export const fetchDaysHandoffs = async () => {
       where: {
         createdAt: {
           gte: new Date(getDate()),
-          lt: new Date(getDateEnd()),
         }
       },
     })

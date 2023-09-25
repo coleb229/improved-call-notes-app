@@ -110,7 +110,7 @@ function Preview({ callNote, optimisticNote }:any) {
     <div className='flex flex-col'>
       <label htmlFor='output'>Preview</label>
       <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex justify-evenly'>
-        {callNote.map((note: any) => (
+        {optimisticNote.map((note: any) => (
           <>
             <div className='mx-5 text-sm'>
               <u>Caller Name</u>: {note.callerName}<br />
