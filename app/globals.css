@@ -486,20 +486,30 @@ label {
 }
 
 @media only screen and (max-width: 1380px){
-  #footnotes {
+  #footnotes .footNoteItem {
     @apply mx-2;
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
   #todoForm {
     left: 0;
-    right: 0;
+    margin-bottom: 50px;
     width: fit-content;
   }
 
   #task, #name, #timeframe {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #submitButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 150px;
+    margin-right: 50px;
   }
 }
 
@@ -528,14 +538,6 @@ label {
 
   #submit {
     margin: 30px 20%;
-  }
-
-  #todoForm {
-    position: fixed;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    width: 100%;
   }
 
   #todoTable {

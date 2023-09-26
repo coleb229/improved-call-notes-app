@@ -75,7 +75,7 @@ export default function CallNotes({ callNote }:any) {
           <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
         </div>
         <StatusButtons />
-        <div className='ml-10'>
+        <div className='ml-10' id='submitButton'>
           <SubmitButton />
         </div>
       </div>
