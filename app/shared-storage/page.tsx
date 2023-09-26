@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import SharedSubnav from "@/components/sharedSubnav";
 import { findAuthors } from "@/components/sharedSubnav";
 import { PrismaClient } from "@prisma/client";
+import ExternalLinks from "@/components/externalLinks";
 
 const prisma = new PrismaClient();
 
@@ -18,6 +19,7 @@ export default async function DisplayStoredCalls() {
 
   return (
     <>
+      <ExternalLinks />
       <div id="sharedContainer">
         <SharedSubnav />
         <DailySharedHandoff />
