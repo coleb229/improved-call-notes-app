@@ -66,11 +66,11 @@ export default function CallNotes({ callNote }:any) {
         <Preview callNote={callNote} optimisticNote={optimisticNote} />
       </div>
       <div id='footNotes' className='flex justify-center'>
-        <div className='flex flex-col mx-20'>
+        <div className='flex flex-col mx-10 footNoteItem'>
           <label htmlFor='summary'>Summary</label>
           <textarea name='summary' id='summaryInput' className='w-[20rem] h-[6rem]'></textarea>
         </div>
-        <div className='flex flex-col mx-20'>
+        <div className='flex flex-col mx-10 footNoteItem'>
           <label htmlFor='nextSteps'>Next Steps</label>
           <textarea name='nextSteps' id='nextSteps' className='w-[20rem] h-[6rem]'></textarea>
         </div>

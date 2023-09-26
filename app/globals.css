@@ -485,6 +485,12 @@ label {
   }
 }
 
+@media only screen and (max-width: 1380px){
+  #footnotes {
+    @apply mx-2;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   #todoForm {
     left: 0;
