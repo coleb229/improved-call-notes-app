@@ -77,13 +77,14 @@ export default function Output({ handoff }: any) {
 
 export const HandoffForm = ({ setOptimisticNote }:any) => {
   return(
-    <form action={async formData => {
+    <form action={async (formData) => {
       setOptimisticNote({
         dbaName: formData.get('dbaName') as string,
         summary: formData.get('summary') as string,
         ticket: formData.get('ticket') as string,
         status: formData.get('status') as string,
       })
+      console.log(formData.get('status'))
       await saveHandoff(formData)
     }} id='handoffForm'>
       <div id="handoffForm">

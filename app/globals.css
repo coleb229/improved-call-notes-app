@@ -417,6 +417,10 @@ label {
   overflow-x: hidden;
 }
 
+#output:nth-last-child() {
+  display: hidden;
+}
+
 #socials {
   position: fixed;
   bottom: 0;
