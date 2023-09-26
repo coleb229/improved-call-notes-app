@@ -28,7 +28,7 @@ function CallNotes({ callNote }:any) {
         <div className="flex justify-between mr-14">
           <h1 className="text-2xl font-semibold">Call Notes</h1>
           <form action={deleteCallNotes}>
-            <DeleteAllButton />
+            {/*<DeleteAllButton />*/}
           </form>
         </div>
         <hr className="mb-10" />
@@ -83,7 +83,7 @@ function Handoffs({ handoff }:any) {
       <div className="flex justify-between mr-14">
         <h1 className="text-2xl font-semibold">Handoffs</h1>
         <form action={deleteHandoffs}>
-          <DeleteAllButton />
+          {/*<DeleteAllButton />*/}
         </form>
       </div>
       <hr className="mb-10" />
