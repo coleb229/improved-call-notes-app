@@ -112,14 +112,14 @@ function Preview({ optimisticNote }:any) {
   return (
     <div className='flex flex-col'>
       <label htmlFor='output'>Preview</label>
-      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex'>
-        {optimisticNote.map((note: any) => (
+      <div id='output' className='bg-white border-[1px] border-black overflow-y-auto flex flex-col'>
+        {optimisticNote.toReversed().map((note: any) => (
           <div className='previewOutput flex justify-between p-5'>
             <div className='mx-5 text-sm'>
               <u>Caller Name</u>: {note.callerName}<br />
               <u>Caller Number</u>: {note.callerNumber}<br />
               <u>DBA</u>: {note.dbaName}<br /><br />
-              <u>Call Notes</u>: {note.callNotes}<br /><br />
+              <u>Call Notes</u>: {note.callNotes.split('\n').map((str: any) => <p> - {str}</p>)}<br /><br />
               <u>Call Summary</u>: {note.summary}<br />
               <u>Next Steps</u>: {note.nextSteps}<br />
             </div>

@@ -54,7 +54,7 @@ export const fetchLastCallNote = async () => {
       callerName: callNote.callerName,
       callerNumber: callNote.callerNumber,
       dbaName: callNote.dbaName,
-      callNotes: callNote.callNotes.split("\n").map((str) => <p> - {str}</p>),
+      callNotes: callNote.callNotes/*.split("\n").map((str) => <p> - {str}</p>)*/,
       summary: callNote.summary,
       nextSteps: callNote.nextSteps,
     }));

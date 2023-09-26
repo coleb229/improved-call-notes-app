@@ -39,7 +39,7 @@ export default function Output({ handoff }: any) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {optimisticNote?.map((handoff: any) => (
+          {optimisticNote?.toReversed().map((handoff: any) => (
             <TableRow key={handoff.id}>
               <TableCell>
                 <div className="my-5 mx-10 bg-white p-5">

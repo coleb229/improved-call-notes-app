@@ -29,9 +29,6 @@ export const fetchHandoffs = async () => {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email;
     const handoff = await prisma.handoff.findMany({
-      orderBy: {
-        id: 'desc'
-      },
       where: {
         createdBy: email as string
       }
