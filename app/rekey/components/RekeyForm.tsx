@@ -64,8 +64,8 @@ export default function RekeyForm({ rekey }: any) {
 
 function Output({ optimisticNote }: any) {
   return (
-    <div id="rekeyOutput" className="min-w-[400px] px-10">
-      {optimisticNote?.map((rekey:any) => (
+    <div id="rekeyOutput" className="min-w-[400px] px-10 flex flex-col-reverse">
+      {optimisticNote?.toReversed().map((rekey: any) => (
           <div key={rekey.id} className="mb-10 w-full bg-white p-5" id="rekeyItem">
               Ref: {rekey.ref}<br />
               Date: {rekey.date}<br />

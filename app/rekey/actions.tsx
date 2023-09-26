@@ -30,9 +30,6 @@ export const fetchRekeys = async () => {
     const session = await getServerSession(authOptions);
     const email = session?.user?.email;
     const rekey = await prisma.rekey.findMany({
-      orderBy: {
-        id: 'desc'
-      },
       where: {
         createdBy: email as string
       },
