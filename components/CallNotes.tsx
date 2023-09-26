@@ -3,7 +3,6 @@ import { experimental_useOptimistic as useOptimistic } from 'react'
 import SubmitButton from '@/components/Buttons'
 import ArrowSVG from '@/public/cool-arrow.svg'
 import { saveCallNote } from '../app/actions'
-import { revalidatePath } from 'next/cache'
 
 export type CallNote = {
   callerName: string,
@@ -26,7 +25,6 @@ export default function CallNotes({ callNote }:any) {
       return [...state, newNote]
     },
   )
-
 
   return (
     <form action={async (formData) => {

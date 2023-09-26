@@ -1,7 +1,6 @@
 import { fetchHandoffs } from "./actions";
 import ExternalLinks from "@/components/externalLinks";
 import Output from "./components/HandoffForm";
-import { HandoffForm } from "./components/HandoffForm";
 
 export default async function Home() {
   const handoff = await fetchHandoffs()

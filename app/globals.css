@@ -126,7 +126,7 @@ body {
 .logoutButton {
   position: fixed;
   bottom: 25px;
-  right: 150px;
+  right: 220px;
   padding: 10px;
   border-radius: 10px;
   z-index: 100;
@@ -436,6 +436,23 @@ label {
 }
 
 #discord:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.1s;
+}
+
+#internalLinks {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+  z-index: 100;
+}
+
+#threeCX:hover, #collab:hover, #partnerPortal:hover, #chat:hover, #guides:hover {
   transform: scale(1.1);
   transition: ease-in-out 0.1s;
 }
