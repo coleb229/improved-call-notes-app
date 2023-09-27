@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { UpdateButton } from "@/components/Buttons";
 import { updateHandoff, saveHandoff } from "../actions";
+import ExternalHandoff from './ExternalHandoff';
 
 type Handoff = {
   id: number,
@@ -20,7 +21,7 @@ type Handoff = {
   status: string,
 }
 
-export default function Output({ handoff }: any) {
+export default function Handoff({ handoff, externalHandoff }: any) {
   const [ optimisticNote, setOptimisticNote ] = useOptimistic(
     handoff,
     (state, newNote: Handoff) => {
@@ -70,7 +71,10 @@ export default function Output({ handoff }: any) {
         </TableBody>
       </Table>
     </div>
-    <HandoffForm setOptimisticNote={setOptimisticNote} />
+    <div className='flex justify-center'>
+      <div className='h-1/2'><ExternalHandoff saveExternalHandoff={externalHandoff} /></div>
+      <HandoffForm setOptimisticNote={setOptimisticNote} />
+    </div>
     </>
   )
 }

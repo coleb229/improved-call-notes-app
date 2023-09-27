@@ -362,12 +362,12 @@ label {
 }
 
 #handoffForm {
-  width: 70%;
-  margin: 50px auto 0 auto;
+  width: 50%;
+  margin-left: 50px;
 }
 
 #handoffForm input {
-  width: 100%;
+  width: 200%;
   margin-bottom: 30px;
 }
 

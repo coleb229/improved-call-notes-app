@@ -1,6 +1,6 @@
 import { fetchHandoffs } from "./actions";
 import ExternalLinks from "@/components/externalLinks";
-import Output from "./components/HandoffForm";
+import Handoff from "./components/HandoffForm";
 
 export default async function Home() {
   const handoff = await fetchHandoffs()
@@ -9,7 +9,7 @@ export default async function Home() {
     <main className="max-h-screen">
       <ExternalLinks />
       <div id='container'>
-        <Output handoff={handoff} />
+        <Handoff handoff={handoff} />
       </div>
     </main>
   )
