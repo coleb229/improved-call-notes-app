@@ -37,14 +37,15 @@ export default async function ExternalLinks() {
       </div>
     )
   }
-
 }
 
 function Discord() {
   return (
     <div id='discord' className='mr-5'>
-      <DiscordSVG className="h-[70px] w-[70px]" />
-      <p className='text-xs'>Need Help?</p>
+      <a href="https://discord.gg/3y2B2Kv8" target='_blank'>
+        <DiscordSVG className="h-[70px] w-[70px]" />
+        <p className='text-xs'>Need Help?</p>
+      </a>
     </div>
   )
 }
