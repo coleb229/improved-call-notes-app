@@ -125,9 +125,9 @@ function Guides() {
           <DropdownMenuItem>
             <a href='https://drive.google.com/drive/folders/1fIgkicbJ5lbi8M3CV-VFuOYNNux0LCLI' target='_blank'>Guides (Work in Progress)</a>
           </DropdownMenuItem>
-          <DropdownMenuLabel>
+          <DropdownMenuItem>
             <a href='https://drive.google.com/drive/folders/1fIgkicbJ5lbi8M3CV-VFuOYNNux0LCLI' target='_blank' className='font-normal'>Resources [In Progress]</a>
-          </DropdownMenuLabel>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

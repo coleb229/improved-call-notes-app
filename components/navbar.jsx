@@ -1,4 +1,13 @@
 import ArrowSVG from '@/public/arrow.svg'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 export default function Navbar() {
   return (
@@ -22,11 +31,27 @@ export default function Navbar() {
         <ArrowSVG width={25} height={25} />
       </div>
       <div>
-        <a href="/storage" className="text-white text-xl font-bold">Storage</a>
-      </div>
-      /
-      <div>
-        <a href="/shared-storage" className="text-white text-xl font-bold">Shared Storage</a>
+      <DropdownMenu>
+        <DropdownMenuTrigger className='className="text-white text-xl font-bold"'>Storage</DropdownMenuTrigger>
+        <div className='mt-10'>
+          <DropdownMenuContent>
+            <DropdownMenuSeparator />
+            <DropdownMenuLabel>Note Storage</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <a href="/storage">Personal</a>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <a href="/shared-storage">Shared Storage</a>
+            </DropdownMenuItem>
+            <DropdownMenuLabel>Phone Book</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <a href="/phonebook">Stored Contacts</a>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </div>
+        </DropdownMenu>
       </div>
     </nav>
   )

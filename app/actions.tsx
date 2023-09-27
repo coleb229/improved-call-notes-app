@@ -30,6 +30,15 @@ export const saveCallNote = async (formData: any) => {
         status: formData.get('status'),
       }
     })
+    await prisma.contact.create({
+      data: {
+        createdBy: email as string,
+        dbaName: formData.get('dbaName'),
+        name: formData.get('callerName'),
+        phone: formData.get('callerNumber'),
+        notes: formData.get('summary')
+      }
+    })
     revalidatePath("/")
   } catch (error) {
     console.log(error)
