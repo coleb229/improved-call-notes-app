@@ -227,6 +227,12 @@ input, textarea, #output {
   padding: 20px;
 }
 
+#phonebookContainer {
+  width: 100%;
+  margin: 100px 200px;
+  padding: 20px;
+}
+
 #sharedContainer {
   margin: 100px 0;
 }
@@ -485,6 +491,19 @@ label {
   border-color: #fff transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
+#dbaContactsTrigger {
+  border-bottom: 2px solid black;
+  border-bottom-right-radius: 100px;
+  margin: 0 auto;
+  padding-top: 10px;
+  width: 70vw;
+}
+
+#dbaContactsTrigger:hover {
+  background-color: white;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);

@@ -20,7 +20,11 @@ export default function Output({ dbas, contacts }:any) {
     <div>
       {dbas.map((dba: any) => (
         <Collapsible>
-          <CollapsibleTrigger>{dba.dbaName}</CollapsibleTrigger>
+          <CollapsibleTrigger>
+            <div className="text-lg" id="dbaContactsTrigger">
+              {dba.dbaName}
+            </div>
+          </CollapsibleTrigger>
           {contacts.map((contact: any) => (
             <CollapsibleContent>
               {contact.dbaName === dba.dbaName ? (

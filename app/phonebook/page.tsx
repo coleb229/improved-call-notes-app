@@ -9,7 +9,7 @@ export default async function Home() {
   let dbas = await findDBAs();
 
   return (
-    <div id="storageContainer">
+    <div id="phonebookContainer">
       <ExternalLinks />
       <Output dbas={dbas} contacts={contacts} />
     </div>

@@ -72,7 +72,7 @@ export default function Handoff({ handoff, externalHandoff }: any) {
       </Table>
     </div>
     <div className='flex justify-center'>
-      <div className='h-1/2'><ExternalHandoff saveExternalHandoff={externalHandoff} /></div>
+      <div className='h-1/2'><ExternalHandoff /></div>
       <HandoffForm setOptimisticNote={setOptimisticNote} />
     </div>
     </>
