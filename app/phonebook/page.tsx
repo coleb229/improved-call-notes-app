@@ -2,16 +2,28 @@
 import { fetchContacts, findDBAs } from "./actions"
 import Output from "./components/Output";
 import ExternalLinks from "@/components/externalLinks";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 
 export default async function Home() {
   let contacts = await fetchContacts();
   let dbas = await findDBAs();
+  let session = await getServerSession(authOptions);
 
-  return (
-    <div id="phonebookContainer">
-      <ExternalLinks />
-      <Output dbas={dbas} contacts={contacts} />
-    </div>
-  )
+  if(session?.user?.email?.includes('@getquantic.com')) {
+    return (
+      <div id="phonebookContainer">
+        <ExternalLinks />
+        <Output dbas={dbas} contacts={contacts} />
+      </div>
+    )
+  } else {
+    return (
+      <div id="phonebookContainer">
+        <ExternalLinks />
+        <div className="text-center text-2xl">You are not authorized to view this page.</div>
+      </div>
+    )
+  }
 }
