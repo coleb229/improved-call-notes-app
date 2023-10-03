@@ -6,7 +6,7 @@ import { deleteCallNotes, deleteHandoffs, deleteRekeys, selectiveDelete, selecti
 export default function StorageTabs({ callNote, handoff, rekey }:any) {
   return (
     <div className="w-[600px]">
-      <Tabs defaultValue="account" className="w-full">
+      <Tabs defaultValue="callnote" className="w-full">
         <TabsList id="storageTabHeader" className="w-full justify-around">
           <TabsTrigger value="callnote">Call Note</TabsTrigger>
           <TabsTrigger value="handoff">Handoff</TabsTrigger>
