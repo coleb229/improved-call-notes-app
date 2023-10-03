@@ -1,6 +1,8 @@
 import { fetchCallNotes, fetchHandoffs, fetchRekeys, deleteCallNotes, deleteHandoffs, deleteRekeys, selectiveDelete, selectiveDeleteHandoff, selectiveDeleteRekey } from "./actions"
 import { DeleteButton, DeleteAllButton } from "@/components/Buttons";
 import ExternalLinks from "@/components/externalLinks";
+import StorageTabs from "./components/Storage";
+import Handoff from "./components/Handoff";
 
 export default async function DisplayStoredCalls() {
   let callNote = await fetchCallNotes();
@@ -12,9 +14,8 @@ export default async function DisplayStoredCalls() {
       <ExternalLinks />
       <div id="storageContainer">
         <div className="flex justify-evenly">
-          <CallNotes callNote={callNote} />
-          <Handoffs handoff={handoff} />
-          <Rekeys rekey={rekey} />
+          <StorageTabs callNote={callNote} handoff={handoff} rekey={rekey} />
+          <Handoff handoff={handoff} />
         </div>
       </div>
     </>
