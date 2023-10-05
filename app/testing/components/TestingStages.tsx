@@ -2,7 +2,7 @@
 
 export default function TestingStages() {
   return (
-    <div className="w-full mx-10 flex justify-evenly mt-10">
+    <div className="w-full flex justify-around mt-10">
       <Try />
       <InProgress />
       <Done />
@@ -13,32 +13,48 @@ export default function TestingStages() {
 
 const Try = () => {
   return(
-    <div>
-      <h1>Try</h1>
+    <div className="w-full mx-5 bg-white">
+      <div className="flex justify-between my-2">
+        <h1 className="text-xl ml-5">Try</h1>
+        <button className="mr-5">+</button>
+      </div>
+      <hr />
     </div>
   )
 }
 
 const InProgress = () => {
   return(
-    <div>
-      <h1>In Progress</h1>
+    <div className="w-full mx-5 bg-white">
+      <div className="flex justify-between my-2">
+        <h1 className="text-xl ml-5">In Progress</h1>
+        <button className="mr-5">+</button>
+      </div>
+      <hr />
     </div>
   )
 }
 
 const Done = () => {
   return(
-    <div>
-      <h1>Done</h1>
+    <div className="w-full mx-5 bg-white">
+      <div className="flex justify-between my-2">
+        <h1 className="text-xl ml-5">Done</h1>
+        <button className="mr-5">+</button>
+      </div>
+      <hr />
     </div>
   )
 }
 
 const Abandoned = () => {
   return(
-    <div>
-      <h1>Abandoned</h1>
+    <div className="w-full mx-5 bg-white">
+      <div className="flex justify-between my-2">
+        <h1 className="text-xl ml-5">Abandoned</h1>
+        <button className="mr-5">+</button>
+      </div>
+      <hr />
     </div>
   )
 }

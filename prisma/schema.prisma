@@ -61,6 +61,15 @@ model Contact {
   notes     String
 }
 
+model TestingNote {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now()) @map("created_at")
+  createdBy String
+  title     String
+  notes     String
+  status    String
+}
+
 // NEXT AUTH
 
 model User {
