@@ -12,31 +12,31 @@ import {
 export default function Navbar() {
   return (
     <nav className="flex justify-around flex-wrap bg-slate-800 p-6" id='nav'>
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
         <a href="/testing" className="text-white text-xl font-bold">Testing</a>
       </div>
       -
-      <div>
-        <a href="/todo" className="text-white text-xl font-bold py-15">To Do</a>
+      <div className='h-[25px] fuckTheOverflow'>
+        <a href="/todo" className="text-white text-xl font-bold">To Do</a>
       </div>
       -
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
         <a href="/" className="text-white text-xl font-bold">Call Template</a>
       </div>
       -
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
         <a href="/handoff" className="text-white text-xl font-bold">Just Handoff</a>
       </div>
       -
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
         <a href="/rekey" className="text-white text-xl font-bold">Rekeys</a>
       </div>
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
         <ArrowSVG width={25} height={25} />
       </div>
-      <div>
+      <div className='h-[25px] fuckTheOverflow'>
       <DropdownMenu>
-        <DropdownMenuTrigger className='className="text-white text-xl font-bold"'>Storage</DropdownMenuTrigger>
+        <DropdownMenuTrigger className='text-white text-xl font-bold'>Storage</DropdownMenuTrigger>
         <div className='mt-10'>
           <DropdownMenuContent>
             <DropdownMenuSeparator />

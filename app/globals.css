@@ -516,6 +516,11 @@ label {
   overflow-y: scroll;
 }
 
+.fuckTheOverflow {
+  overflow: hidden;
+  height: 25px !important;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
