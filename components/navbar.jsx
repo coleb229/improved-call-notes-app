@@ -13,6 +13,10 @@ export default function Navbar() {
   return (
     <nav className="flex justify-around flex-wrap bg-slate-800 p-6" id='nav'>
       <div>
+        <a href="/testing" className="text-white text-xl font-bold">Testing</a>
+      </div>
+      -
+      <div>
         <a href="/todo" className="text-white text-xl font-bold py-15">To Do</a>
       </div>
       -
