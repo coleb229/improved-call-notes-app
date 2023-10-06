@@ -9,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { UpdateButton } from "@/components/Buttons";
-import { updateHandoff, saveHandoff } from "../actions";
+import { UpdateButton, DeleteButton } from "@/components/Buttons";
+import { updateHandoff, saveHandoff, deleteSelected } from "../actions";
 import ExternalHandoff from './ExternalHandoff';
 
 type Handoff = {
@@ -35,6 +35,7 @@ export default function Handoff({ handoff, externalHandoff }: any) {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>Delete</TableHead>
             <TableHead>Handoff</TableHead>
             <TableHead>Update Handoff</TableHead>
           </TableRow>
@@ -42,6 +43,14 @@ export default function Handoff({ handoff, externalHandoff }: any) {
         <TableBody>
           {optimisticNote?.toReversed().map((handoff: any) => (
             <TableRow key={handoff.id}>
+              <TableCell>
+                <div>
+                  <form action={deleteSelected}>
+                    <input type="hidden" name="id" value={handoff.id} />
+                    <DeleteButton />
+                  </form>
+                </div>
+              </TableCell>
               <TableCell>
                 <div className="my-5 mx-10 bg-white p-5">
                   <div className="flex">
