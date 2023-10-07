@@ -65,9 +65,13 @@ export default async function TestingStages({testingNote}:any) {
     }
   }
 
+  const handleDrag = (data:any) => {
+    console.log(data)
+  }
+
   return (
     <div className="w-full flex justify-around mt-10">
-      <Try testingNote={testingNote.todo} handleStop={handleStop} ref={tryRef} />
+      <Try testingNote={testingNote.todo} handleStop={handleStop} handleDrag={handleDrag} ref={tryRef} />
       <InProgress testingNote={testingNote.inProgress} handleStop={handleStop} ref={inProgressRef} />
       <Done testingNote={testingNote.done} handleStop={handleStop} ref={doneRef} />
       <Abandoned testingNote={testingNote.abandoned} handleStop={handleStop} ref={abandonedRef} />
@@ -75,7 +79,7 @@ export default async function TestingStages({testingNote}:any) {
   )
 }
 
-const Try = ({testingNote, handleStop, ref}:any) => {
+const Try = ({testingNote, handleStop, handleDrag, ref}:any) => {
   return(
     <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
@@ -110,11 +114,12 @@ const Try = ({testingNote, handleStop, ref}:any) => {
           <Draggable
             axis="x"
             onStop={handleStop.bind(note.id)}
+            onStart={handleDrag}
           >
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
               <hr />
-              <p className='mx-2'>{note.description}</p>
+              <p className='mx-2 bg-white'>{note.description}</p>
             </div>
           </Draggable>
         ))}
@@ -132,7 +137,7 @@ const InProgress = ({testingNote, handleStop, ref}:any) => {
           <DialogTrigger className="mr-5">+</DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add a new idea to try</DialogTitle>
+              <DialogTitle>Add an idea to In Progress</DialogTitle>
               <DialogDescription>
                 <form action={async (formData) => {
                   await addTestingNote({
@@ -162,7 +167,7 @@ const InProgress = ({testingNote, handleStop, ref}:any) => {
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
               <hr />
-              <p className='mx-2'>{note.description}</p>
+              <p className='mx-2 bg-white'>{note.description}</p>
             </div>
           </Draggable>
         ))}
@@ -180,7 +185,7 @@ const Done = ({testingNote, handleStop, ref}:any) => {
           <DialogTrigger className="mr-5">+</DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add a new idea to try</DialogTitle>
+              <DialogTitle>Add a finished idea</DialogTitle>
               <DialogDescription>
                 <form action={async (formData) => {
                   await addTestingNote({
@@ -210,7 +215,7 @@ const Done = ({testingNote, handleStop, ref}:any) => {
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
               <hr />
-              <p className='mx-2'>{note.description}</p>
+              <p className='mx-2 bg-white'>{note.description}</p>
             </div>
           </Draggable>
         ))}
@@ -228,7 +233,7 @@ const Abandoned = ({testingNote, handleStop, ref}:any) => {
           <DialogTrigger className="mr-5">+</DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Add a new idea to try</DialogTitle>
+              <DialogTitle>Add an unsuccessful idea</DialogTitle>
               <DialogDescription>
                 <form action={async (formData) => {
                   await addTestingNote({
@@ -258,7 +263,7 @@ const Abandoned = ({testingNote, handleStop, ref}:any) => {
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
               <hr />
-              <p className='mx-2'>{note.description}</p>
+              <p className='mx-2 bg-white'>{note.description}</p>
             </div>
           </Draggable>
         ))}
