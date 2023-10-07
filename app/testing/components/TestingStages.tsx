@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import SubmitButton from '@/components/Buttons';
 import Draggable from 'react-draggable';
+import { useRef } from "react";
 
 function getOffset( el:any ) {
   var _x = 0;
@@ -22,54 +23,61 @@ function getOffset( el:any ) {
   return { top: _y, left: _x };
 }
 
-const tryBounds = {
-  left: getOffset(document.getElementById('try') as any).left,
-  right: getOffset(document.getElementById('try') as any).left + 300,
-}
 
-const inProgressBounds = {
-  left: getOffset(document.getElementById('inProgress') as any).left,
-  right: getOffset(document.getElementById('inProgress') as any).left + 300,
-}
-
-const doneBounds = {
-  left: getOffset(document.getElementById('done') as any).left,
-  right: getOffset(document.getElementById('done') as any).left + 300,
-}
-
-const abandonedBounds = {
-  left: getOffset(document.getElementById('abandoned') as any).left,
-  right: getOffset(document.getElementById('abandoned') as any).left + 300,
-}
 
 export default async function TestingStages({testingNote}:any) {
+
+  const tryRef = useRef(null)
+  const inProgressRef = useRef(null)
+  const doneRef = useRef(null)
+  const abandonedRef = useRef(null)
+
+  const tryBounds = {
+    left: getOffset(tryRef).left,
+    right: getOffset(tryRef).left + 300,
+  }
+  
+  const inProgressBounds = {
+    left: getOffset(inProgressRef).left,
+    right: getOffset(inProgressRef).left + 300,
+  }
+  
+  const doneBounds = {
+    left: getOffset(doneRef).left,
+    right: getOffset(doneRef).left + 300,
+  }
+  
+  const abandonedBounds = {
+    left: getOffset(abandonedRef).left,
+    right: getOffset(abandonedRef).left + 300,
+  }
 
   const handleStop = (event:any, data:any) => {
     console.log(data)
     if (data.x >= tryBounds.left && data.x <= tryBounds.right) {
-      console.log('try')
+      updateToTry(data.node.children[0].children[0].children[0].value)
     } else if (data.x >= inProgressBounds.left && data.x <= inProgressBounds.right) {
-      console.log('inProgress')
+      updateToInProgress(data.node.children[0].children[0].children[0].value)
     } else if (data.x >= doneBounds.left && data.x <= doneBounds.right) {
-      console.log('done')
+      updateToDone(data.node.children[0].children[0].children[0].value)
     } else if (data.x >= abandonedBounds.left && data.x <= abandonedBounds.right) {
-      console.log('abandoned')
+      updateToAbandoned(data.node.children[0].children[0].children[0].value)
     }
   }
 
   return (
     <div className="w-full flex justify-around mt-10">
-      <Try testingNote={testingNote.todo} handleStop={handleStop} />
-      <InProgress testingNote={testingNote.inProgress} handleStop={handleStop} />
-      <Done testingNote={testingNote.done} handleStop={handleStop} />
-      <Abandoned testingNote={testingNote.abandoned} handleStop={handleStop} />
+      <Try testingNote={testingNote.todo} handleStop={handleStop} ref={tryRef} />
+      <InProgress testingNote={testingNote.inProgress} handleStop={handleStop} ref={inProgressRef} />
+      <Done testingNote={testingNote.done} handleStop={handleStop} ref={doneRef} />
+      <Abandoned testingNote={testingNote.abandoned} handleStop={handleStop} ref={abandonedRef} />
     </div>
   )
 }
 
-const Try = ({testingNote, handleStop}:any) => {
+const Try = ({testingNote, handleStop, ref}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" id="try">
+    <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Try</h1>
         <Dialog>
@@ -118,9 +126,9 @@ const Try = ({testingNote, handleStop}:any) => {
   )
 }
 
-const InProgress = ({testingNote, handleStop}:any) => {
+const InProgress = ({testingNote, handleStop, ref}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" id="inProgress">
+    <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">In Progress</h1>
         <Dialog>
@@ -166,9 +174,9 @@ const InProgress = ({testingNote, handleStop}:any) => {
   )
 }
 
-const Done = ({testingNote, handleStop}:any) => {
+const Done = ({testingNote, handleStop, ref}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" id="done">
+    <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Done</h1>
         <Dialog>
@@ -214,9 +222,9 @@ const Done = ({testingNote, handleStop}:any) => {
   )
 }
 
-const Abandoned = ({testingNote, handleStop}:any) => {
+const Abandoned = ({testingNote, handleStop, ref}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" id="abandoned">
+    <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Abandoned</h1>
         <Dialog>
