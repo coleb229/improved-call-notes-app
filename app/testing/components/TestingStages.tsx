@@ -52,16 +52,16 @@ export default async function TestingStages({testingNote}:any) {
     right: getOffset(abandonedRef).left + 300,
   }
 
-  const handleStop = (event:any, data:any) => {
+  const handleStop = (data:any, id:any) => {
     console.log(data)
     if (data.x >= tryBounds.left && data.x <= tryBounds.right) {
-      updateToTry(data.node.children[0].children[0].children[0].value)
+      updateToTry(id)
     } else if (data.x >= inProgressBounds.left && data.x <= inProgressBounds.right) {
-      updateToInProgress(data.node.children[0].children[0].children[0].value)
+      updateToInProgress(id)
     } else if (data.x >= doneBounds.left && data.x <= doneBounds.right) {
-      updateToDone(data.node.children[0].children[0].children[0].value)
+      updateToDone(id)
     } else if (data.x >= abandonedBounds.left && data.x <= abandonedBounds.right) {
-      updateToAbandoned(data.node.children[0].children[0].children[0].value)
+      updateToAbandoned(id)
     }
   }
 
@@ -107,19 +107,16 @@ const Try = ({testingNote, handleStop, ref}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          <form>
-            <input type="hidden" name="id" value={note.id} />
-            <Draggable
-              axis="x"
-              onStop={handleStop}
-            >
-              <div key={note.id}>
-                <p>{note.name}</p>
-                <p>{note.description}</p>
-                +
-              </div>
-            </Draggable>
-          </form>
+          <Draggable
+            axis="x"
+            onStop={handleStop.bind(note.id)}
+          >
+            <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
+              <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
+              <hr />
+              <p className='mx-2'>{note.description}</p>
+            </div>
+          </Draggable>
         ))}
       </div>
     </div>
@@ -160,12 +157,12 @@ const InProgress = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop}
+            onStop={handleStop.bind(note.id)}
           >
-            <div key={note.id}>
-              <p>{note.name}</p>
-              <p>{note.description}</p>
-              +
+            <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
+              <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
+              <hr />
+              <p className='mx-2'>{note.description}</p>
             </div>
           </Draggable>
         ))}
@@ -208,12 +205,12 @@ const Done = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop}
+            onStop={handleStop.bind(note.id)}
           >
-            <div key={note.id}>
-              <p>{note.name}</p>
-              <p>{note.description}</p>
-              +
+            <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
+              <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
+              <hr />
+              <p className='mx-2'>{note.description}</p>
             </div>
           </Draggable>
         ))}
@@ -256,12 +253,12 @@ const Abandoned = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop}
+            onStop={handleStop.bind(note.id)}
           >
-            <div key={note.id}>
-              <p>{note.name}</p>
-              <p>{note.description}</p>
-              +
+            <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
+              <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
+              <hr />
+              <p className='mx-2'>{note.description}</p>
             </div>
           </Draggable>
         ))}

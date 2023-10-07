@@ -43,11 +43,11 @@ export const fetchTestingNotes = async (whereAt:any) => {
   }
 }
 
-export const updateToTry = async (formData: any) => {
+export const updateToTry = async (id: any) => {
   try {
     await prisma.testingNote.update({
       where: {
-        id: formData.get("id"),
+        id,
       },
       data: {
         status: "try",
@@ -59,11 +59,11 @@ export const updateToTry = async (formData: any) => {
   }
 }
 
-export const updateToInProgress = async (formData: any) => {
+export const updateToInProgress = async (id: any) => {
   try {
     await prisma.testingNote.update({
       where: {
-        id: formData.get("id"),
+        id,
       },
       data: {
         status: "inProgress",
@@ -75,11 +75,11 @@ export const updateToInProgress = async (formData: any) => {
   }
 }
 
-export const updateToDone = async (formData: any) => {
+export const updateToDone = async (id: any) => {
   try {
     await prisma.testingNote.update({
       where: {
-        id: formData.get("id"),
+        id,
       },
       data: {
         status: "done",
@@ -91,11 +91,11 @@ export const updateToDone = async (formData: any) => {
   }
 }
 
-export const updateToAbandoned = async (formData: any) => {
+export const updateToAbandoned = async (id: any) => {
   try {
     await prisma.testingNote.update({
       where: {
-        id: formData.get("id"),
+        id,
       },
       data: {
         status: "abandoned",
