@@ -9,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import SubmitButton from '@/components/Buttons';
+import Draggable from 'react-draggable';
 
 export default function TestingStages({testingNote}:any) {
   return (
@@ -53,12 +54,13 @@ const Try = ({testingNote}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          console.log(note),
-          <div key={note.id}>
-            <p>{note.name}</p>
-            <p>{note.description}</p>
-            +
-          </div>
+          <Draggable>
+            <div key={note.id}>
+              <p>{note.name}</p>
+              <p>{note.description}</p>
+              +
+            </div>
+          </Draggable>
         ))}
       </div>
     </div>
@@ -97,12 +99,13 @@ const InProgress = ({testingNote}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          console.log(note),
-          <div key={note.id}>
-            <p>{note.name}</p>
-            <p>{note.description}</p>
-            +
-          </div>
+          <Draggable>
+            <div key={note.id}>
+              <p>{note.name}</p>
+              <p>{note.description}</p>
+              +
+            </div>
+          </Draggable>
         ))}
       </div>
     </div>
@@ -141,12 +144,13 @@ const Done = ({testingNote}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          console.log(note),
-          <div key={note.id}>
-            <p>{note.name}</p>
-            <p>{note.description}</p>
-            +
-          </div>
+          <Draggable>
+            <div key={note.id}>
+              <p>{note.name}</p>
+              <p>{note.description}</p>
+              +
+            </div>
+          </Draggable>
         ))}
       </div>
     </div>
@@ -185,12 +189,13 @@ const Abandoned = ({testingNote}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          console.log(note),
-          <div key={note.id}>
-            <p>{note.name}</p>
-            <p>{note.description}</p>
-            +
-          </div>
+          <Draggable>
+            <div key={note.id}>
+              <p>{note.name}</p>
+              <p>{note.description}</p>
+              +
+            </div>
+          </Draggable>
         ))}
       </div>
     </div>
