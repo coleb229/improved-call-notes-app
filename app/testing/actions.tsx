@@ -42,3 +42,67 @@ export const fetchTestingNotes = async (whereAt:any) => {
     console.log(error);
   }
 }
+
+export const updateToTry = async (formData: any) => {
+  try {
+    await prisma.testingNote.update({
+      where: {
+        id: formData.get("id"),
+      },
+      data: {
+        status: "try",
+      },
+    });
+    revalidatePath("/testing");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const updateToInProgress = async (formData: any) => {
+  try {
+    await prisma.testingNote.update({
+      where: {
+        id: formData.get("id"),
+      },
+      data: {
+        status: "inProgress",
+      },
+    });
+    revalidatePath("/testing");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const updateToDone = async (formData: any) => {
+  try {
+    await prisma.testingNote.update({
+      where: {
+        id: formData.get("id"),
+      },
+      data: {
+        status: "done",
+      },
+    });
+    revalidatePath("/testing");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const updateToAbandoned = async (formData: any) => {
+  try {
+    await prisma.testingNote.update({
+      where: {
+        id: formData.get("id"),
+      },
+      data: {
+        status: "abandoned",
+      },
+    });
+    revalidatePath("/testing");
+  } catch (error) {
+    console.log(error);
+  }
+}
