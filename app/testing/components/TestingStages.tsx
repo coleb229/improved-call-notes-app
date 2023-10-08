@@ -23,14 +23,13 @@ function getOffset( el:any ) {
   return { top: _y, left: _x };
 }
 
-
-
 export default async function TestingStages({testingNote}:any) {
 
-  const tryRef = useRef(null)
-  const inProgressRef = useRef(null)
-  const doneRef = useRef(null)
-  const abandonedRef = useRef(null)
+  const tryRef = useRef()
+  const inProgressRef = useRef()
+  const doneRef = useRef()
+  const abandonedRef = useRef()
+  const dragRef = useRef<HTMLDivElement>(null)
 
   const tryBounds = {
     left: getOffset(tryRef).left,
@@ -65,13 +64,14 @@ export default async function TestingStages({testingNote}:any) {
     }
   }
 
-  const handleDrag = (data:any) => {
-    console.log(data)
+  const handleStart = (data:any) => {
+    const element = document.querySelector('.react-draggable') as HTMLElement
+    element.style.top = `${data.y}px`
   }
 
   return (
     <div className="w-full flex justify-around mt-10">
-      <Try testingNote={testingNote.todo} handleStop={handleStop} handleDrag={handleDrag} ref={tryRef} />
+      <Try testingNote={testingNote.todo} handleStop={handleStop} handleStart={handleStart} ref={tryRef} dragRef={dragRef} />
       <InProgress testingNote={testingNote.inProgress} handleStop={handleStop} ref={inProgressRef} />
       <Done testingNote={testingNote.done} handleStop={handleStop} ref={doneRef} />
       <Abandoned testingNote={testingNote.abandoned} handleStop={handleStop} ref={abandonedRef} />
@@ -79,7 +79,7 @@ export default async function TestingStages({testingNote}:any) {
   )
 }
 
-const Try = ({testingNote, handleStop, handleDrag, ref}:any) => {
+const Try = ({testingNote, handleStop, handleStart, ref, dragRef}:any) => {
   return(
     <div className="w-full mx-5 bg-white" ref={ref}>
       <div className="flex justify-between my-2">
@@ -111,17 +111,20 @@ const Try = ({testingNote, handleStop, handleDrag, ref}:any) => {
       <hr />
       <div>
         {testingNote?.map((note: any) => (
-          <Draggable
-            axis="x"
-            onStop={handleStop.bind(note.id)}
-            onStart={handleDrag}
-          >
-            <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
-              <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
-              <hr />
-              <p className='mx-2 bg-white'>{note.description}</p>
-            </div>
-          </Draggable>
+          <div className="react-draggable">
+            <Draggable
+              axis="x"
+              onStop={handleStop.bind(note.id)}
+              onStart={handleStart}
+              ref={dragRef}
+            >
+              <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
+                <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
+                <hr />
+                <p className='mx-2 bg-white'>{note.description}</p>
+              </div>
+            </Draggable>
+          </div>
         ))}
       </div>
     </div>

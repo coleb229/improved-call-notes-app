@@ -1,10 +1,20 @@
-import { fetchCallNotes, fetchHandoffs, fetchDaysHandoffs } from "./actions";
+import { fetchCallNotes, fetchHandoffs, fetchDaysHandoffs, addExternalHandoff } from "./actions";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import SharedSubnav from "@/components/sharedSubnav";
 import { findAuthors } from "@/components/sharedSubnav";
 import { PrismaClient } from "@prisma/client";
 import ExternalLinks from "@/components/externalLinks";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import SubmitButton from "@/components/Buttons";
+
 
 const prisma = new PrismaClient();
 
@@ -141,30 +151,88 @@ const DailySharedHandoff = async () => {
     return givenDate.toISOString().split('T')[0];
   };
 
+  const hideHandoff = () => {
+
+  }
+
   return (
     <>
       <h1 className="text-2xl font-semibold text-center pt-20">Shared Daily Handoff</h1>
       <h2 className="text-lg text-center">Current Date: {getDate()}</h2>
       <div className="flex items-center justify-center text-sm pt-10">
-        <div className="flex flex-col items-center w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
-          <h1 className="text-lg text-left ml-14 mr-auto">Follow Up</h1>
+        <div className="flex flex-col px-5 w-4/6 bg-white border-2 border-black rounded-lg py-10" id="sharedHandoffs">
+          <div className="flex justify-between">
+            <h1 className="text-lg text-left ml-14 mr-auto">Follow Up</h1>
+            <Dialog>
+              <DialogTrigger className="mr-[200px] text-lg">📝</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add an external handoff to follow ups</DialogTitle>
+                  <hr />
+                  <DialogDescription>
+                    <form action={addExternalHandoff}>
+                      <div className="flex flex-col">
+                        <label htmlFor='dbaName'>DBA Name</label>
+                        <input type='text' name='dbaName' id='dbaName' />
+                        <label htmlFor='summary'>Summary</label>
+                        <input type='text' name='summary' id='summary' />
+                        <label htmlFor='ticket'>Link</label>
+                        <input type='text' name='ticket' id='ticket' />
+                        <input type='hidden' name='status' value='followUp' />
+                        <div className="mt-5 mx-auto">
+                          <SubmitButton />
+                        </div>
+                      </div>
+                    </form>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'followUp' ?
-              <div className="w-5/6 text-left m-2 p-2">
+              <div className="w-5/6 text-left mx-20 my-2 p-2">
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">
                   <b>Link:</b>{handoff.ticket}<br />
                 </div>
               </div>
-              : null
+            : null
           ))}
-          <h1 className="text-lg text-left ml-14 mr-auto">Needs Attention</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg text-left ml-14 mr-auto">Needs Attention</h1>
+            <Dialog>
+              <DialogTrigger className="mr-[200px] text-lg">📝</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add an external handoff to needs attention</DialogTitle>
+                  <hr />
+                  <DialogDescription>
+                    <form action={addExternalHandoff}>
+                      <div className="flex flex-col">
+                        <label htmlFor='dbaName'>DBA Name</label>
+                        <input type='text' name='dbaName' id='dbaName' />
+                        <label htmlFor='summary'>Summary</label>
+                        <input type='text' name='summary' id='summary' />
+                        <label htmlFor='ticket'>Link</label>
+                        <input type='text' name='ticket' id='ticket' />
+                        <input type='hidden' name='status' value='needsAttention' />
+                        <div className="mt-5 mx-auto">
+                          <SubmitButton />
+                        </div>
+                      </div>
+                    </form>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'needsAttention' ?
-              <div className="w-5/6 text-left m-2 p-2">
+              <div className="w-5/6 text-left mx-20 my-2 p-2">
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">
@@ -174,11 +242,38 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-lg text-left ml-14 mr-auto">In Progress</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg text-left ml-14 mr-auto">In Progress</h1>
+            <Dialog>
+              <DialogTrigger className="mr-[200px] text-lg">📝</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add an external handoff to in progress</DialogTitle>
+                  <hr />
+                  <DialogDescription>
+                    <form action={addExternalHandoff}>
+                      <div className="flex flex-col">
+                        <label htmlFor='dbaName'>DBA Name</label>
+                        <input type='text' name='dbaName' id='dbaName' />
+                        <label htmlFor='summary'>Summary</label>
+                        <input type='text' name='summary' id='summary' />
+                        <label htmlFor='ticket'>Link</label>
+                        <input type='text' name='ticket' id='ticket' />
+                        <input type='hidden' name='status' value='inProgress' />
+                        <div className="mt-5 mx-auto">
+                          <SubmitButton />
+                        </div>
+                      </div>
+                    </form>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'inProgress' ?
-              <div className="w-5/6 text-left m-2 p-2">
+              <div className="w-5/6 text-left mx-20 my-2 p-2">
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">
@@ -188,11 +283,38 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-lg text-left ml-14 mr-auto">Resolved</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg text-left ml-14 mr-auto">Resolved</h1>
+            <Dialog>
+              <DialogTrigger className="mr-[200px] text-lg">📝</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add an external handoff to resolved</DialogTitle>
+                  <hr />
+                  <DialogDescription>
+                    <form action={addExternalHandoff}>
+                      <div className="flex flex-col">
+                        <label htmlFor='dbaName'>DBA Name</label>
+                        <input type='text' name='dbaName' id='dbaName' />
+                        <label htmlFor='summary'>Summary</label>
+                        <input type='text' name='summary' id='summary' />
+                        <label htmlFor='ticket'>Link</label>
+                        <input type='text' name='ticket' id='ticket' />
+                        <input type='hidden' name='status' value='resolved' />
+                        <div className="mt-5 mx-auto">
+                          <SubmitButton />
+                        </div>
+                      </div>
+                    </form>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'resolved' ?
-              <div className="w-5/6 text-left m-2 p-2">
+              <div className="w-5/6 text-left mx-20 my-2 p-2">
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">
@@ -202,11 +324,38 @@ const DailySharedHandoff = async () => {
               </div>
               : null
           ))}
-          <h1 className="text-lg text-left ml-14 mr-auto">Unknown</h1>
+          <div className="flex justify-between">
+            <h1 className="text-lg text-left ml-14 mr-auto">Unknown</h1>
+            <Dialog>
+              <DialogTrigger className="mr-[200px] text-lg">📝</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add an external handoff to unknown</DialogTitle>
+                  <hr />
+                  <DialogDescription>
+                    <form action={addExternalHandoff}>
+                      <div className="flex flex-col">
+                        <label htmlFor='dbaName'>DBA Name</label>
+                        <input type='text' name='dbaName' id='dbaName' />
+                        <label htmlFor='summary'>Summary</label>
+                        <input type='text' name='summary' id='summary' />
+                        <label htmlFor='ticket'>Link</label>
+                        <input type='text' name='ticket' id='ticket' />
+                        <input type='hidden' name='status' value='unknown' />
+                        <div className="mt-5 mx-auto">
+                          <SubmitButton />
+                        </div>
+                      </div>
+                    </form>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </div>
           <hr className="w-5/6 mb-5 mr-auto ml-10" />
           {handoff?.map((handoff: any) => (
             handoff.status === 'Unknown' ?
-              <div className="w-5/6 text-left m-2 p-2">
+              <div className="w-5/6 text-left mx-20 my-2 p-2">
                 <p className="font-bold underline">{handoff.dbaName}:</p>
                 <p>{handoff.summary}</p>
                 <div className="flex">

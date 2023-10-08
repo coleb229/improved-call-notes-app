@@ -78,6 +78,22 @@ export const updateHandoff = async (formdata: any) => {
   }
 }
 
+export const updateSummary = async (formdata: any) => {
+  try {
+    await prisma.handoff.update({
+      where: {
+        id: formdata.get('id')
+      },
+      data: {
+        summary: formdata.get('summary')
+      }
+    })
+    revalidatePath("/handoff")
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const deleteSelected = async (formData: any) => {
   try {
     await prisma.handoff.delete({

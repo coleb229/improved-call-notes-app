@@ -9,8 +9,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { UpdateButton, DeleteButton } from "@/components/Buttons";
-import { updateHandoff, saveHandoff, deleteSelected } from "../actions";
+import { updateHandoff, updateSummary, saveHandoff, deleteSelected } from "../actions";
 import ExternalHandoff from './ExternalHandoff';
 
 type Handoff = {
@@ -53,6 +61,23 @@ export default function Handoff({ handoff, externalHandoff }: any) {
               </TableCell>
               <TableCell>
                 <div className="my-5 mx-10 bg-white p-5">
+                  <div className='pl-40 py-5'>
+                    <Dialog>
+                      <DialogTrigger className='hover:text-red-500'>Update Summary</DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Update the handoff summary:</DialogTitle>
+                          <DialogDescription>
+                            <form action={updateSummary}>
+                              <input type="hidden" name="id" value={handoff.id} />
+                              <textarea name="summary" id="summary" defaultValue={handoff.summary} />
+                              <SubmitButton />
+                            </form>
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                   <div className="flex">
                     <p className="font-bold underline">{handoff.dbaName}:</p>
                     <p>{handoff.summary}</p>
