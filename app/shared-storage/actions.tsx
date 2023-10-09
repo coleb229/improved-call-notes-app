@@ -74,7 +74,7 @@ export const addExternalHandoff = async (formdata: any) => {
         dbaName: formdata.get("dbaName"),
         summary: formdata.get("summary"),
         ticket: formdata.get("ticket"),
-        status: 'followUp',
+        status: formdata.get("status"),
       },
     });
     revalidatePath("/handoff");

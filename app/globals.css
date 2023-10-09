@@ -229,7 +229,7 @@ input, textarea, #output {
 
 #phonebookContainer {
   width: 100%;
-  margin: 100px 200px;
+  margin: 100px 0;
   padding: 20px;
 }
 
@@ -497,7 +497,7 @@ label {
   border-bottom-right-radius: 100px;
   margin: 0 auto;
   padding-top: 10px;
-  width: 70vw;
+  width: 800px;
 }
 
 #dbaContactsTrigger:hover {

@@ -25,42 +25,44 @@ function getOffset( el:any ) {
 
 export default async function TestingStages({testingNote}:any) {
 
-  const tryRef = useRef()
-  const inProgressRef = useRef()
-  const doneRef = useRef()
-  const abandonedRef = useRef()
-  const dragRef = useRef<HTMLDivElement>(null)
+  const tryRef = useRef(null)
+  const inProgressRef = useRef(null)
+  const doneRef = useRef(null)
+  const abandonedRef = useRef(null)
 
   const tryBounds = {
-    left: getOffset(tryRef).left,
-    right: getOffset(tryRef).left + 300,
+    left: getOffset(document.getElementById('try') as any).left,
+    right: getOffset(document.getElementById('try') as any).left + 300,
   }
   
   const inProgressBounds = {
-    left: getOffset(inProgressRef).left,
-    right: getOffset(inProgressRef).left + 300,
+    left: getOffset(document.getElementById('inProgress') as any).left,
+    right: getOffset(document.getElementById('inProgress') as any).left + 300,
   }
   
   const doneBounds = {
-    left: getOffset(doneRef).left,
-    right: getOffset(doneRef).left + 300,
+    left: getOffset(document.getElementById('done') as any).left,
+    right: getOffset(document.getElementById('done') as any).left + 300,
   }
   
   const abandonedBounds = {
-    left: getOffset(abandonedRef).left,
-    right: getOffset(abandonedRef).left + 300,
+    left: getOffset(document.getElementById('abandoned') as any).left,
+    right: getOffset(document.getElementById('abandoned') as any).left + 300,
   }
 
-  const handleStop = (data:any, id:any) => {
-    console.log(data)
+  const handleStop = (data:any) => {
+    console.log(data.x)
     if (data.x >= tryBounds.left && data.x <= tryBounds.right) {
-      updateToTry(id)
-    } else if (data.x >= inProgressBounds.left && data.x <= inProgressBounds.right) {
-      updateToInProgress(id)
-    } else if (data.x >= doneBounds.left && data.x <= doneBounds.right) {
-      updateToDone(id)
-    } else if (data.x >= abandonedBounds.left && data.x <= abandonedBounds.right) {
-      updateToAbandoned(id)
+      console.log("try")
+    }
+    if (data.x >= inProgressBounds.left && data.x <= inProgressBounds.right) {
+      console.log("inProgress")
+    }
+    if (data.x >= doneBounds.left && data.x <= doneBounds.right) {
+      console.log("done")
+    }
+    if (data.x >= abandonedBounds.left && data.x <= abandonedBounds.right) {
+      console.log("abandoned")
     }
   }
 
@@ -71,7 +73,7 @@ export default async function TestingStages({testingNote}:any) {
 
   return (
     <div className="w-full flex justify-around mt-10">
-      <Try testingNote={testingNote.todo} handleStop={handleStop} handleStart={handleStart} ref={tryRef} dragRef={dragRef} />
+      <Try testingNote={testingNote.todo} handleStop={handleStop} handleStart={handleStart} ref={tryRef} />
       <InProgress testingNote={testingNote.inProgress} handleStop={handleStop} ref={inProgressRef} />
       <Done testingNote={testingNote.done} handleStop={handleStop} ref={doneRef} />
       <Abandoned testingNote={testingNote.abandoned} handleStop={handleStop} ref={abandonedRef} />
@@ -79,9 +81,9 @@ export default async function TestingStages({testingNote}:any) {
   )
 }
 
-const Try = ({testingNote, handleStop, handleStart, ref, dragRef}:any) => {
+const Try = ({testingNote, handleStop, handleStart}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" ref={ref}>
+    <div className="w-full mx-5 bg-white" id="try">
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Try</h1>
         <Dialog>
@@ -114,9 +116,8 @@ const Try = ({testingNote, handleStop, handleStart, ref, dragRef}:any) => {
           <div className="react-draggable">
             <Draggable
               axis="x"
-              onStop={handleStop.bind(note.id)}
+              onStop={handleStop}
               onStart={handleStart}
-              ref={dragRef}
             >
               <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
                 <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
@@ -131,9 +132,9 @@ const Try = ({testingNote, handleStop, handleStart, ref, dragRef}:any) => {
   )
 }
 
-const InProgress = ({testingNote, handleStop, ref}:any) => {
+const InProgress = ({testingNote, handleStop}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" ref={ref}>
+    <div className="w-full mx-5 bg-white" id="inProgress">
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">In Progress</h1>
         <Dialog>
@@ -165,7 +166,7 @@ const InProgress = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop.bind(note.id)}
+            onStop={handleStop}
           >
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
@@ -179,9 +180,9 @@ const InProgress = ({testingNote, handleStop, ref}:any) => {
   )
 }
 
-const Done = ({testingNote, handleStop, ref}:any) => {
+const Done = ({testingNote, handleStop}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" ref={ref}>
+    <div className="w-full mx-5 bg-white" id="done">
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Done</h1>
         <Dialog>
@@ -213,7 +214,7 @@ const Done = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop.bind(note.id)}
+            onStop={handleStop}
           >
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>
@@ -227,9 +228,9 @@ const Done = ({testingNote, handleStop, ref}:any) => {
   )
 }
 
-const Abandoned = ({testingNote, handleStop, ref}:any) => {
+const Abandoned = ({testingNote, handleStop}:any) => {
   return(
-    <div className="w-full mx-5 bg-white" ref={ref}>
+    <div className="w-full mx-5 bg-white" id="abandoned">
       <div className="flex justify-between my-2">
         <h1 className="text-xl ml-5">Abandoned</h1>
         <Dialog>
@@ -261,7 +262,7 @@ const Abandoned = ({testingNote, handleStop, ref}:any) => {
         {testingNote?.map((note: any) => (
           <Draggable
             axis="x"
-            onStop={handleStop.bind(note.id)}
+            onStop={handleStop}
           >
             <div key={note.id} className='m-4 text-xs border-black border-[1px] rounded-lg'>
               <p className='font-semibold bg-gray-100 px-4 rounded-tl-lg rounded-tr-lg'>{note.name}</p>

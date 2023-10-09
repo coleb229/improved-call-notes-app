@@ -16,7 +16,24 @@ export const fetchContacts = async () => {
 export const findDBAs = async () => {
   try {
     const dbas = await prisma.contact.findMany({
-      distinct: ['dbaName']
+      distinct: ['dbaName'],
+      orderBy: {
+        dbaName: 'asc'
+      }
+    })
+    return dbas
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const findIds = async () => {
+  try {
+    const dbas = await prisma.contact.findMany({
+      select: {
+        id: true,
+        dbaName: true
+      },
     })
     return dbas
   } catch (error) {
