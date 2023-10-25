@@ -26,6 +26,8 @@ export default function CallNotes({ callNote }:any) {
     },
   )
 
+  const angerCheck = ['unbelievable', 'unacceptable', 'unreal', 'ridiculous', 'insane', 'crazy']
+
   return (
     <form action={async (formData) => {
       setOptimisticNote({
@@ -56,7 +58,20 @@ export default function CallNotes({ callNote }:any) {
       <div id='callNotes' className='flex justify-center'>
         <div className='flex flex-col'>
           <label htmlFor='callNotes'>Call Notes</label>
-          <textarea name='callNotes' id='callNotesInput'></textarea>
+          <textarea 
+            name='callNotes' 
+            id='callNotesInput'
+            onChange={(e) => {
+              const textArea = document.getElementById('callNotesInput') as HTMLTextAreaElement
+              textArea.value.split(' ').map((word) => {
+                if (angerCheck.includes(word.toLowerCase())) {
+                  textArea.style.backgroundColor = '#ff8f8f'
+                } else {
+                  textArea.style.backgroundColor = 'white'
+                }
+              })
+            }}
+          />
         </div>
         <div id='arrow'>
           <ArrowSVG className='h-10 w-10' />
