@@ -62,12 +62,12 @@ function Github() {
 
 function InternalLinks() {
   return (
-    <div id='internalLinks'>
+    <div id='internalLinks' className='mt-10'>
+      <Guides />
       <ThreeCX />
       <Collab />
       <PartnerPortal />
       <Chat />
-      <Guides />
     </div>
   )
 }
@@ -115,7 +115,7 @@ function Guides() {
             <p className='text-xs text-center'>Guides</p>
           </DropdownMenuTrigger>
         </div>
-        <DropdownMenuContent>
+        <DropdownMenuContent className='z-[1000]'>
           <DropdownMenuLabel>Ponder</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
@@ -124,13 +124,18 @@ function Guides() {
           <DropdownMenuLabel>Drive Folders</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <a href='https://support-kb.vercel.app/' target='_blank'>Support Portal [In Progress]</a>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
             <a href='https://drive.google.com/drive/folders/1fIgkicbJ5lbi8M3CV-VFuOYNNux0LCLI' target='_blank'>Guides (Work in Progress)</a>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <a href='https://drive.google.com/drive/folders/1UxDT6GPVaDeV4cYr08EfI-zOab5yBXxU' target='_blank' className='font-normal'>Resources [In Progress]</a>
+            <a href='https://drive.google.com/drive/folders/1UxDT6GPVaDeV4cYr08EfI-zOab5yBXxU' target='_blank'>Resources [In Progress]</a>
+          </DropdownMenuItem>
+          <DropdownMenuLabel>Other</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <a href='https://support-kb.vercel.app/' target='_blank'>Support Portal [In Progress]</a>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <a href='https://getquantic.com/support/' target='_blank'>getquantic.com</a>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
