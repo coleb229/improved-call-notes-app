@@ -68,6 +68,12 @@ export default function StorageTabs({ callNote, handoff, rekey }:any) {
                       <p className="font-bold">Link:</p>
                       <p>{handoff.ticket}</p>
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <p className="font-bold">Collab:</p>
+                        <p>{handoff.collab}</p>
+                      </div>
+                    )}
                   </div>
                   <form action={selectiveDeleteHandoff} className="flex justify-end m-5">
                     <h1 className="mr-10 mt-2 font-semibold">{handoff.dbaName}</h1>

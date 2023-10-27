@@ -29,6 +29,7 @@ model Handoff {
   dbaName   String
   summary   String
   ticket    String
+  collab    String
   status    String
 }
 

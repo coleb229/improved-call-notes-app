@@ -15,6 +15,7 @@ export const saveHandoff = async (formdata: any) => {
         dbaName: formdata.get('dbaName'),
         summary: formdata.get('summary'),
         ticket: formdata.get('ticket'),
+        collab: formdata.get('collab'),
         status: formdata.get('status'),
       }
     })
@@ -41,15 +42,43 @@ export const fetchHandoffs = async () => {
 
 export const updateHandoff = async (formdata: any) => {
   try {
-    if(formdata.get('status' && 'ticket') === null) {
+    if(formdata.get('newStatus' && 'ticket' && 'collab') === null) {
       revalidatePath("/handoff")
-    } else if(formdata.get('status') === null) {
+    } else if(formdata.get('newStatus') === null && formdata.get('ticket') === "") {
+      await prisma.handoff.update({
+        where: {
+          id: formdata.get('id')
+        },
+        data: {
+          collab: formdata.get('collab')
+        }
+      })
+    } else if(formdata.get('ticket') === "" && formdata.get('collab') === "") {
+      await prisma.handoff.update({
+        where: {
+          id: formdata.get('id')
+        },
+        data: {
+          status: formdata.get('newStatus')
+        }
+      })
+    } else if(formdata.get('newStatus') === null && formdata.get('collab') === "") {
       await prisma.handoff.update({
         where: {
           id: formdata.get('id')
         },
         data: {
           ticket: formdata.get('ticket')
+        }
+      })
+    } else if(formdata.get('newStatus') === null) {
+      await prisma.handoff.update({
+        where: {
+          id: formdata.get('id')
+        },
+        data: {
+          ticket: formdata.get('ticket'),
+          collab: formdata.get('collab')
         }
       })
     } else if(formdata.get('ticket') === "") {
@@ -58,7 +87,18 @@ export const updateHandoff = async (formdata: any) => {
           id: formdata.get('id')
         },
         data: {
-          status: formdata.get('status')
+          status: formdata.get('newStatus'),
+          collab: formdata.get('collab')
+        }
+      })
+    } else if(formdata.get('collab') === "") {
+      await prisma.handoff.update({
+        where: {
+          id: formdata.get('id')
+        },
+        data: {
+          status: formdata.get('newStatus'),
+          ticket: formdata.get('ticket')
         }
       })
     } else {
@@ -67,8 +107,9 @@ export const updateHandoff = async (formdata: any) => {
           id: formdata.get('id')
         },
         data: {
-          status: formdata.get('status'),
-          ticket: formdata.get('ticket')
+          status: formdata.get('newStatus'),
+          ticket: formdata.get('ticket'),
+          collab: formdata.get('collab')
         }
       })
     }

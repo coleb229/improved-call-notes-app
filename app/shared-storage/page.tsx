@@ -76,6 +76,11 @@ export default async function DisplayStoredCalls() {
                     <div className="flex">
                       <b>Link:</b>{handoff.ticket}<br />
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <b>Collab:</b>{handoff.collab}<br />
+                      </div>
+                    )}
                   </div>
                   : null
               ))}
@@ -90,6 +95,11 @@ export default async function DisplayStoredCalls() {
                       <p className="font-bold">Link:</p>
                       <p>{handoff.ticket}</p>
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <b>Collab:</b>{handoff.collab}<br />
+                      </div>
+                    )}
                   </div>
                   : null
               ))}
@@ -104,6 +114,11 @@ export default async function DisplayStoredCalls() {
                       <p className="font-bold">Link:</p>
                       <p>{handoff.ticket}</p>
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <b>Collab:</b>{handoff.collab}<br />
+                      </div>
+                    )}
                   </div>
                   : null
               ))}
@@ -118,6 +133,11 @@ export default async function DisplayStoredCalls() {
                       <p className="font-bold">Link:</p>
                       <p>{handoff.ticket}</p>
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <b>Collab:</b>{handoff.collab}<br />
+                      </div>
+                    )}
                   </div>
                   : null
               ))}
@@ -132,6 +152,11 @@ export default async function DisplayStoredCalls() {
                       <p className="font-bold">Link:</p>
                       <p>{handoff.ticket}</p>
                     </div>
+                    {handoff.collab && (
+                      <div className="flex">
+                        <b>Collab:</b>{handoff.collab}<br />
+                      </div>
+                    )}
                   </div>
                   : null
               ))}
@@ -198,6 +223,11 @@ const DailySharedHandoff = async () => {
                 <div className="flex">
                   <b>Link:</b>{handoff.ticket}<br />
                 </div>
+                {handoff.collab && (
+                  <div className="flex">
+                    <b>Collab:</b>{handoff.collab}<br />
+                  </div>
+                )}
               </div>
             : null
           ))}
@@ -239,6 +269,11 @@ const DailySharedHandoff = async () => {
                   <p className="font-bold">Link:</p>
                   <p>{handoff.ticket}</p>
                 </div>
+                {handoff.collab && (
+                  <div className="flex">
+                    <b>Collab:</b>{handoff.collab}<br />
+                  </div>
+                )}
               </div>
               : null
           ))}
@@ -280,6 +315,11 @@ const DailySharedHandoff = async () => {
                   <p className="font-bold">Link:</p>
                   <p>{handoff.ticket}</p>
                 </div>
+                {handoff.collab && (
+                  <div className="flex">
+                    <b>Collab:</b>{handoff.collab}<br />
+                  </div>
+                )}
               </div>
               : null
           ))}
@@ -321,6 +361,11 @@ const DailySharedHandoff = async () => {
                   <p className="font-bold">Link:</p>
                   <p>{handoff.ticket}</p>
                 </div>
+                {handoff.collab && (
+                  <div className="flex">
+                    <b>Collab:</b>{handoff.collab}<br />
+                  </div>
+                )}
               </div>
               : null
           ))}
@@ -362,6 +407,11 @@ const DailySharedHandoff = async () => {
                   <p className="font-bold">Link:</p>
                   <p>{handoff.ticket}</p>
                 </div>
+                {handoff.collab && (
+                  <div className="flex">
+                    <b>Collab:</b>{handoff.collab}<br />
+                  </div>
+                )}
               </div>
               : null
           ))}

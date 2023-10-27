@@ -27,6 +27,7 @@ export const saveCallNote = async (formData: any) => {
         dbaName: formData.get('dbaName'),
         summary: formData.get('summary'),
         ticket: 'ticket',
+        collab: '',
         status: formData.get('status'),
       }
     })

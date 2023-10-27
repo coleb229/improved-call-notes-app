@@ -12,6 +12,11 @@ export default function Handoff({ handoff }:any) {
               <div className="flex">
                 <b>Link:</b>{handoff.ticket}<br />
               </div>
+              {handoff.collab && (
+                <div className="flex">
+                  <b>Collab:</b>{handoff.collab}<br />
+                </div>
+              )}
             </div>
             : null
         ))}
@@ -26,6 +31,11 @@ export default function Handoff({ handoff }:any) {
                 <p className="font-bold">Link:</p>
                 <p>{handoff.ticket}</p>
               </div>
+              {handoff.collab && (
+                <div className="flex">
+                  <b>Collab:</b>{handoff.collab}<br />
+                </div>
+              )}
             </div>
             : null
         ))}
@@ -40,6 +50,11 @@ export default function Handoff({ handoff }:any) {
                 <p className="font-bold">Link:</p>
                 <p>{handoff.ticket}</p>
               </div>
+              {handoff.collab && (
+                <div className="flex">
+                  <b>Collab:</b>{handoff.collab}<br />
+                </div>
+              )}
             </div>
             : null
         ))}
@@ -54,6 +69,11 @@ export default function Handoff({ handoff }:any) {
                 <p className="font-bold">Link:</p>
                 <p>{handoff.ticket}</p>
               </div>
+              {handoff.collab && (
+                <div className="flex">
+                  <b>Collab:</b>{handoff.collab}<br />
+                </div>
+              )}
             </div>
             : null
         ))}
@@ -68,6 +88,11 @@ export default function Handoff({ handoff }:any) {
                 <p className="font-bold">Link:</p>
                 <p>{handoff.ticket}</p>
               </div>
+              {handoff.collab && (
+                <div className="flex">
+                  <b>Collab:</b>{handoff.collab}<br />
+                </div>
+              )}
             </div>
             : null
         ))}

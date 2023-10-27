@@ -145,6 +145,10 @@ function Preview({ optimisticNote }:any) {
                 <p className="font-bold">Link:</p>
                 <p> link </p>
               </div>
+              <div className='flex'>
+                <p className="font-bold">Collab:</p>
+                <p> collab </p>
+              </div>
               <div className='mt-5'>
                 <p>
                 Caller DBA: {note.dbaName}<br />

@@ -86,6 +86,12 @@ export default function Handoff({ handoff, externalHandoff }: any) {
                     <p className="font-bold">Link:</p>
                     <p>{handoff.ticket}</p>
                   </div>
+                  {handoff.collab && (
+                    <div className="flex">
+                      <p className="font-bold">Collab:</p>
+                      <p>{handoff.collab}</p>
+                    </div>
+                  )}
                   <hr />
                   <p className="font-bold text-green-500 text-right">{handoff.status}</p>
                 </div>
@@ -130,9 +136,15 @@ export const HandoffForm = ({ setOptimisticNote }:any) => {
         <input type='text' name='dbaName' id='dbaName' />
         <label htmlFor='summary'>Summary</label>
         <input type='text' name='summary' id='summary' />
-        <label htmlFor='ticket'>Link</label>
-        <input type='text' name='ticket' id='ticket' />
-        <div className="flex justify-center">
+        <div>
+          <label htmlFor='ticket'>Link</label>
+          <input type='text' name='ticket' id='ticket' />
+        </div>
+        <div>
+          <label htmlFor='collab'>Collab</label>
+          <input type='text' name='collab' id='' />
+        </div>
+         <div className="flex justify-center">
           <div>
             <label htmlFor="followUp">Follow Up</label>
             <input type="radio" name="status" id="followUp" value="followUp" />
@@ -164,19 +176,19 @@ const UpdateStatusForm = () => {
       <div className="flex flex-col text-sm">
         <div className="flex justify-between">
           <label htmlFor="followUp">Follow Up</label>
-          <input type="radio" name="status" id="followUp" value="followUp" />
+          <input type="radio" name="newStatus" id="followUp" value="followUp" />
         </div>
         <div className="flex justify-between">
           <label htmlFor="needsAttention">Needs Attention</label>
-          <input type="radio" name="status" id="needsAttention" value="needsAttention" className="ml-5" />
+          <input type="radio" name="newStatus" id="needsAttention" value="needsAttention" className="ml-5" />
         </div>
         <div className="flex justify-between">
           <label htmlFor="inProgress">In Progress</label>
-          <input type="radio" name="status" id="inProgress" value="inProgress" />
+          <input type="radio" name="newStatus" id="inProgress" value="inProgress" />
         </div>
         <div className="flex justify-between">
           <label htmlFor="resolved">Resolved</label>
-          <input type="radio" name="status" id="resolved" value="resolved" />
+          <input type="radio" name="newStatus" id="resolved" value="resolved" />
         </div>
       </div>
     </>
@@ -185,11 +197,15 @@ const UpdateStatusForm = () => {
 
 const UpdateLinkForm = () => {
   return (
-    <>
-      <div className="flex flex-col text-sm w-2/6">
+    <div>
+      <div className="flex flex-col text-sm w-full">
         <label htmlFor="ticket">Link</label>
         <input type='text' name='ticket' id='ticket' />
       </div>
-    </>
+      <div className="flex flex-col text-sm w-full">
+        <label htmlFor="collab">Collab</label>
+        <input type='text' name='collab' id='collab' />
+      </div>
+    </div>
   )
 }
