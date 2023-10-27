@@ -74,6 +74,7 @@ export const addExternalHandoff = async (formdata: any) => {
         dbaName: formdata.get("dbaName"),
         summary: formdata.get("summary"),
         ticket: formdata.get("ticket"),
+        collab: formdata.get("collab"),
         status: formdata.get("status"),
       },
     });
