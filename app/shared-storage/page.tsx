@@ -25,7 +25,7 @@ export default async function DisplayStoredCalls() {
   const email = session?.user?.email;
   const { callAuthors } = await findAuthors();
 
-  if(email?.includes('@getquantic.com' || 'cbrant229') === false) {return <div id="container">Access Denied</div>}
+  //if(email?.includes('@getquantic.com' || 'cbrant229') === false) {return <div id="container">Access Denied</div>}
 
   return (
     <>

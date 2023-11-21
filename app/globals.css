@@ -289,11 +289,6 @@ label {
   font-family: Optima, sans-serif;
 }
 
-#dbaName, #summary, .ticket {
-  width: 400px;
-  margin-bottom: 30px;
-}
-
 #submit {
   margin-left: 50%;
 }
@@ -582,10 +577,6 @@ label {
   }
 
   #footNotes {
-    width: 100%;
-  }
-
-  #dbaName, #summary, #ticket {
     width: 100%;
   }
 

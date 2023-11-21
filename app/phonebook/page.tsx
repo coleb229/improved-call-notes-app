@@ -12,13 +12,14 @@ export default async function Home() {
   let ids = await findIds();
   let session = await getServerSession(authOptions);
 
-  if(session?.user?.email?.includes('@getquantic.com')) {
+ // if(session?.user?.email?.includes('@getquantic.com')) {
     return (
       <div id="phonebookContainer">
         <ExternalLinks />
         <Output dbas={dbas} ids={ids} contacts={contacts} />
       </div>
     )
+    /*
   } else {
     return (
       <div id="phonebookContainer">
@@ -27,4 +28,5 @@ export default async function Home() {
       </div>
     )
   }
+  */
 }
